@@ -104,7 +104,6 @@ func (t *S21Token) getAuthCode(user string, password string, ctx context.Context
 
 	client := resty.New()
 	client.SetRedirectPolicy(resty.NoRedirectPolicy())
-	client.SetDebug(true)
 
 	res, err := client.R().SetContext(ctx).Get(fmt.Sprintf(cookieUrlTemplate, state, nonce))
 	if err != nil {
