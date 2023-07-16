@@ -84,18 +84,14 @@ func (t *S21Token) Refresh(ctx context.Context) (err error) {
 	return
 }
 
-func (t *S21Token) Apply(r *http.Request) (*http.Request, error) {
+func (t *S21Token) Apply(c *resty.Client, r *resty.Request) error {
 	err := t.Refresh(r.Context())
 	if err != nil {
-		return r, err
+		return err
 	}
 
-	for _, c := range t.cookies {
-		r.AddCookie(c)
-	}
 	r.Header.Add("Authorization", "Bearer "+t.token)
-
-	return r, err
+	return err
 }
 
 func (t *S21Token) getAuthCode(user string, password string, ctx context.Context) (err error) {
