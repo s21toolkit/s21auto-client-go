@@ -1,6 +1,6 @@
 _type: export
 __export_format: 4
-__export_date: 2023-07-16T21:51:46.353Z
+__export_date: 2023-07-17T07:16:36.087Z
 __export_source: insomnia.desktop.app:v2023.4.0
 resources:
   - _id: req_1098cfaec80f45be9cf3e38aff4ec9d4
@@ -92,7 +92,7 @@ resources:
     _type: request
   - _id: req_d3e1170d6b12477d93942a8aa0cabd9c
     parentId: fld_10d0c57090b6484b8915fee56a45243a
-    modified: 1689544192250
+    modified: 1689572920971
     created: 1689132763906
     url: "{% ResponseEval 'req_72a67420b07c4bbab08b75171908bfba', 'always',
       'always',
@@ -117,10 +117,6 @@ resources:
       - name: Content-Type
         value: application/x-www-form-urlencoded
         id: pair_0205abf6e2f54106b78fc35722692eff
-      - name: Origin
-        value: "null"
-        id: pair_9fe746ceff3c457cbff505a950d9e6c1
-        disabled: true
     authentication: {}
     metaSortKey: -1689136151985
     isPrivate: false
@@ -178,7 +174,7 @@ resources:
     _type: request
   - _id: req_f41e599b424d49c1adef3b719bd4dee3
     parentId: wrk_be37128491144ba9acdf69516cf82ae5
-    modified: 1689082312933
+    modified: 1689573907774
     created: 1685239422702
     url: https://edu.21-school.ru/services/graphql
     name: GetTimeSlots
@@ -215,10 +211,57 @@ resources:
       - name: Content-Type
         value: application/json
         id: pair_73431e808bc24de7948198558de13453
+        disabled: false
       - id: pair_d2c624b62cc54f01a231d3c84a62c44b
         name: Schoolid
-        value: 6bfe3c56-0211-4fe1-9e59-51616caac4dd
+        value: "{{ _.schoolid }}"
         description: ""
+        disabled: false
+    authentication:
+      type: oauth2
+      grantType: authorization_code
+      accessTokenUrl: https://auth.sberclass.ru/auth/realms/EduPowerKeycloak/protocol/openid-connect/token
+      authorizationUrl: https://auth.sberclass.ru/auth/realms/EduPowerKeycloak/protocol/openid-connect/auth
+      clientId: school21
+      redirectUrl: https://edu.21-school.ru/
+      scope: openid profile email
+      credentialsInBody: false
+      disabled: true
+    metaSortKey: -1685239422702
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a6dd589042aa413f92ec61b015c69d79
+    parentId: wrk_be37128491144ba9acdf69516cf82ae5
+    modified: 1689578121875
+    created: 1689573669209
+    url: https://edu.21-school.ru/services/graphql
+    name: UserRoleLoaderGetRoles
+    description: Use this to obtain scoolid
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query userRoleLoaderGetRoles {\n\tuser {\n\t\tgetCurrentUser
+        {\n\t\t\tfunctionalRoles
+        {\n\t\t\t\tcode\n\t\t\t\t__typename\n\t\t\t}\n\t\t\tid\n\t\t\tstudentRoles
+        {\n\t\t\t\tid\n\t\t\t\tschool
+        {\n\t\t\t\t\tid\n\t\t\t\t\tshortName\n\t\t\t\t\torganizationType\n\t\t\t\t\t__typename\n\t\t\t\t}\n\t\t\t\tstatus\n\t\t\t\t__typename\n\t\t\t}\n\t\t\tuserSchoolPermissions
+        {\n\t\t\t\tschoolId\n\t\t\t\tpermissions\n\t\t\t\t__typename\n\t\t\t}\n\t\t\tsystemAdminRole
+        {\n\t\t\t\tid\n\t\t\t\t__typename\n\t\t\t}\n\t\t\tbusinessAdminRolesV2
+        {\n\t\t\t\tid\n\t\t\t\tschool
+        {\n\t\t\t\t\tid\n\t\t\t\t\torganizationType\n\t\t\t\t\t__typename\n\t\t\t\t}\n\t\t\t\torgUnitId\n\t\t\t\t__typename\n\t\t\t}\n\t\t\t__typename\n\t\t}\n\t\tgetCurrentUserSchoolRoles
+        {\n\t\t\tschoolId\n\t\t\t__typename\n\t\t}\n\t\t__typename\n\t}\n}\n","operationName":"userRoleLoaderGetRoles","variables":{}}'
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_73431e808bc24de7948198558de13453
+        disabled: false
     authentication:
       type: oauth2
       grantType: authorization_code
@@ -229,7 +272,7 @@ resources:
       scope: openid profile email
       credentialsInBody: false
       disabled: false
-    metaSortKey: -1685239422702
+    metaSortKey: -1685227443815.25
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -240,7 +283,7 @@ resources:
     _type: request
   - _id: req_80170439a45f4ed9b9a01525a6f6a8ed
     parentId: wrk_be37128491144ba9acdf69516cf82ae5
-    modified: 1689542890039
+    modified: 1689572906933
     created: 1685241673858
     url: https://edu.21-school.ru/services/graphql
     name: CalendarGetModule
@@ -282,7 +325,7 @@ resources:
         id: pair_73431e808bc24de7948198558de13453
       - id: pair_d2c624b62cc54f01a231d3c84a62c44b
         name: Schoolid
-        value: 6bfe3c56-0211-4fe1-9e59-51616caac4dd
+        value: "{{ _.schoolid }}"
         description: ""
         disabled: false
     authentication:
@@ -306,11 +349,11 @@ resources:
     _type: request
   - _id: req_c221610aec9e4c3696e7b6714c524146
     parentId: wrk_be37128491144ba9acdf69516cf82ae5
-    modified: 1685243857266
+    modified: 1689574329510
     created: 1685243084212
     url: https://edu.21-school.ru/services/graphql
     name: GetCurrentUser
-    description: ""
+    description: Use this to get user schoolid
     method: POST
     body:
       mimeType: application/graphql
@@ -331,7 +374,7 @@ resources:
         id: pair_73431e808bc24de7948198558de13453
       - id: pair_d2c624b62cc54f01a231d3c84a62c44b
         name: Schoolid
-        value: 6bfe3c56-0211-4fe1-9e59-51616caac4dd
+        value: "{{ _.schoolid }}"
         description: ""
         disabled: false
     authentication:
@@ -343,7 +386,7 @@ resources:
       redirectUrl: https://edu.21-school.ru/
       scope: openid profile email
       credentialsInBody: false
-      disabled: false
+      disabled: true
     metaSortKey: -1685203486041.75
     isPrivate: false
     settingStoreCookies: true
@@ -355,7 +398,7 @@ resources:
     _type: request
   - _id: req_853058baef8d442cbe82298793975d19
     parentId: wrk_be37128491144ba9acdf69516cf82ae5
-    modified: 1685243854346
+    modified: 1689572901968
     created: 1685243130847
     url: https://edu.21-school.ru/services/graphql
     name: GetCurrentStudentProjects
@@ -384,7 +427,7 @@ resources:
         id: pair_73431e808bc24de7948198558de13453
       - id: pair_d2c624b62cc54f01a231d3c84a62c44b
         name: Schoolid
-        value: 6bfe3c56-0211-4fe1-9e59-51616caac4dd
+        value: "{{ _.schoolid }}"
         description: ""
         disabled: false
     authentication:
@@ -408,7 +451,7 @@ resources:
     _type: request
   - _id: req_59a0172c55944c078a0cf72188590954
     parentId: wrk_be37128491144ba9acdf69516cf82ae5
-    modified: 1689081987419
+    modified: 1689572897600
     created: 1685244268292
     url: https://edu.21-school.ru/services/graphql
     name: AddBookingToSlot
@@ -442,7 +485,7 @@ resources:
         id: pair_73431e808bc24de7948198558de13453
       - id: pair_d2c624b62cc54f01a231d3c84a62c44b
         name: Schoolid
-        value: 6bfe3c56-0211-4fe1-9e59-51616caac4dd
+        value: "{{ _.schoolid }}"
         description: ""
         disabled: false
     authentication:
@@ -466,21 +509,36 @@ resources:
     _type: request
   - _id: env_f4b612bcb8aad31b6f786a0041eaf75201a6312d
     parentId: wrk_be37128491144ba9acdf69516cf82ae5
-    modified: 1689544148098
+    modified: 1689574289295
     created: 1685239417998
     name: Base Environment
-    data: {}
-    dataPropertyOrder: {}
+    data:
+      schoolid: "{% response 'body', 'req_a6dd589042aa413f92ec61b015c69d79',
+        'b64::JC4uZ2V0Q3VycmVudFVzZXJTY2hvb2xSb2xlcy4uc2Nob29sSWQ=::46b',
+        'no-history', 60 %}"
+    dataPropertyOrder:
+      "&":
+        - schoolid
     color: null
     isPrivate: false
     metaSortKey: 1685239417998
     _type: environment
   - _id: jar_f4b612bcb8aad31b6f786a0041eaf75201a6312d
     parentId: wrk_be37128491144ba9acdf69516cf82ae5
-    modified: 1689544221941
+    modified: 1689578124307
     created: 1685239417999
     name: Default Jar
-    cookies: []
+    cookies:
+      - key: SI
+        value: 0620d8f5-7b98-4172-9232-ad884d8ed471
+        domain: edu.21-school.ru
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: true
+        creation: 2023-07-16T22:07:19.708Z
+        lastAccessed: 2023-07-17T06:04:48.842Z
+        id: "6053079163489912"
     _type: cookie_jar
   - _id: spc_ba275d0044384fbaa7485caf4e2ab9e4
     parentId: wrk_be37128491144ba9acdf69516cf82ae5
