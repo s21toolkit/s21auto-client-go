@@ -3,7 +3,6 @@ package auth
 import (
 	"context"
 	"s21client/gql"
-	"s21client/util"
 
 	"github.com/go-resty/resty/v2"
 )
@@ -71,13 +70,13 @@ func RequestUserData(token Token, ctx context.Context) (user User, err error) {
 		return
 	}
 
-	responseData, err := util.UnmarshalJson[userDataRoleResponse](res.Body())
+	userRoleData, err := gql.ExtractResponseData[userDataRole](res)
 
 	if err != nil {
 		return
 	}
 
-	user = responseData.Data.User
+	user = userRoleData.User
 
 	return
 }
