@@ -8,5 +8,5 @@ type AuthCredentials struct {
 }
 
 type AuthProvider interface {
-	GetAuthCredentials(ctx context.Context) AuthCredentials
+	GetAuthCredentials(ctx context.Context) (AuthCredentials, error)
 }

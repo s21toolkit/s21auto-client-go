@@ -10,11 +10,11 @@ type defaultAuthProvider struct {
 	schoolId string
 }
 
-func (provider *defaultAuthProvider) refreshCredentials(ctx context.Context) {
-	err := provider.token.Refresh(ctx)
+func (provider *defaultAuthProvider) refreshCredentials(ctx context.Context) (err error) {
+	err = provider.token.Refresh(ctx)
 
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	if provider.schoolId != "" {
@@ -24,19 +24,27 @@ func (provider *defaultAuthProvider) refreshCredentials(ctx context.Context) {
 	user, err := auth.RequestUserData(provider.token, ctx)
 
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	provider.schoolId = user.Roles[0].SchoolID
+
+	return
 }
 
-func (provider *defaultAuthProvider) GetAuthCredentials(ctx context.Context) AuthCredentials {
-	provider.refreshCredentials(ctx)
+func (provider *defaultAuthProvider) GetAuthCredentials(ctx context.Context) (credentials AuthCredentials, err error) {
+	err = provider.refreshCredentials(ctx)
 
-	return AuthCredentials{
+	if err != nil {
+		return
+	}
+
+	credentials = AuthCredentials{
 		Token:    provider.token.AccessToken,
 		SchoolId: provider.schoolId,
 	}
+
+	return
 }
 
 func DefaultAuth(username, password string) *defaultAuthProvider {

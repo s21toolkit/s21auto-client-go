@@ -14,23 +14,31 @@ func (client *Client) UseAuth(authProvider AuthProvider) {
 	client.authProvider = authProvider
 }
 
-func (client *Client) applyAuth(request *resty.Request) {
-	credentials := client.authProvider.GetAuthCredentials(request.Context())
+func (client *Client) applyAuth(request *resty.Request) (err error) {
+	credentials, err := client.authProvider.GetAuthCredentials(request.Context())
+
+	if err != nil {
+		return
+	}
 
 	request.SetAuthToken(credentials.Token).SetHeader("schoolid", credentials.SchoolId)
+
+	return
 }
 
 func (client *Client) R() *resty.Request {
-	request := client.resty.R()
-
-	client.applyAuth(request)
-
-	return request
+	return client.resty.R()
 }
 
 func New(authProvider AuthProvider) *Client {
-	return &Client{
+	client := &Client{
 		authProvider: authProvider,
 		resty:        resty.New(),
 	}
+
+	client.resty.OnBeforeRequest(func(c *resty.Client, r *resty.Request) error {
+		return client.applyAuth(r)
+	})
+
+	return client
 }
