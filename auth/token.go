@@ -41,9 +41,9 @@ type Token struct {
 }
 
 const (
-	kkBaseUrl         = "https://auth.sberclass.ru/auth/realms/EduPowerKeycloak"
-	cookieUrlTemplate = kkBaseUrl + "/protocol/openid-connect/auth?client_id=school21&redirect_uri=https%%3A%%2F%%2Fedu.21-school.ru%%2F&state=%s&response_mode=fragment&response_type=code&scope=openid&nonce=%s"
-	tokenUrl          = kkBaseUrl + "/protocol/openid-connect/token"
+	kсBaseUrl         = "https://auth.sberclass.ru/auth/realms/EduPowerKeycloak"
+	cookieUrlTemplate = kсBaseUrl + "/protocol/openid-connect/auth?client_id=school21&redirect_uri=https%%3A%%2F%%2Fedu.21-school.ru%%2F&state=%s&response_mode=fragment&response_type=code&scope=openid&nonce=%s"
+	tokenUrl          = kсBaseUrl + "/protocol/openid-connect/token"
 )
 
 var (
@@ -57,7 +57,7 @@ func getLoginActionUrl(data []byte) string {
 	return strings.ReplaceAll(rawUrl, "amp;", "")
 }
 
-func getAuthData(username, password string, ctx context.Context) (authCode string, kkCookies []*http.Cookie, err error) {
+func getAuthData(username, password string, ctx context.Context) (authCode string, kcCookies []*http.Cookie, err error) {
 	state := uuid.New().String()
 	nonce := uuid.New().String()
 
@@ -98,7 +98,7 @@ func getAuthData(username, password string, ctx context.Context) (authCode strin
 	location = res.Header().Get("location")
 
 	authCode = oauthCodePattern.FindStringSubmatch(location)[oauthCodePattern.SubexpIndex("OAuthCode")]
-	kkCookies = client.Cookies
+	kcCookies = client.Cookies
 
 	err = nil
 
