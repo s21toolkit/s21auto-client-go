@@ -21,7 +21,7 @@ type Response[TData any] struct {
 // Empty struct to use as variables/data
 type None struct{}
 
-var operationNamePattern = regexp.MustCompile(`query\s+(?P<OperationName>\w+)`)
+var operationNamePattern = regexp.MustCompile(`(?:query|mutation)\s+(?P<OperationName>\w+)`)
 
 // Creates gql.Request from a graphql query
 func NewQueryRequest[TVariables any](query string, optionalVariables ...TVariables) Request[TVariables] {
