@@ -1,10 +1,16 @@
 package s21client
 
 import (
+	"s21client/requests"
+
 	"github.com/go-resty/resty/v2"
 )
 
+var S21GqlUrl = "https://edu.21-school.ru/services/graphql"
+
 type Client struct {
+	gqlUrl string
+
 	resty *resty.Client
 
 	authProvider AuthProvider
@@ -26,12 +32,15 @@ func (client *Client) applyAuth(request *resty.Request) (err error) {
 	return
 }
 
-func (client *Client) R() *resty.Request {
-	return client.resty.R()
+func (client *Client) R() *requests.RequestContext {
+	request := client.resty.R()
+
+	return requests.NewRequestContext(request, client.gqlUrl)
 }
 
 func New(authProvider AuthProvider) *Client {
 	client := &Client{
+		gqlUrl:       S21GqlUrl,
 		authProvider: authProvider,
 		resty:        resty.New(),
 	}
