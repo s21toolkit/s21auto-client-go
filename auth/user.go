@@ -59,12 +59,12 @@ var userRoleLoaderGetRolesRequest = gql.NewQueryRequest(
 	gql.None{},
 )
 
-var s21ApiUrl = "https://edu.21-school.ru/services/graphql"
+var s21GqlUrl = "https://edu.21-school.ru/services/graphql"
 
 func RequestUserData(token Token, ctx context.Context) (user User, err error) {
 	client := resty.New()
 
-	res, err := client.R().SetContext(ctx).SetAuthToken(token.AccessToken).SetBody(userRoleLoaderGetRolesRequest).Post(s21ApiUrl)
+	res, err := client.R().SetContext(ctx).SetAuthToken(token.AccessToken).SetBody(userRoleLoaderGetRolesRequest).Post(s21GqlUrl)
 
 	if err != nil {
 		return
