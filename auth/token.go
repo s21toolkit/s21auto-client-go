@@ -47,12 +47,12 @@ const (
 )
 
 var (
-	loginActionRegex = regexp.MustCompile(`(?P<LoginActionURL>https:\/\/.+?)"`)
-	oauthCodeRegex   = regexp.MustCompile(`code=(?P<OAuthCode>.+)[&$]?`)
+	loginActionPattern = regexp.MustCompile(`(?P<LoginActionURL>https:\/\/.+?)"`)
+	oauthCodePattern   = regexp.MustCompile(`code=(?P<OAuthCode>.+)[&$]?`)
 )
 
 func getLoginActionUrl(data []byte) string {
-	rawUrl := loginActionRegex.FindStringSubmatch(string(data))[loginActionRegex.SubexpIndex("LoginActionURL")]
+	rawUrl := loginActionPattern.FindStringSubmatch(string(data))[loginActionPattern.SubexpIndex("LoginActionURL")]
 
 	return strings.ReplaceAll(rawUrl, "amp;", "")
 }
@@ -97,7 +97,7 @@ func getAuthData(username, password string, ctx context.Context) (authCode strin
 
 	location = res.Header().Get("location")
 
-	authCode = oauthCodeRegex.FindStringSubmatch(location)[oauthCodeRegex.SubexpIndex("OAuthCode")]
+	authCode = oauthCodePattern.FindStringSubmatch(location)[oauthCodePattern.SubexpIndex("OAuthCode")]
 	kkCookies = client.Cookies
 
 	err = nil
