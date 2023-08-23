@@ -17,25 +17,25 @@ type Student_GetStudentCurrentProjects struct {
 }
 
 type GetStudentCurrentProject_GetStudentCurrentProjects struct {
-	GoalID                         *int64      `json:"goalId"`
+	GoalID                         int64       `json:"goalId"`
 	Name                           string      `json:"name"`
 	Description                    string      `json:"description"`
 	Experience                     int64       `json:"experience"`
 	DateTime                       interface{} `json:"dateTime"`
 	FinalPercentage                interface{} `json:"finalPercentage"`
 	Laboriousness                  int64       `json:"laboriousness"`
-	ExecutionType                  *string     `json:"executionType"`
-	GoalStatus                     *string     `json:"goalStatus"`
-	CourseType                     *string     `json:"courseType"`
-	DisplayedCourseStatus          *string     `json:"displayedCourseStatus"`
-	AmountAnswers                  interface{} `json:"amountAnswers"`
+	ExecutionType                  string      `json:"executionType"`
+	GoalStatus                     string      `json:"goalStatus"`
+	CourseType                     interface{} `json:"courseType"`
+	DisplayedCourseStatus          interface{} `json:"displayedCourseStatus"`
+	AmountAnswers                  *int64      `json:"amountAnswers"`
 	AmountMembers                  *int64      `json:"amountMembers"`
 	AmountJoinedMembers            *int64      `json:"amountJoinedMembers"`
-	AmountReviewedAnswers          interface{} `json:"amountReviewedAnswers"`
-	AmountCodeReviewMembers        *int64      `json:"amountCodeReviewMembers"`
-	AmountCurrentCodeReviewMembers *int64      `json:"amountCurrentCodeReviewMembers"`
+	AmountReviewedAnswers          *int64      `json:"amountReviewedAnswers"`
+	AmountCodeReviewMembers        interface{} `json:"amountCodeReviewMembers"`
+	AmountCurrentCodeReviewMembers interface{} `json:"amountCurrentCodeReviewMembers"`
 	GroupName                      string      `json:"groupName"`
-	LocalCourseID                  *int64      `json:"localCourseId"`
+	LocalCourseID                  interface{} `json:"localCourseId"`
 	Typename                       string      `json:"__typename"`
 }
 

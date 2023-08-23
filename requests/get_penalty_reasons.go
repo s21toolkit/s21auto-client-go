@@ -12,20 +12,14 @@ type Data_GetPenaltyReasons struct {
 
 type School21_GetPenaltyReasons struct {
 	GetPenaltyReasons []GetPenaltyReason_GetPenaltyReasons `json:"getPenaltyReasons"`
-	Typename_GetPenaltyReasons          string             `json:"__typename"`
+	Typename          string             `json:"__typename"`
 }
 
 type GetPenaltyReason_GetPenaltyReasons struct {
-	ID       string   `json:"id"`
-	Name     string   `json:"name"`
-	Typename_GetPenaltyReasons Typename_GetPenaltyReasons `json:"__typename"`
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	Typename string `json:"__typename"`
 }
-
-type Typename_GetPenaltyReasons string
-
-const (
-	PenaltyReason Typename_GetPenaltyReasons = "PenaltyReason"
-)
 
 func (ctx *RequestContext) GetPenaltyReasons(variables Variables_GetPenaltyReasons) (Data_GetPenaltyReasons, error) {
 	request := gql.NewQueryRequest[Variables_GetPenaltyReasons](
