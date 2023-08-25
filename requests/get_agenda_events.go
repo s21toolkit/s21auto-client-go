@@ -1,6 +1,6 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Request_Variables_GetAgendaEvents struct {
 	From  string `json:"from"`

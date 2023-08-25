@@ -1,10 +1,9 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Request_Variables_GetUserFeatureFlags struct {
-	EntityIDList []string `json:"entityIdList,omitempty"`
-	EntityID     *string  `json:"entityId,omitempty"`
+	EntityIDList []string `json:"entityIdList"`
 }
 
 

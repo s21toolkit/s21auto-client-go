@@ -1,6 +1,6 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Request_Variables_GetProjectAttemptEvaluationsInfo struct {
 	GoalID    string `json:"goalId"`
@@ -18,15 +18,14 @@ type Response_School21_GetProjectAttemptEvaluationsInfo struct {
 }
 
 type Response_GetProjectAttemptEvaluationsInfoV1_GetProjectAttemptEvaluationsInfo struct {
-	StudentAnswerID      *string        `json:"studentAnswerId"`
-	StudentGoalAttemptID string         `json:"studentGoalAttemptId"`
-	Response_AttemptResult_GetProjectAttemptEvaluationsInfo        *Response_AttemptResult_GetProjectAttemptEvaluationsInfo `json:"attemptResult"`
-	Team                 interface{}    `json:"team"`
-	Response_P2P_GetProjectAttemptEvaluationsInfo                  []Response_P2P_GetProjectAttemptEvaluationsInfo          `json:"p2p"`
-	Response_Auto_GetProjectAttemptEvaluationsInfo                 Response_Auto_GetProjectAttemptEvaluationsInfo           `json:"auto"`
-	Response_CodeReview_GetProjectAttemptEvaluationsInfo           Response_CodeReview_GetProjectAttemptEvaluationsInfo     `json:"codeReview"`
-	Typename             string         `json:"__typename"`
-	AttemptStatus        *string        `json:"attemptStatus,omitempty"`
+	StudentAnswerID      string        `json:"studentAnswerId"`
+	StudentGoalAttemptID string        `json:"studentGoalAttemptId"`
+	Response_AttemptResult_GetProjectAttemptEvaluationsInfo        Response_AttemptResult_GetProjectAttemptEvaluationsInfo `json:"attemptResult"`
+	Team                 interface{}   `json:"team"`
+	Response_P2P_GetProjectAttemptEvaluationsInfo                  []Response_P2P_GetProjectAttemptEvaluationsInfo         `json:"p2p"`
+	Response_Auto_GetProjectAttemptEvaluationsInfo                 Response_Auto_GetProjectAttemptEvaluationsInfo          `json:"auto"`
+	Response_CodeReview_GetProjectAttemptEvaluationsInfo           Response_CodeReview_GetProjectAttemptEvaluationsInfo    `json:"codeReview"`
+	Typename             string        `json:"__typename"`
 }
 
 type Response_AttemptResult_GetProjectAttemptEvaluationsInfo struct {
@@ -46,15 +45,15 @@ type Response_Auto_GetProjectAttemptEvaluationsInfo struct {
 }
 
 type Response_CodeReview_GetProjectAttemptEvaluationsInfo struct {
-	AverageMark        *string       `json:"averageMark"`
+	AverageMark        string        `json:"averageMark"`
 	StudentCodeReviews []interface{} `json:"studentCodeReviews"`
 	Typename           string        `json:"__typename"`
 }
 
 type Response_P2P_GetProjectAttemptEvaluationsInfo struct {
-	Status    string     `json:"status"`
-	Response_Checklist_GetProjectAttemptEvaluationsInfo *Response_Checklist_GetProjectAttemptEvaluationsInfo `json:"checklist"`
-	Typename  string     `json:"__typename"`
+	Status    string    `json:"status"`
+	Response_Checklist_GetProjectAttemptEvaluationsInfo Response_Checklist_GetProjectAttemptEvaluationsInfo `json:"checklist"`
+	Typename  string    `json:"__typename"`
 }
 
 type Response_Checklist_GetProjectAttemptEvaluationsInfo struct {

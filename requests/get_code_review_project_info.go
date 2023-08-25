@@ -1,11 +1,10 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Variables_GetCodeReviewProjectInfo struct {
 	StudentGoalID string `json:"studentGoalId"`
 }
-
 
 type Data_GetCodeReviewProjectInfo struct {
 	Student_GetCodeReviewProjectInfo Student_GetCodeReviewProjectInfo `json:"student"`
@@ -13,29 +12,29 @@ type Data_GetCodeReviewProjectInfo struct {
 
 type Student_GetCodeReviewProjectInfo struct {
 	GetStudentModuleByStudentGoalID_GetCodeReviewProjectInfo GetStudentModuleByStudentGoalID_GetCodeReviewProjectInfo `json:"getStudentModuleByStudentGoalId"`
-	Typename                        string                          `json:"__typename"`
+	Typename                                                 string                                                   `json:"__typename"`
 }
 
 type GetStudentModuleByStudentGoalID_GetCodeReviewProjectInfo struct {
-	ID          string      `json:"id"`
-	ModuleTitle string      `json:"moduleTitle"`
+	ID                                   string                               `json:"id"`
+	ModuleTitle                          string                               `json:"moduleTitle"`
 	StudyModule_GetCodeReviewProjectInfo StudyModule_GetCodeReviewProjectInfo `json:"studyModule"`
 	CurrentTask_GetCodeReviewProjectInfo CurrentTask_GetCodeReviewProjectInfo `json:"currentTask"`
-	Typename    string      `json:"__typename"`
+	Typename                             string                               `json:"__typename"`
 }
 
 type CurrentTask_GetCodeReviewProjectInfo struct {
-	ID       string `json:"id"`
-	TaskID   string `json:"taskId"`
-	Task_GetCodeReviewProjectInfo     Task_GetCodeReviewProjectInfo   `json:"task"`
-	Typename string `json:"__typename"`
+	ID                            string                        `json:"id"`
+	TaskID                        string                        `json:"taskId"`
+	Task_GetCodeReviewProjectInfo Task_GetCodeReviewProjectInfo `json:"task"`
+	Typename                      string                        `json:"__typename"`
 }
 
 type Task_GetCodeReviewProjectInfo struct {
 	Content_GetCodeReviewProjectInfo                         Content_GetCodeReviewProjectInfo                         `json:"content"`
-	AssignmentType                  string                          `json:"assignmentType"`
+	AssignmentType                                           string                                                   `json:"assignmentType"`
 	StudentTaskAdditionalAttributes_GetCodeReviewProjectInfo StudentTaskAdditionalAttributes_GetCodeReviewProjectInfo `json:"studentTaskAdditionalAttributes"`
-	Typename                        string                          `json:"__typename"`
+	Typename                                                 string                                                   `json:"__typename"`
 }
 
 type Content_GetCodeReviewProjectInfo struct {
@@ -50,9 +49,9 @@ type StudentTaskAdditionalAttributes_GetCodeReviewProjectInfo struct {
 }
 
 type StudyModule_GetCodeReviewProjectInfo struct {
-	Duration int64  `json:"duration"`
-	Stage_GetCodeReviewProjectInfo    Stage_GetCodeReviewProjectInfo  `json:"stage"`
-	Typename string `json:"__typename"`
+	Duration                       int64                          `json:"duration"`
+	Stage_GetCodeReviewProjectInfo Stage_GetCodeReviewProjectInfo `json:"stage"`
+	Typename                       string                         `json:"__typename"`
 }
 
 type Stage_GetCodeReviewProjectInfo struct {

@@ -1,12 +1,11 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Variables_CalendarAddCodeReviewToEventSlot struct {
 	StudentGoalID string `json:"studentGoalId"`
 	StartTime     string `json:"startTime"`
 }
-
 
 type Data_CalendarAddCodeReviewToEventSlot struct {
 	Student_CalendarAddCodeReviewToEventSlot Student_CalendarAddCodeReviewToEventSlot `json:"student"`
@@ -14,7 +13,7 @@ type Data_CalendarAddCodeReviewToEventSlot struct {
 
 type Student_CalendarAddCodeReviewToEventSlot struct {
 	AddBookingCodeReviewToEventSlot_CalendarAddCodeReviewToEventSlot AddBookingCodeReviewToEventSlot_CalendarAddCodeReviewToEventSlot `json:"addBookingCodeReviewToEventSlot"`
-	Typename                        string                          `json:"__typename"`
+	Typename                                                         string                                                           `json:"__typename"`
 }
 
 type AddBookingCodeReviewToEventSlot_CalendarAddCodeReviewToEventSlot struct {

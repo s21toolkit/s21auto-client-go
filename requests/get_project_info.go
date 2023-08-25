@@ -1,6 +1,6 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Request_Variables_GetProjectInfo struct {
 	GoalID string `json:"goalId"`
@@ -38,7 +38,6 @@ type Response_GetModuleByID_GetProjectInfo struct {
 	Response_StudyModule_GetProjectInfo                       Response_StudyModule_GetProjectInfo   `json:"studyModule"`
 	Response_CurrentTask_GetProjectInfo                       Response_CurrentTask_GetProjectInfo   `json:"currentTask"`
 	Typename                          string        `json:"__typename"`
-	CourseBaseParameters              interface{}   `json:"courseBaseParameters"`
 }
 
 type Response_CurrentTask_GetProjectInfo struct {

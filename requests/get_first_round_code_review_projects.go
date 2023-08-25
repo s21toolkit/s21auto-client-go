@@ -1,6 +1,6 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Variables_GetFirstRoundCodeReviewProjects struct {
 	Paging_GetFirstRoundCodeReviewProjects Paging_GetFirstRoundCodeReviewProjects `json:"paging"`
@@ -10,7 +10,6 @@ type Paging_GetFirstRoundCodeReviewProjects struct {
 	Offset int64 `json:"offset"`
 	Limit  int64 `json:"limit"`
 }
-
 
 type Data_GetFirstRoundCodeReviewProjects struct {
 	Student_GetFirstRoundCodeReviewProjects Student_GetFirstRoundCodeReviewProjects `json:"student"`

@@ -1,11 +1,10 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Variables_CalendarGetCodeReviewData struct {
 	StudentGoalID string `json:"studentGoalId"`
 }
-
 
 type Data_CalendarGetCodeReviewData struct {
 	Student_CalendarGetCodeReviewData Student_CalendarGetCodeReviewData `json:"student"`
@@ -13,23 +12,23 @@ type Data_CalendarGetCodeReviewData struct {
 
 type Student_CalendarGetCodeReviewData struct {
 	GetStudentModuleByStudentGoalID_CalendarGetCodeReviewData GetStudentModuleByStudentGoalID_CalendarGetCodeReviewData `json:"getStudentModuleByStudentGoalId"`
-	Typename                        string                          `json:"__typename"`
+	Typename                                                  string                                                    `json:"__typename"`
 }
 
 type GetStudentModuleByStudentGoalID_CalendarGetCodeReviewData struct {
-	ModuleTitle string      `json:"moduleTitle"`
+	ModuleTitle                           string                                `json:"moduleTitle"`
 	CurrentTask_CalendarGetCodeReviewData CurrentTask_CalendarGetCodeReviewData `json:"currentTask"`
-	Typename    string      `json:"__typename"`
+	Typename                              string                                `json:"__typename"`
 }
 
 type CurrentTask_CalendarGetCodeReviewData struct {
-	Task_CalendarGetCodeReviewData     Task_CalendarGetCodeReviewData   `json:"task"`
-	Typename string `json:"__typename"`
+	Task_CalendarGetCodeReviewData Task_CalendarGetCodeReviewData `json:"task"`
+	Typename                       string                         `json:"__typename"`
 }
 
 type Task_CalendarGetCodeReviewData struct {
 	StudentTaskAdditionalAttributes_CalendarGetCodeReviewData StudentTaskAdditionalAttributes_CalendarGetCodeReviewData `json:"studentTaskAdditionalAttributes"`
-	Typename                        string                          `json:"__typename"`
+	Typename                                                  string                                                    `json:"__typename"`
 }
 
 type StudentTaskAdditionalAttributes_CalendarGetCodeReviewData struct {

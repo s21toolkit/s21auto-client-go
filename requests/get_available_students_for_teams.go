@@ -1,11 +1,10 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Request_Variables_GetAvailableStudentsForTeams struct {
 	GoalID string `json:"goalId"`
 }
-
 
 type Response_Data_GetAvailableStudentsForTeams struct {
 	Student Response_DataStudent_GetAvailableStudentsForTeams `json:"student"`
@@ -13,42 +12,42 @@ type Response_Data_GetAvailableStudentsForTeams struct {
 
 type Response_DataStudent_GetAvailableStudentsForTeams struct {
 	Response_GetAvailableStudentsForTeam_GetAvailableStudentsForTeams []Response_GetAvailableStudentsForTeam_GetAvailableStudentsForTeams `json:"getAvailableStudentsForTeam"`
-	Typename                    string                        `json:"__typename"`
+	Typename                                                          string                                                              `json:"__typename"`
 }
 
 type Response_GetAvailableStudentsForTeam_GetAvailableStudentsForTeams struct {
 	Student          Response_GetAvailableStudentsForTeamStudent_GetAvailableStudentsForTeams `json:"student"`
-	InvitationStatus string                             `json:"invitationStatus"`
-	Typename         string                             `json:"__typename"`
+	InvitationStatus string                                                                   `json:"invitationStatus"`
+	Typename         string                                                                   `json:"__typename"`
 }
 
 type Response_GetAvailableStudentsForTeamStudent_GetAvailableStudentsForTeams struct {
-	ID       string `json:"id"`
-	Response_User_GetAvailableStudentsForTeams     Response_User_GetAvailableStudentsForTeams   `json:"user"`
-	Typename string `json:"__typename"`
+	ID                                         string                                     `json:"id"`
+	Response_User_GetAvailableStudentsForTeams Response_User_GetAvailableStudentsForTeams `json:"user"`
+	Typename                                   string                                     `json:"__typename"`
 }
 
 type Response_User_GetAvailableStudentsForTeams struct {
-	ID             string         `json:"id"`
-	Login          string         `json:"login"`
-	AvatarURL      string         `json:"avatarUrl"`
+	ID                                                   string                                               `json:"id"`
+	Login                                                string                                               `json:"login"`
+	AvatarURL                                            string                                               `json:"avatarUrl"`
 	Response_UserExperience_GetAvailableStudentsForTeams Response_UserExperience_GetAvailableStudentsForTeams `json:"userExperience"`
-	Typename       string         `json:"__typename"`
+	Typename                                             string                                               `json:"__typename"`
 }
 
 type Response_UserExperience_GetAvailableStudentsForTeams struct {
-	ID               string `json:"id"`
-	CookiesCount     int64  `json:"cookiesCount"`
-	CodeReviewPoints int64  `json:"codeReviewPoints"`
-	CoinsCount       int64  `json:"coinsCount"`
-	Response_Level_GetAvailableStudentsForTeams            Response_Level_GetAvailableStudentsForTeams  `json:"level"`
-	Typename         string `json:"__typename"`
+	ID                                          string                                      `json:"id"`
+	CookiesCount                                int64                                       `json:"cookiesCount"`
+	CodeReviewPoints                            int64                                       `json:"codeReviewPoints"`
+	CoinsCount                                  int64                                       `json:"coinsCount"`
+	Response_Level_GetAvailableStudentsForTeams Response_Level_GetAvailableStudentsForTeams `json:"level"`
+	Typename                                    string                                      `json:"__typename"`
 }
 
 type Response_Level_GetAvailableStudentsForTeams struct {
-	ID       int64  `json:"id"`
-	Response_Range_GetAvailableStudentsForTeams    Response_Range_GetAvailableStudentsForTeams  `json:"range"`
-	Typename string `json:"__typename"`
+	ID                                          int64                                       `json:"id"`
+	Response_Range_GetAvailableStudentsForTeams Response_Range_GetAvailableStudentsForTeams `json:"range"`
+	Typename                                    string                                      `json:"__typename"`
 }
 
 type Response_Range_GetAvailableStudentsForTeams struct {

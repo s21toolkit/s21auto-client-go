@@ -1,6 +1,6 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Request_Variables_GetProjectTeamWithMembers struct {
 	GoalID string `json:"goalId"`
@@ -8,26 +8,28 @@ type Request_Variables_GetProjectTeamWithMembers struct {
 
 
 type Response_Data_GetProjectTeamWithMembers struct {
-	Student Response_DataStudent_GetProjectTeamWithMembers `json:"student"`
+	Response_Student_GetProjectTeamWithMembers Response_Student_GetProjectTeamWithMembers `json:"student"`
 }
 
-type Response_DataStudent_GetProjectTeamWithMembers struct {
+type Response_Student_GetProjectTeamWithMembers struct {
 	Response_GetProjectTeamWithMembers_GetProjectTeamWithMembers Response_GetProjectTeamWithMembers_GetProjectTeamWithMembers `json:"getProjectTeamWithMembers"`
 	Typename                  string                    `json:"__typename"`
 }
 
 type Response_GetProjectTeamWithMembers_GetProjectTeamWithMembers struct {
-	Response_TeamWithMembers_GetProjectTeamWithMembers Response_TeamWithMembers_GetProjectTeamWithMembers  `json:"teamWithMembers"`
-	InvitedStudents []Response_InvitedStudent_GetProjectTeamWithMembers `json:"invitedStudents"`
-	Typename        string           `json:"__typename"`
+	Response_TeamWithMembers_GetProjectTeamWithMembers Response_TeamWithMembers_GetProjectTeamWithMembers `json:"teamWithMembers"`
+	InvitedStudents []interface{}   `json:"invitedStudents"`
+	Typename        string          `json:"__typename"`
 }
 
-type Response_InvitedStudent_GetProjectTeamWithMembers struct {
-	Student  Response_InvitedStudentStudent_GetProjectTeamWithMembers `json:"student"`
-	Typename string                `json:"__typename"`
+type Response_TeamWithMembers_GetProjectTeamWithMembers struct {
+	Response_Team_GetProjectTeamWithMembers     Response_Team_GetProjectTeamWithMembers     `json:"team"`
+	Members  []Response_Member_GetProjectTeamWithMembers `json:"members"`
+	Typename string   `json:"__typename"`
 }
 
-type Response_InvitedStudentStudent_GetProjectTeamWithMembers struct {
+type Response_Member_GetProjectTeamWithMembers struct {
+	Role     string `json:"role"`
 	Response_User_GetProjectTeamWithMembers     Response_User_GetProjectTeamWithMembers   `json:"user"`
 	Typename string `json:"__typename"`
 }
@@ -56,18 +58,6 @@ type Response_Level_GetProjectTeamWithMembers struct {
 type Response_Range_GetProjectTeamWithMembers struct {
 	LevelCode int64  `json:"levelCode"`
 	Typename  string `json:"__typename"`
-}
-
-type Response_TeamWithMembers_GetProjectTeamWithMembers struct {
-	Response_Team_GetProjectTeamWithMembers     Response_Team_GetProjectTeamWithMembers     `json:"team"`
-	Members  []Response_Member_GetProjectTeamWithMembers `json:"members"`
-	Typename string   `json:"__typename"`
-}
-
-type Response_Member_GetProjectTeamWithMembers struct {
-	Role     string `json:"role"`
-	Response_User_GetProjectTeamWithMembers     Response_User_GetProjectTeamWithMembers   `json:"user"`
-	Typename string `json:"__typename"`
 }
 
 type Response_Team_GetProjectTeamWithMembers struct {

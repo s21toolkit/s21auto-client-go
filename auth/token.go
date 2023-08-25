@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"net/http"
 	"regexp"
-	"s21client/util"
 	"strings"
 	"time"
+
+	"github.com/s21toolkit/s21client/util"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/uuid"

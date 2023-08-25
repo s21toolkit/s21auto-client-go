@@ -1,4 +1,4 @@
-module s21client
+module github.com/s21toolkit/s21client
 
 go 1.20
 

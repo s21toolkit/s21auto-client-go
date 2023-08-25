@@ -1,6 +1,6 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Request_Variables_CreateFeedbackOnEvaluation struct {
 	Request_ReviewFeedbackInput_CreateFeedbackOnEvaluation Request_ReviewFeedbackInput_CreateFeedbackOnEvaluation `json:"reviewFeedbackInput"`

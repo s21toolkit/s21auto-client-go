@@ -1,6 +1,6 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Request_Variables_BonusesGetBadgesWithFakePublicProfile struct {
 	UserID *string `json:"userId"`

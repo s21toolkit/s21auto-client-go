@@ -3,7 +3,8 @@ package gql
 import (
 	"errors"
 	"regexp"
-	"s21client/util"
+
+	"github.com/s21toolkit/s21client/util"
 
 	"github.com/go-resty/resty/v2"
 )

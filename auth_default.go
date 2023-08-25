@@ -2,7 +2,8 @@ package s21client
 
 import (
 	"context"
-	"s21client/auth"
+
+	"github.com/s21toolkit/s21client/auth"
 )
 
 type defaultAuthProvider struct {

@@ -1,11 +1,10 @@
 package requests
 
-import "s21client/gql"
+import "github.com/s21toolkit/s21client/gql"
 
 type Variables_GetCodeReviewMyStudent struct {
 	StudentGoalID string `json:"studentGoalId"`
 }
-
 
 type Data_GetCodeReviewMyStudent struct {
 	Student_GetCodeReviewMyStudent Student_GetCodeReviewMyStudent `json:"student"`
@@ -13,13 +12,13 @@ type Data_GetCodeReviewMyStudent struct {
 
 type Student_GetCodeReviewMyStudent struct {
 	GetMyStudentCodeReview_GetCodeReviewMyStudent *GetMyStudentCodeReview_GetCodeReviewMyStudent `json:"getMyStudentCodeReview"`
-	Typename               string                  `json:"__typename"`
+	Typename                                      string                                         `json:"__typename"`
 }
 
 type GetMyStudentCodeReview_GetCodeReviewMyStudent struct {
-	ReviewerCommentsCount int64             `json:"reviewerCommentsCount"`
+	ReviewerCommentsCount int64                                    `json:"reviewerCommentsCount"`
 	CodeReviewRounds      []CodeReviewRound_GetCodeReviewMyStudent `json:"codeReviewRounds"`
-	Typename              string            `json:"__typename"`
+	Typename              string                                   `json:"__typename"`
 }
 
 type CodeReviewRound_GetCodeReviewMyStudent struct {
