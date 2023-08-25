@@ -2,38 +2,39 @@ package requests
 
 import "s21client/gql"
 
-type Variables_CalendarAddEvent struct {
+type Request_Variables_CalendarAddEvent struct {
 	Start string `json:"start"`
 	End   string `json:"end"`
 }
 
-type Data_CalendarAddEvent struct {
-	Student Student_CalendarAddEvent `json:"student"`
+
+type Response_Data_CalendarAddEvent struct {
+	Response_Student_CalendarAddEvent Response_Student_CalendarAddEvent `json:"student"`
 }
 
-type Student_CalendarAddEvent struct {
-	AddEventToTimetable []AddEventToTimetable_CalendarAddEvent `json:"addEventToTimetable"`
-	Typename            string                                 `json:"__typename"`
+type Response_Student_CalendarAddEvent struct {
+	Response_AddEventToTimetable_CalendarAddEvent []Response_AddEventToTimetable_CalendarAddEvent `json:"addEventToTimetable"`
+	Typename            string                `json:"__typename"`
 }
 
-type AddEventToTimetable_CalendarAddEvent struct {
-	ID                string                       `json:"id"`
-	Start             string                       `json:"start"`
-	End               string                       `json:"end"`
-	Description       string                       `json:"description"`
-	EventType         string                       `json:"eventType"`
-	EventCode         interface{}                  `json:"eventCode"`
-	EventSlots        []EventSlot_CalendarAddEvent `json:"eventSlots"`
-	Bookings          []interface{}                `json:"bookings"`
-	Exam              interface{}                  `json:"exam"`
-	StudentCodeReview interface{}                  `json:"studentCodeReview"`
-	Activity          interface{}                  `json:"activity"`
-	Goals             []interface{}                `json:"goals"`
-	Penalty           interface{}                  `json:"penalty"`
-	Typename          string                       `json:"__typename"`
+type Response_AddEventToTimetable_CalendarAddEvent struct {
+	ID                string        `json:"id"`
+	Start             string        `json:"start"`
+	End               string        `json:"end"`
+	Description       string        `json:"description"`
+	EventType         string        `json:"eventType"`
+	EventCode         interface{}   `json:"eventCode"`
+	EventSlots        []Response_EventSlot_CalendarAddEvent   `json:"eventSlots"`
+	Bookings          []interface{} `json:"bookings"`
+	Exam              interface{}   `json:"exam"`
+	StudentCodeReview interface{}   `json:"studentCodeReview"`
+	Activity          interface{}   `json:"activity"`
+	Goals             []interface{} `json:"goals"`
+	Penalty           interface{}   `json:"penalty"`
+	Typename          string        `json:"__typename"`
 }
 
-type EventSlot_CalendarAddEvent struct {
+type Response_EventSlot_CalendarAddEvent struct {
 	ID       string `json:"id"`
 	Type     string `json:"type"`
 	Start    string `json:"start"`
@@ -41,11 +42,11 @@ type EventSlot_CalendarAddEvent struct {
 	Typename string `json:"__typename"`
 }
 
-func (ctx *RequestContext) CalendarAddEvent(variables Variables_CalendarAddEvent) (Data_CalendarAddEvent, error) {
-	request := gql.NewQueryRequest[Variables_CalendarAddEvent](
-		"mutation calendarAddEvent($start: DateTime!, $end: DateTime!) {\n  student {\n    addEventToTimetable(start: $start, end: $end) {\n      ...CalendarEvent\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment CalendarEvent on CalendarEvent {\n  id\n  start\n  end\n  description\n  eventType\n  eventCode\n  eventSlots {\n    id\n    type\n    start\n    end\n    __typename\n  }\n  bookings {\n    ...CalendarReviewBooking\n    __typename\n  }\n  exam {\n    ...CalendarEventExam\n    __typename\n  }\n  studentCodeReview {\n    studentGoalId\n    __typename\n  }\n  activity {\n    ...CalendarEventActivity\n    studentFeedback {\n      id\n      rating\n      comment\n      __typename\n    }\n    status\n    activityType\n    isMandatory\n    isWaitListActive\n    isVisible\n    comments {\n      type\n      createTs\n      comment\n      __typename\n    }\n    organizers {\n      id\n      login\n      __typename\n    }\n    __typename\n  }\n  goals {\n    goalId\n    goalName\n    __typename\n  }\n  penalty {\n    ...Penalty\n    __typename\n  }\n  __typename\n}\n\nfragment CalendarReviewBooking on CalendarBooking {\n  id\n  answerId\n  eventSlotId\n  task {\n    id\n    goalId\n    goalName\n    studentTaskAdditionalAttributes {\n      cookiesCount\n      __typename\n    }\n    assignmentType\n    __typename\n  }\n  eventSlot {\n    id\n    start\n    end\n    event {\n      eventUserRole\n      __typename\n    }\n    __typename\n  }\n  verifierUser {\n    ...CalendarReviewUser\n    __typename\n  }\n  verifiableStudent {\n    id\n    user {\n      ...CalendarReviewUser\n      __typename\n    }\n    __typename\n  }\n  bookingStatus\n  team {\n    ...ProjectTeamMembers\n    __typename\n  }\n  isOnline\n  vcLinkUrl\n  __typename\n}\n\nfragment CalendarReviewUser on User {\n  id\n  login\n  __typename\n}\n\nfragment ProjectTeamMembers on ProjectTeamMembers {\n  id\n  teamLead {\n    ...ProjectTeamMember\n    __typename\n  }\n  members {\n    ...ProjectTeamMember\n    __typename\n  }\n  invitedUsers {\n    ...ProjectTeamMember\n    __typename\n  }\n  teamName\n  teamStatus\n  minTeamMemberCount\n  maxTeamMemberCount\n  __typename\n}\n\nfragment ProjectTeamMember on User {\n  id\n  avatarUrl\n  login\n  userExperience {\n    level {\n      id\n      range {\n        levelCode\n        __typename\n      }\n      __typename\n    }\n    cookiesCount\n    codeReviewPoints\n    __typename\n  }\n  __typename\n}\n\nfragment CalendarEventExam on Exam {\n  examId\n  eventId\n  beginDate\n  endDate\n  name\n  location\n  currentStudentsCount\n  maxStudentCount\n  updateDate\n  goalId\n  goalName\n  isWaitListActive\n  isInWaitList\n  stopRegisterDate\n  __typename\n}\n\nfragment CalendarEventActivity on ActivityEvent {\n  activityEventId\n  eventId\n  name\n  beginDate\n  endDate\n  isRegistered\n  description\n  currentStudentsCount\n  maxStudentCount\n  location\n  updateDate\n  isWaitListActive\n  isInWaitList\n  stopRegisterDate\n  __typename\n}\n\nfragment Penalty on Penalty {\n  comment\n  id\n  duration\n  status\n  startTime\n  createTime\n  penaltySlot {\n    currentStudentsCount\n    description\n    duration\n    startTime\n    id\n    endTime\n    __typename\n  }\n  reasonId\n  __typename\n}\n",
+func (ctx *RequestContext) CalendarAddEvent(variables Request_Variables_CalendarAddEvent) (Response_Data_CalendarAddEvent, error) {
+	request := gql.NewQueryRequest[Request_Variables_CalendarAddEvent](
+		"mutation calendarAddEvent($start: DateTime!, $end: DateTime!) {   student {     addEventToTimetable(start: $start, end: $end) {       ...CalendarEvent       __typename     }     __typename   } }  fragment CalendarEvent on CalendarEvent {   id   start   end   description   eventType   eventCode   eventSlots {     id     type     start     end     __typename   }   bookings {     ...CalendarReviewBooking     __typename   }   exam {     ...CalendarEventExam     __typename   }   studentCodeReview {     studentGoalId     __typename   }   activity {     ...CalendarEventActivity     studentFeedback {       id       rating       comment       __typename     }     status     activityType     isMandatory     isWaitListActive     isVisible     comments {       type       createTs       comment       __typename     }     organizers {       id       login       __typename     }     __typename   }   goals {     goalId     goalName     __typename   }   penalty {     ...Penalty     __typename   }   __typename }  fragment CalendarReviewBooking on CalendarBooking {   id   answerId   eventSlotId   task {     id     goalId     goalName     studentTaskAdditionalAttributes {       cookiesCount       __typename     }     assignmentType     __typename   }   eventSlot {     id     start     end     event {       eventUserRole       __typename     }     __typename   }   verifierUser {     ...CalendarReviewUser     __typename   }   verifiableStudent {     id     user {       ...CalendarReviewUser       __typename     }     __typename   }   bookingStatus   team {     ...ProjectTeamMembers     __typename   }   isOnline   vcLinkUrl   __typename }  fragment CalendarReviewUser on User {   id   login   __typename }  fragment ProjectTeamMembers on ProjectTeamMembers {   id   teamLead {     ...ProjectTeamMember     __typename   }   members {     ...ProjectTeamMember     __typename   }   invitedUsers {     ...ProjectTeamMember     __typename   }   teamName   teamStatus   minTeamMemberCount   maxTeamMemberCount   __typename }  fragment ProjectTeamMember on User {   id   avatarUrl   login   userExperience {     level {       id       range {         levelCode         __typename       }       __typename     }     cookiesCount     codeReviewPoints     __typename   }   __typename }  fragment CalendarEventExam on Exam {   examId   eventId   beginDate   endDate   name   location   currentStudentsCount   maxStudentCount   updateDate   goalId   goalName   isWaitListActive   isInWaitList   stopRegisterDate   __typename }  fragment CalendarEventActivity on ActivityEvent {   activityEventId   eventId   name   beginDate   endDate   isRegistered   description   currentStudentsCount   maxStudentCount   location   updateDate   isWaitListActive   isInWaitList   stopRegisterDate   __typename }  fragment Penalty on Penalty {   comment   id   duration   status   startTime   createTime   penaltySlot {     currentStudentsCount     description     duration     startTime     id     endTime     __typename   }   reasonId   __typename } ",
 		variables,
 	)
 
-	return GqlRequest[Data_CalendarAddEvent](ctx, request)
+	return GqlRequest[Response_Data_CalendarAddEvent](ctx, request)
 }
