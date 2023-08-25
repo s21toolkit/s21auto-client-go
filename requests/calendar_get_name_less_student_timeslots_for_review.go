@@ -21,7 +21,7 @@ type Response_Student_CalendarGetNameLessStudentTimeslotsForReview struct {
 type Response_GetNameLessStudentTimeslotsForReview_CalendarGetNameLessStudentTimeslotsForReview struct {
 	CheckDuration      int64              `json:"checkDuration"`
 	Response_ProjectReviewsInfo_CalendarGetNameLessStudentTimeslotsForReview Response_ProjectReviewsInfo_CalendarGetNameLessStudentTimeslotsForReview `json:"projectReviewsInfo"`
-	TimeSlots          []interface{}      `json:"timeSlots"`
+	TimeSlots          []Response_TimeSlot_CalendarGetNameLessStudentTimeslotsForReview         `json:"timeSlots"`
 	Typename           string             `json:"__typename"`
 }
 
@@ -31,6 +31,14 @@ type Response_ProjectReviewsInfo_CalendarGetNameLessStudentTimeslotsForReview st
 	ReviewByInspectionStaffCount         int64  `json:"reviewByInspectionStaffCount"`
 	RelevantReviewByInspectionStaffCount int64  `json:"relevantReviewByInspectionStaffCount"`
 	Typename                             string `json:"__typename"`
+}
+
+type Response_TimeSlot_CalendarGetNameLessStudentTimeslotsForReview struct {
+	Start           string   `json:"start"`
+	End             string   `json:"end"`
+	ValidStartTimes []string `json:"validStartTimes"`
+	StaffSlot       bool     `json:"staffSlot"`
+	Typename        string   `json:"__typename"`
 }
 
 func (ctx *RequestContext) CalendarGetNameLessStudentTimeslotsForReview(variables Request_Variables_CalendarGetNameLessStudentTimeslotsForReview) (Response_Data_CalendarGetNameLessStudentTimeslotsForReview, error) {
