@@ -1,0 +1,14 @@
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu_latest
+    env:
+      USERNAME: ${{ secrets.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+      - uses: n8maninger/action-golang-test@v1

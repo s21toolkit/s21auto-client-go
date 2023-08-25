@@ -11,7 +11,10 @@ import (
 )
 
 func loadDotenv(t *testing.T) {
-	d, _ := os.ReadFile("../.env")
+	d, err := os.ReadFile("../.env")
+	if err != nil {
+		return
+	}
 	s := strings.Split(string(d), "\n")
 	for _, l := range s {
 		v := strings.Split(l, "=")
