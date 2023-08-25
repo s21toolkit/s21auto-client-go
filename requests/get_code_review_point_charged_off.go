@@ -18,7 +18,7 @@ type Response_Student_GetCodeReviewPointChargedOff struct {
 
 func (ctx *RequestContext) GetCodeReviewPointChargedOff(variables Request_Variables_GetCodeReviewPointChargedOff) (Response_Data_GetCodeReviewPointChargedOff, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetCodeReviewPointChargedOff](
-		"query getCodeReviewPointChargedOff($goalId: ID!) {   student {     getCodeReviewPointChargedOff(goalId: $goalId)     __typename   } } ",
+		"query getCodeReviewPointChargedOff($goalId: ID!) {\n  student {\n    getCodeReviewPointChargedOff(goalId: $goalId)\n    __typename\n  }\n}\n",
 		variables,
 	)
 

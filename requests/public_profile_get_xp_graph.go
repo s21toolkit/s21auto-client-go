@@ -29,7 +29,7 @@ type Response_History_PublicProfileGetXpGraph struct {
 
 func (ctx *RequestContext) PublicProfileGetXpGraph(variables Request_Variables_PublicProfileGetXpGraph) (Response_Data_PublicProfileGetXpGraph, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetXpGraph](
-		"query publicProfileGetXpGraph($userId: UUID!) {   student {     getExperienceHistoryDate(userId: $userId) {       history {         awardDate         expValue         __typename       }       __typename     }     __typename   } } ",
+		"query publicProfileGetXpGraph($userId: UUID!) {\n  student {\n    getExperienceHistoryDate(userId: $userId) {\n      history {\n        awardDate\n        expValue\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

@@ -18,7 +18,7 @@ type Response_School21_GetPenaltiesCount struct {
 
 func (ctx *RequestContext) GetPenaltiesCount(variables Request_Variables_GetPenaltiesCount) (Response_Data_GetPenaltiesCount, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetPenaltiesCount](
-		"query getPenaltiesCount($statuses: [String]!) {   school21 {     countMyPenalties(statuses: $statuses)     __typename   } } ",
+		"query getPenaltiesCount($statuses: [String]!) {\n  school21 {\n    countMyPenalties(statuses: $statuses)\n    __typename\n  }\n}\n",
 		variables,
 	)
 

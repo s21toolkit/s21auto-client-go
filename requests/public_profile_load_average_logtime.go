@@ -27,7 +27,7 @@ type Response_LoadAverageLogtime_PublicProfileLoadAverageLogtime struct {
 
 func (ctx *RequestContext) PublicProfileLoadAverageLogtime(variables Request_Variables_PublicProfileLoadAverageLogtime) (Response_Data_PublicProfileLoadAverageLogtime, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileLoadAverageLogtime](
-		"query publicProfileLoadAverageLogtime($login: String!, $schoolID: UUID!, $date: Date!) {   school21 {     loadAverageLogtime(login: $login, schoolID: $schoolID, date: $date) {       week       month       weekPerMonth       __typename     }     __typename   } } ",
+		"query publicProfileLoadAverageLogtime($login: String!, $schoolID: UUID!, $date: Date!) {\n  school21 {\n    loadAverageLogtime(login: $login, schoolID: $schoolID, date: $date) {\n      week\n      month\n      weekPerMonth\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

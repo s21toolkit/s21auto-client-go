@@ -36,7 +36,7 @@ type Response_Content_GetTasks struct {
 
 func (ctx *RequestContext) GetTasks(variables Request_Variables_GetTasks) (Response_Data_GetTasks, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetTasks](
-		"query getTasks($ids: [ID!]!) {   student {     getTasksByIds(ids: $ids) {       ...StudentTaskInProject       __typename     }     __typename   } }  fragment StudentTaskInProject on StudentTask {   id   task {     id     content {       id       body       __typename     }     __typename   }   __typename } ",
+		"query getTasks($ids: [ID!]!) {\n  student {\n    getTasksByIds(ids: $ids) {\n      ...StudentTaskInProject\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment StudentTaskInProject on StudentTask {\n  id\n  task {\n    id\n    content {\n      id\n      body\n      __typename\n    }\n    __typename\n  }\n  __typename\n}\n",
 		variables,
 	)
 

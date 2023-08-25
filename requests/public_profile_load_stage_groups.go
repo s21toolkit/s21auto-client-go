@@ -40,7 +40,7 @@ type Response_StageGroupS21_PublicProfileLoadStageGroups struct {
 
 func (ctx *RequestContext) PublicProfileLoadStageGroups(variables Request_Variables_PublicProfileLoadStageGroups) (Response_Data_PublicProfileLoadStageGroups, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileLoadStageGroups](
-		"query publicProfileLoadStageGroups($userId: UUID!, $schoolId: UUID!) {   school21 {     loadStudentStageGroupsS21PublicProfile(userId: $userId, schoolId: $schoolId) {       stageGroupStudentId       studentId       stageGroupS21 {         waveId         waveName         eduForm         active         __typename       }       safeSchool {         fullName         __typename       }       __typename     }     __typename   } } ",
+		"query publicProfileLoadStageGroups($userId: UUID!, $schoolId: UUID!) {\n  school21 {\n    loadStudentStageGroupsS21PublicProfile(userId: $userId, schoolId: $schoolId) {\n      stageGroupStudentId\n      studentId\n      stageGroupS21 {\n        waveId\n        waveName\n        eduForm\n        active\n        __typename\n      }\n      safeSchool {\n        fullName\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

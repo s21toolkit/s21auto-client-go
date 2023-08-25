@@ -25,7 +25,7 @@ type Response_GetStudentCurrentStageWithGraphType_GetGraphCurrentType struct {
 
 func (ctx *RequestContext) GetGraphCurrentType(variables Request_Variables_GetGraphCurrentType) (Response_Data_GetGraphCurrentType, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetGraphCurrentType](
-		"query getGraphCurrentType($userId: ID!, $schoolId: ID!) {   student {     getStudentCurrentStageWithGraphType(userId: $userId, schoolId: $schoolId) {       id       graphType       __typename     }     __typename   } } ",
+		"query getGraphCurrentType($userId: ID!, $schoolId: ID!) {\n  student {\n    getStudentCurrentStageWithGraphType(userId: $userId, schoolId: $schoolId) {\n      id\n      graphType\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

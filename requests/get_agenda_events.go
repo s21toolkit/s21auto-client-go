@@ -20,7 +20,7 @@ type Response_Student_GetAgendaEvents struct {
 
 func (ctx *RequestContext) GetAgendaEvents(variables Request_Variables_GetAgendaEvents) (Response_Data_GetAgendaEvents, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetAgendaEvents](
-		"query getAgendaEvents($from: DateTime!, $to: DateTime!, $limit: Int!) {   student {     getMyAgendaEvents(from: $from, to: $to, limit: $limit) {       agendaItemContext {         entityId         entityType         __typename       }       start       end       label       description       agendaEventType       additionalInfo {         key         value         __typename       }       __typename     }     __typename   } } ",
+		"query getAgendaEvents($from: DateTime!, $to: DateTime!, $limit: Int!) {\n  student {\n    getMyAgendaEvents(from: $from, to: $to, limit: $limit) {\n      agendaItemContext {\n        entityId\n        entityType\n        __typename\n      }\n      start\n      end\n      label\n      description\n      agendaEventType\n      additionalInfo {\n        key\n        value\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

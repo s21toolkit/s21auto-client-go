@@ -18,7 +18,7 @@ type Response_Student_GetUserNotificationsCount struct {
 
 func (ctx *RequestContext) GetUserNotificationsCount(variables Request_Variables_GetUserNotificationsCount) (Response_Data_GetUserNotificationsCount, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetUserNotificationsCount](
-		"query getUserNotificationsCount($wasReadIncluded: Boolean) {   student {     getS21NotificationsCount(wasReadIncluded: $wasReadIncluded)     __typename   } } ",
+		"query getUserNotificationsCount($wasReadIncluded: Boolean) {\n  student {\n    getS21NotificationsCount(wasReadIncluded: $wasReadIncluded)\n    __typename\n  }\n}\n",
 		variables,
 	)
 

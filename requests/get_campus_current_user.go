@@ -23,7 +23,7 @@ type Response_GetCurrentUser_GetCampusCurrentUser struct {
 
 func (ctx *RequestContext) GetCampusCurrentUser(variables Request_Variables_GetCampusCurrentUser) (Response_Data_GetCampusCurrentUser, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetCampusCurrentUser](
-		"query getCampusCurrentUser {   user {     getCurrentUser {       id       login       __typename     }     __typename   } } ",
+		"query getCampusCurrentUser {\n  user {\n    getCurrentUser {\n      id\n      login\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

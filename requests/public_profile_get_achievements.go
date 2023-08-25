@@ -32,7 +32,7 @@ type Response_Badge_PublicProfileGetAchievements struct {
 
 func (ctx *RequestContext) PublicProfileGetAchievements(variables Request_Variables_PublicProfileGetAchievements) (Response_Data_PublicProfileGetAchievements, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetAchievements](
-		"query publicProfileGetAchievements($userId: UUID!) {   student {     getBadgesPublicProfile(userId: $userId) {       points       id       badge {         id         name         avatarUrl         __typename       }       __typename     }     __typename   } } ",
+		"query publicProfileGetAchievements($userId: UUID!) {\n  student {\n    getBadgesPublicProfile(userId: $userId) {\n      points\n      id\n      badge {\n        id\n        name\n        avatarUrl\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

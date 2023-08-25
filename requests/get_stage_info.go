@@ -60,7 +60,7 @@ type Response_Stage_GetStageInfo struct {
 
 func (ctx *RequestContext) GetStageInfo(variables Request_Variables_GetStageInfo) (Response_Data_GetStageInfo, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetStageInfo](
-		"query getStageInfo {   user {     getCurrentUser {       id       studentRoles {         status         school {           organizationType           __typename         }         stageGroup {           classSubjects {             stage {               name               __typename             }             __typename           }           name           stage           isActive           __typename         }         __typename       }       __typename     }     getAllStagesTenantAware {       id       name       __typename     }     __typename   } } ",
+		"query getStageInfo {\n  user {\n    getCurrentUser {\n      id\n      studentRoles {\n        status\n        school {\n          organizationType\n          __typename\n        }\n        stageGroup {\n          classSubjects {\n            stage {\n              name\n              __typename\n            }\n            __typename\n          }\n          name\n          stage\n          isActive\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    getAllStagesTenantAware {\n      id\n      name\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

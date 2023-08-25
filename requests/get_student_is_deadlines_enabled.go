@@ -17,7 +17,7 @@ type Response_Student_GetStudentIsDeadlinesEnabled struct {
 
 func (ctx *RequestContext) GetStudentIsDeadlinesEnabled(variables Request_Variables_GetStudentIsDeadlinesEnabled) (Response_Data_GetStudentIsDeadlinesEnabled, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetStudentIsDeadlinesEnabled](
-		"query getStudentIsDeadlinesEnabled {   student {     isDeadlinesEnabled     __typename   } } ",
+		"query getStudentIsDeadlinesEnabled {\n  student {\n    isDeadlinesEnabled\n    __typename\n  }\n}\n",
 		variables,
 	)
 

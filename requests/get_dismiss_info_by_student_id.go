@@ -18,7 +18,7 @@ type Response_School21_GetDismissInfoByStudentId struct {
 
 func (ctx *RequestContext) GetDismissInfoByStudentId(variables Request_Variables_GetDismissInfoByStudentId) (Response_Data_GetDismissInfoByStudentId, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetDismissInfoByStudentId](
-		"query getDismissInfoByStudentId($studentId: UUID!) {   school21 {     getDismissInfoByStudentId(studentId: $studentId) {       dismissTypeId       dismissTs       lastStageGroupS21 {         waveId         waveName         eduForm         active         __typename       }       __typename     }     __typename   } } ",
+		"query getDismissInfoByStudentId($studentId: UUID!) {\n  school21 {\n    getDismissInfoByStudentId(studentId: $studentId) {\n      dismissTypeId\n      dismissTs\n      lastStageGroupS21 {\n        waveId\n        waveName\n        eduForm\n        active\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

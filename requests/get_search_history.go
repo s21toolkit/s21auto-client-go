@@ -23,7 +23,7 @@ type Response_GetSearchHistoryTooltip_GetSearchHistory struct {
 
 func (ctx *RequestContext) GetSearchHistory(variables Request_Variables_GetSearchHistory) (Response_Data_GetSearchHistory, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetSearchHistory](
-		"query getSearchHistory {   school21 {     getSearchHistoryTooltips {       tooltipText       tooltipCategory       __typename     }     __typename   } } ",
+		"query getSearchHistory {\n  school21 {\n    getSearchHistoryTooltips {\n      tooltipText\n      tooltipCategory\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

@@ -27,7 +27,7 @@ type Response_GetStudentByLogin_PublicProfileGetCredentialsByLogin struct {
 
 func (ctx *RequestContext) PublicProfileGetCredentialsByLogin(variables Request_Variables_PublicProfileGetCredentialsByLogin) (Response_Data_PublicProfileGetCredentialsByLogin, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetCredentialsByLogin](
-		"query publicProfileGetCredentialsByLogin($login: String!) {   school21 {     getStudentByLogin(login: $login) {       studentId       userId       schoolId       isActive       isGraduate       __typename     }     __typename   } } ",
+		"query publicProfileGetCredentialsByLogin($login: String!) {\n  school21 {\n    getStudentByLogin(login: $login) {\n      studentId\n      userId\n      schoolId\n      isActive\n      isGraduate\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

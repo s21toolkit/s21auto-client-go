@@ -18,7 +18,7 @@ type Response_Student_GetCampusWorkstation struct {
 
 func (ctx *RequestContext) GetCampusWorkstation(variables Request_Variables_GetCampusWorkstation) (Response_Data_GetCampusWorkstation, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetCampusWorkstation](
-		"query getCampusWorkstation($login: String!) {   student {     getWorkstationByLogin(login: $login) {       id       classroomId       hostName       workstationRow       workstationNumber       __typename     }     __typename   } } ",
+		"query getCampusWorkstation($login: String!) {\n  student {\n    getWorkstationByLogin(login: $login) {\n      id\n      classroomId\n      hostName\n      workstationRow\n      workstationNumber\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

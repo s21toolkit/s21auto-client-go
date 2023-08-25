@@ -37,7 +37,7 @@ type Response_WidgetList_GetAsapWidgets struct {
 
 func (ctx *RequestContext) GetAsapWidgets(variables Request_Variables_GetAsapWidgets) (Response_Data_GetAsapWidgets, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetAsapWidgets](
-		"query getAsapWidgets {   student {     getAsapWidgetList {       widgetList {         ...AsapWidget         __typename       }       __typename     }     __typename   } }  fragment AsapWidget on AsapWidgetInfo {   shortImg   shortTitle   shortUrl   startDate   finishDate   showFinishDate   fullTitle   text   fullImgUrl   adtTypeId   adtWidgetId   __typename } ",
+		"query getAsapWidgets {\n  student {\n    getAsapWidgetList {\n      widgetList {\n        ...AsapWidget\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment AsapWidget on AsapWidgetInfo {\n  shortImg\n  shortTitle\n  shortUrl\n  startDate\n  finishDate\n  showFinishDate\n  fullTitle\n  text\n  fullImgUrl\n  adtTypeId\n  adtWidgetId\n  __typename\n}\n",
 		variables,
 	)
 

@@ -18,7 +18,7 @@ type Response_Student_ReadUserNotifications struct {
 
 func (ctx *RequestContext) ReadUserNotifications(variables Request_Variables_ReadUserNotifications) (Response_Data_ReadUserNotifications, error) {
 	request := gql.NewQueryRequest[Request_Variables_ReadUserNotifications](
-		"mutation readUserNotifications($notificationIds: [ID!]!) {   student {     readNotifications(notificationIds: $notificationIds)     __typename   } } ",
+		"mutation readUserNotifications($notificationIds: [ID!]!) {\n  student {\n    readNotifications(notificationIds: $notificationIds)\n    __typename\n  }\n}\n",
 		variables,
 	)
 

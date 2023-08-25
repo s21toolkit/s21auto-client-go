@@ -27,7 +27,7 @@ type Response_GetGitlabLinksWithStatus_GetProjectGitlabStatus struct {
 
 func (ctx *RequestContext) GetProjectGitlabStatus(variables Request_Variables_GetProjectGitlabStatus) (Response_Data_GetProjectGitlabStatus, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetProjectGitlabStatus](
-		"query getProjectGitlabStatus($taskId: ID!) {   student {     getGitlabLinksWithStatus(taskId: $taskId) {       id       sshLink       httpsLink       readyToUse       restartsCounter       __typename     }     __typename   } } ",
+		"query getProjectGitlabStatus($taskId: ID!) {\n  student {\n    getGitlabLinksWithStatus(taskId: $taskId) {\n      id\n      sshLink\n      httpsLink\n      readyToUse\n      restartsCounter\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

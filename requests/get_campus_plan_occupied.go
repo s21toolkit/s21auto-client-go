@@ -62,7 +62,7 @@ type Response_User_GetCampusPlanOccupied struct {
 
 func (ctx *RequestContext) GetCampusPlanOccupied(variables Request_Variables_GetCampusPlanOccupied) (Response_Data_GetCampusPlanOccupied, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetCampusPlanOccupied](
-		"query getCampusPlanOccupied($clusterId: ID!) {   student {     getClusterPlanStudentsByClusterId(clusterId: $clusterId) {       occupiedPlaces {         row         number         stageGroupName         stageName         user {           id           login           avatarUrl           __typename         }         experience {           id           value           level {             id             range {               id               levelCode               leftBorder               rightBorder               __typename             }             __typename           }           __typename         }         studentType         __typename       }       __typename     }     __typename   } } ",
+		"query getCampusPlanOccupied($clusterId: ID!) {\n  student {\n    getClusterPlanStudentsByClusterId(clusterId: $clusterId) {\n      occupiedPlaces {\n        row\n        number\n        stageGroupName\n        stageName\n        user {\n          id\n          login\n          avatarUrl\n          __typename\n        }\n        experience {\n          id\n          value\n          level {\n            id\n            range {\n              id\n              levelCode\n              leftBorder\n              rightBorder\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        studentType\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

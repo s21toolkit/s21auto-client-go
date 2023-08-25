@@ -41,7 +41,7 @@ type Response_Notification_GetUserNotifications struct {
 
 func (ctx *RequestContext) GetUserNotifications(variables Request_Variables_GetUserNotifications) (Response_Data_GetUserNotifications, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetUserNotifications](
-		"query getUserNotifications($paging: PagingInput!) {   student {     getS21Notifications(paging: $paging) {       notifications {         id         relatedObjectType         relatedObjectId         message         time         wasRead         groupName         __typename       }       totalCount       groupNames       __typename     }     __typename   } } ",
+		"query getUserNotifications($paging: PagingInput!) {\n  student {\n    getS21Notifications(paging: $paging) {\n      notifications {\n        id\n        relatedObjectType\n        relatedObjectId\n        message\n        time\n        wasRead\n        groupName\n        __typename\n      }\n      totalCount\n      groupNames\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

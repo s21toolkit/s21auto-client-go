@@ -61,7 +61,7 @@ type Response_User_DeadlinesGetStudentData struct {
 
 func (ctx *RequestContext) DeadlinesGetStudentData(variables Request_Variables_DeadlinesGetStudentData) (Response_Data_DeadlinesGetStudentData, error) {
 	request := gql.NewQueryRequest[Request_Variables_DeadlinesGetStudentData](
-		"query deadlinesGetStudentData {   student {     getStudentProfile {       user {         id         login         firstName         middleName         lastName         __typename       }       __typename     }     getExperience {       id       value       level {         id         range {           id           levelCode           rightBorder           leftBorder           __typename         }         __typename       }       __typename     }     getExperienceHistory {       id       awardDate       experienceReceived       __typename     }     __typename   } } ",
+		"query deadlinesGetStudentData {\n  student {\n    getStudentProfile {\n      user {\n        id\n        login\n        firstName\n        middleName\n        lastName\n        __typename\n      }\n      __typename\n    }\n    getExperience {\n      id\n      value\n      level {\n        id\n        range {\n          id\n          levelCode\n          rightBorder\n          leftBorder\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    getExperienceHistory {\n      id\n      awardDate\n      experienceReceived\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

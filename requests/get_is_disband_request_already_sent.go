@@ -18,7 +18,7 @@ type Response_Student_GetIsDisbandRequestAlreadySent struct {
 
 func (ctx *RequestContext) GetIsDisbandRequestAlreadySent(variables Request_Variables_GetIsDisbandRequestAlreadySent) (Response_Data_GetIsDisbandRequestAlreadySent, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetIsDisbandRequestAlreadySent](
-		"query getIsDisbandRequestAlreadySent($teamId: UUID!) {   student {     isRequestBeenSentToTeamDisband(teamId: $teamId)     __typename   } } ",
+		"query getIsDisbandRequestAlreadySent($teamId: UUID!) {\n  student {\n    isRequestBeenSentToTeamDisband(teamId: $teamId)\n    __typename\n  }\n}\n",
 		variables,
 	)
 

@@ -17,7 +17,7 @@ type Response_School21_GetUserRestrictionsInfo struct {
 
 func (ctx *RequestContext) GetUserRestrictionsInfo(variables Request_Variables_GetUserRestrictionsInfo) (Response_Data_GetUserRestrictionsInfo, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetUserRestrictionsInfo](
-		"query getUserRestrictionsInfo {   school21 {     getUserRestrictions {       restrictionId       restrictionType       userId       schoolId       isActive       createdTs       updatedTs       __typename     }     __typename   } } ",
+		"query getUserRestrictionsInfo {\n  school21 {\n    getUserRestrictions {\n      restrictionId\n      restrictionType\n      userId\n      schoolId\n      isActive\n      createdTs\n      updatedTs\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

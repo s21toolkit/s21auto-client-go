@@ -33,7 +33,7 @@ type Response_GetSoftSkillsByStudentID_PublicProfileGetSoftSkills struct {
 
 func (ctx *RequestContext) PublicProfileGetSoftSkills(variables Request_Variables_PublicProfileGetSoftSkills) (Response_Data_PublicProfileGetSoftSkills, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetSoftSkills](
-		"query publicProfileGetSoftSkills($studentId: UUID!) {   school21 {     getSoftSkillsByStudentId(studentId: $studentId) {       id       type       code       totalPower       hueSaturationLightness       __typename     }     getSoftSkillLimitByStudentId(studentId: $studentId) {       powerLimit       __typename     }     __typename   } } ",
+		"query publicProfileGetSoftSkills($studentId: UUID!) {\n  school21 {\n    getSoftSkillsByStudentId(studentId: $studentId) {\n      id\n      type\n      code\n      totalPower\n      hueSaturationLightness\n      __typename\n    }\n    getSoftSkillLimitByStudentId(studentId: $studentId) {\n      powerLimit\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

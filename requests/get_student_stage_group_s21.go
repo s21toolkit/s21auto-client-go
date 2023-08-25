@@ -25,7 +25,7 @@ type Response_GetStageGroupS21PublicProfile_GetStudentStageGroupS21 struct {
 
 func (ctx *RequestContext) GetStudentStageGroupS21(variables Request_Variables_GetStudentStageGroupS21) (Response_Data_GetStudentStageGroupS21, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetStudentStageGroupS21](
-		"query getStudentStageGroupS21($studentId: UUID!) {   student {     getStageGroupS21PublicProfile(studentId: $studentId) {       waveId       waveName       eduForm       __typename     }     __typename   } } ",
+		"query getStudentStageGroupS21($studentId: UUID!) {\n  student {\n    getStageGroupS21PublicProfile(studentId: $studentId) {\n      waveId\n      waveName\n      eduForm\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

@@ -42,7 +42,7 @@ type Response_Badge_WidgetAchievementsGetLastBadges struct {
 
 func (ctx *RequestContext) WidgetAchievementsGetLastBadges(variables Request_Variables_WidgetAchievementsGetLastBadges) (Response_Data_WidgetAchievementsGetLastBadges, error) {
 	request := gql.NewQueryRequest[Request_Variables_WidgetAchievementsGetLastBadges](
-		"query widgetAchievementsGetLastBadges($limit: Int) {   student {     getLastBadges(limit: $limit) {       id       points       badge {         name         avatarUrl         __typename       }       award {         awardBounties {           awardLevelId           __typename         }         __typename       }       __typename     }     __typename   } } ",
+		"query widgetAchievementsGetLastBadges($limit: Int) {\n  student {\n    getLastBadges(limit: $limit) {\n      id\n      points\n      badge {\n        name\n        avatarUrl\n        __typename\n      }\n      award {\n        awardBounties {\n          awardLevelId\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

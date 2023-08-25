@@ -56,7 +56,7 @@ type Response_LastTournamentResult_PublicProfileGetCoalition struct {
 
 func (ctx *RequestContext) PublicProfileGetCoalition(variables Request_Variables_PublicProfileGetCoalition) (Response_Data_PublicProfileGetCoalition, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetCoalition](
-		"query publicProfileGetCoalition($userId: UUID!) {   student {     getUserTournamentWidget(userId: $userId) {       coalitionMember {         coalition {           avatarUrl           color           name           memberCount           __typename         }         currentTournamentPowerRank {           rank           power {             id             points             __typename           }           __typename         }         __typename       }       lastTournamentResult {         userRank         power         __typename       }       __typename     }     __typename   } } ",
+		"query publicProfileGetCoalition($userId: UUID!) {\n  student {\n    getUserTournamentWidget(userId: $userId) {\n      coalitionMember {\n        coalition {\n          avatarUrl\n          color\n          name\n          memberCount\n          __typename\n        }\n        currentTournamentPowerRank {\n          rank\n          power {\n            id\n            points\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      lastTournamentResult {\n        userRank\n        power\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

@@ -17,7 +17,7 @@ type Response_Team_GetInvitationsCount struct {
 
 func (ctx *RequestContext) GetInvitationsCount(variables Request_Variables_GetInvitationsCount) (Response_Data_GetInvitationsCount, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetInvitationsCount](
-		"query getInvitationsCount {   team {     getCreatedJoinTeamRequestCount     __typename   } } ",
+		"query getInvitationsCount {\n  team {\n    getCreatedJoinTeamRequestCount\n    __typename\n  }\n}\n",
 		variables,
 	)
 

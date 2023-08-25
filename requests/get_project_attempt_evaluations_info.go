@@ -18,14 +18,15 @@ type Response_School21_GetProjectAttemptEvaluationsInfo struct {
 }
 
 type Response_GetProjectAttemptEvaluationsInfoV1_GetProjectAttemptEvaluationsInfo struct {
-	StudentAnswerID      string        `json:"studentAnswerId"`
-	StudentGoalAttemptID string        `json:"studentGoalAttemptId"`
-	Response_AttemptResult_GetProjectAttemptEvaluationsInfo        Response_AttemptResult_GetProjectAttemptEvaluationsInfo `json:"attemptResult"`
-	Team                 interface{}   `json:"team"`
-	Response_P2P_GetProjectAttemptEvaluationsInfo                  []Response_P2P_GetProjectAttemptEvaluationsInfo         `json:"p2p"`
-	Response_Auto_GetProjectAttemptEvaluationsInfo                 Response_Auto_GetProjectAttemptEvaluationsInfo          `json:"auto"`
-	Response_CodeReview_GetProjectAttemptEvaluationsInfo           Response_CodeReview_GetProjectAttemptEvaluationsInfo    `json:"codeReview"`
-	Typename             string        `json:"__typename"`
+	StudentAnswerID      *string        `json:"studentAnswerId"`
+	StudentGoalAttemptID string         `json:"studentGoalAttemptId"`
+	Response_AttemptResult_GetProjectAttemptEvaluationsInfo        *Response_AttemptResult_GetProjectAttemptEvaluationsInfo `json:"attemptResult"`
+	Team                 interface{}    `json:"team"`
+	Response_P2P_GetProjectAttemptEvaluationsInfo                  []Response_P2P_GetProjectAttemptEvaluationsInfo          `json:"p2p"`
+	Response_Auto_GetProjectAttemptEvaluationsInfo                 Response_Auto_GetProjectAttemptEvaluationsInfo           `json:"auto"`
+	Response_CodeReview_GetProjectAttemptEvaluationsInfo           Response_CodeReview_GetProjectAttemptEvaluationsInfo     `json:"codeReview"`
+	Typename             string         `json:"__typename"`
+	AttemptStatus        *string        `json:"attemptStatus,omitempty"`
 }
 
 type Response_AttemptResult_GetProjectAttemptEvaluationsInfo struct {
@@ -45,15 +46,15 @@ type Response_Auto_GetProjectAttemptEvaluationsInfo struct {
 }
 
 type Response_CodeReview_GetProjectAttemptEvaluationsInfo struct {
-	AverageMark        string        `json:"averageMark"`
+	AverageMark        *string       `json:"averageMark"`
 	StudentCodeReviews []interface{} `json:"studentCodeReviews"`
 	Typename           string        `json:"__typename"`
 }
 
 type Response_P2P_GetProjectAttemptEvaluationsInfo struct {
-	Status    string    `json:"status"`
-	Response_Checklist_GetProjectAttemptEvaluationsInfo Response_Checklist_GetProjectAttemptEvaluationsInfo `json:"checklist"`
-	Typename  string    `json:"__typename"`
+	Status    string     `json:"status"`
+	Response_Checklist_GetProjectAttemptEvaluationsInfo *Response_Checklist_GetProjectAttemptEvaluationsInfo `json:"checklist"`
+	Typename  string     `json:"__typename"`
 }
 
 type Response_Checklist_GetProjectAttemptEvaluationsInfo struct {
@@ -101,7 +102,7 @@ type Response_Reviewer_GetProjectAttemptEvaluationsInfo struct {
 
 func (ctx *RequestContext) GetProjectAttemptEvaluationsInfo(variables Request_Variables_GetProjectAttemptEvaluationsInfo) (Response_Data_GetProjectAttemptEvaluationsInfo, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetProjectAttemptEvaluationsInfo](
-		"query getProjectAttemptEvaluationsInfo($goalId: ID!, $studentId: UUID!) {   school21 {     getProjectAttemptEvaluationsInfo_V1(goalId: $goalId, studentId: $studentId) {       ...ProjectAttemptEvaluations_V1       __typename     }     __typename   } }  fragment ProjectAttemptEvaluations_V1 on ProjectAttemptEvaluationsInfo_V1 {   studentAnswerId   studentGoalAttemptId   attemptResult {     ...AtemptResult     __typename   }   team {     ...AttemptTeamWithMembers     __typename   }   p2p {     ...P2PEvaluation     __typename   }   auto {     status     receivedPercentage     endTimeCheck     resultInfo     __typename   }   codeReview {     averageMark     studentCodeReviews {       user {         avatarUrl         login         __typename       }       finalMark       markTime       reviewerCommentsCount       __typename     }     __typename   }   __typename }  fragment AtemptResult on StudentGoalAttempt {   finalPointProject   finalPercentageProject   resultModuleCompletion   resultDate   __typename }  fragment AttemptTeamWithMembers on TeamWithMembers {   team {     id     name     __typename   }   members {     ...TeamMemberWithRole     __typename   }   __typename }  fragment TeamMemberWithRole on TeamMember {   role   user {     ...ProjectTeamMember     __typename   }   __typename }  fragment ProjectTeamMember on User {   id   avatarUrl   login   userExperience {     level {       id       range {         levelCode         __typename       }       __typename     }     cookiesCount     codeReviewPoints     __typename   }   __typename }  fragment P2PEvaluation on P2PEvaluationInfo {   status   checklist {     ...Checklist     __typename   }   __typename }  fragment Checklist on FilledChecklist {   id   checklistId   endTimeCheck   startTimeCheck   reviewer {     avatarUrl     login     businessAdminRoles {       id       school {         id         organizationType         __typename       }       __typename     }     __typename   }   reviewFeedback {     ...EvaluationFeedback     __typename   }   comment   receivedPoint   receivedPercentage   quickAction   checkType   video {     ...P2PReviewVideo     __typename   }   __typename }  fragment EvaluationFeedback on ReviewFeedback {   id   comment   filledChecklist {     id     __typename   }   reviewFeedbackCategoryValues {     feedbackCategory     feedbackValue     id     __typename   }   __typename }  fragment P2PReviewVideo on OnlineReviewVideo {   link   status   __typename } ",
+		"query getProjectAttemptEvaluationsInfo($goalId: ID!, $studentId: UUID!) {\n  school21 {\n    getProjectAttemptEvaluationsInfo_V1(goalId: $goalId, studentId: $studentId) {\n      ...ProjectAttemptEvaluations_V1\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment ProjectAttemptEvaluations_V1 on ProjectAttemptEvaluationsInfo_V1 {\n  studentAnswerId\n  studentGoalAttemptId\n  attemptResult {\n    ...AtemptResult\n    __typename\n  }\n  team {\n    ...AttemptTeamWithMembers\n    __typename\n  }\n  p2p {\n    ...P2PEvaluation\n    __typename\n  }\n  auto {\n    status\n    receivedPercentage\n    endTimeCheck\n    resultInfo\n    __typename\n  }\n  codeReview {\n    averageMark\n    studentCodeReviews {\n      user {\n        avatarUrl\n        login\n        __typename\n      }\n      finalMark\n      markTime\n      reviewerCommentsCount\n      __typename\n    }\n    __typename\n  }\n  __typename\n}\n\nfragment AtemptResult on StudentGoalAttempt {\n  finalPointProject\n  finalPercentageProject\n  resultModuleCompletion\n  resultDate\n  __typename\n}\n\nfragment AttemptTeamWithMembers on TeamWithMembers {\n  team {\n    id\n    name\n    __typename\n  }\n  members {\n    ...TeamMemberWithRole\n    __typename\n  }\n  __typename\n}\n\nfragment TeamMemberWithRole on TeamMember {\n  role\n  user {\n    ...ProjectTeamMember\n    __typename\n  }\n  __typename\n}\n\nfragment ProjectTeamMember on User {\n  id\n  avatarUrl\n  login\n  userExperience {\n    level {\n      id\n      range {\n        levelCode\n        __typename\n      }\n      __typename\n    }\n    cookiesCount\n    codeReviewPoints\n    __typename\n  }\n  __typename\n}\n\nfragment P2PEvaluation on P2PEvaluationInfo {\n  status\n  checklist {\n    ...Checklist\n    __typename\n  }\n  __typename\n}\n\nfragment Checklist on FilledChecklist {\n  id\n  checklistId\n  endTimeCheck\n  startTimeCheck\n  reviewer {\n    avatarUrl\n    login\n    businessAdminRoles {\n      id\n      school {\n        id\n        organizationType\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  reviewFeedback {\n    ...EvaluationFeedback\n    __typename\n  }\n  comment\n  receivedPoint\n  receivedPercentage\n  quickAction\n  checkType\n  video {\n    ...P2PReviewVideo\n    __typename\n  }\n  __typename\n}\n\nfragment EvaluationFeedback on ReviewFeedback {\n  id\n  comment\n  filledChecklist {\n    id\n    __typename\n  }\n  reviewFeedbackCategoryValues {\n    feedbackCategory\n    feedbackValue\n    id\n    __typename\n  }\n  __typename\n}\n\nfragment P2PReviewVideo on OnlineReviewVideo {\n  link\n  status\n  __typename\n}\n",
 		variables,
 	)
 

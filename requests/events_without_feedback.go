@@ -19,7 +19,7 @@ type Response_Student_EventsWithoutFeedback struct {
 
 func (ctx *RequestContext) EventsWithoutFeedback(variables Request_Variables_EventsWithoutFeedback) (Response_Data_EventsWithoutFeedback, error) {
 	request := gql.NewQueryRequest[Request_Variables_EventsWithoutFeedback](
-		"query eventsWithoutFeedback($from: DateTime!, $to: DateTime!) {   student {     getCalendarEventsWithoutFeedback(from: $from, to: $to) {       id       activity {         eventId         name         endDate         __typename       }       __typename     }     __typename   } } ",
+		"query eventsWithoutFeedback($from: DateTime!, $to: DateTime!) {\n  student {\n    getCalendarEventsWithoutFeedback(from: $from, to: $to) {\n      id\n      activity {\n        eventId\n        name\n        endDate\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

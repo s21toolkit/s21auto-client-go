@@ -23,7 +23,7 @@ type Response_GetSaleProgressPercentage_GetSaleProgressPercentages struct {
 
 func (ctx *RequestContext) GetSaleProgressPercentages(variables Request_Variables_GetSaleProgressPercentages) (Response_Data_GetSaleProgressPercentages, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetSaleProgressPercentages](
-		"query getSaleProgressPercentages {   school21 {     getSaleProgressPercentages {       ...RpSaleInfo       __typename     }     __typename   } }  fragment RpSaleInfo on RpSaleProgress {   rpType   progressPercentage   __typename } ",
+		"query getSaleProgressPercentages {\n  school21 {\n    getSaleProgressPercentages {\n      ...RpSaleInfo\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment RpSaleInfo on RpSaleProgress {\n  rpType\n  progressPercentage\n  __typename\n}\n",
 		variables,
 	)
 

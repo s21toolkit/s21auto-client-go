@@ -52,7 +52,7 @@ type Response_Level_CompetitionCoalitionGetMyCoalitionMembers struct {
 
 func (ctx *RequestContext) CompetitionCoalitionGetMyCoalitionMembers(variables Request_Variables_CompetitionCoalitionGetMyCoalitionMembers) (Response_Data_CompetitionCoalitionGetMyCoalitionMembers, error) {
 	request := gql.NewQueryRequest[Request_Variables_CompetitionCoalitionGetMyCoalitionMembers](
-		"query competitionCoalitionGetMyCoalitionMembers($page: PagingInput) {   student {     getUserTournamentWidget {       getMyCoalitionMembers(page: $page) {         user {           id           login           avatarUrl           userExperience {             level {               id               levelCode               __typename             }             __typename           }           __typename         }         __typename       }       __typename     }     __typename   } } ",
+		"query competitionCoalitionGetMyCoalitionMembers($page: PagingInput) {\n  student {\n    getUserTournamentWidget {\n      getMyCoalitionMembers(page: $page) {\n        user {\n          id\n          login\n          avatarUrl\n          userExperience {\n            level {\n              id\n              levelCode\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

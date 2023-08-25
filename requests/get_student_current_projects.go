@@ -41,7 +41,7 @@ type Response_GetStudentCurrentProject_GetStudentCurrentProjects struct {
 
 func (ctx *RequestContext) GetStudentCurrentProjects(variables Request_Variables_GetStudentCurrentProjects) (Response_Data_GetStudentCurrentProjects, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetStudentCurrentProjects](
-		"query getStudentCurrentProjects($userId: ID!) {   student {     getStudentCurrentProjects(userId: $userId) {       ...StudentProjectItem       __typename     }     __typename   } }  fragment StudentProjectItem on StudentItem {   goalId   name   description   experience   dateTime   finalPercentage   laboriousness   executionType   goalStatus   courseType   displayedCourseStatus   amountAnswers   amountMembers   amountJoinedMembers   amountReviewedAnswers   amountCodeReviewMembers   amountCurrentCodeReviewMembers   groupName   localCourseId   __typename } ",
+		"query getStudentCurrentProjects($userId: ID!) {\n  student {\n    getStudentCurrentProjects(userId: $userId) {\n      ...StudentProjectItem\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment StudentProjectItem on StudentItem {\n  goalId\n  name\n  description\n  experience\n  dateTime\n  finalPercentage\n  laboriousness\n  executionType\n  goalStatus\n  courseType\n  displayedCourseStatus\n  amountAnswers\n  amountMembers\n  amountJoinedMembers\n  amountReviewedAnswers\n  amountCodeReviewMembers\n  amountCurrentCodeReviewMembers\n  groupName\n  localCourseId\n  __typename\n}\n",
 		variables,
 	)
 

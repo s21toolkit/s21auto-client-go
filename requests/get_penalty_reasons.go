@@ -23,7 +23,7 @@ type Response_GetPenaltyReason_GetPenaltyReasons struct {
 
 func (ctx *RequestContext) GetPenaltyReasons(variables Request_Variables_GetPenaltyReasons) (Response_Data_GetPenaltyReasons, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetPenaltyReasons](
-		"query getPenaltyReasons {   school21 {     getPenaltyReasons {       id       name       __typename     }     __typename   } } ",
+		"query getPenaltyReasons {\n  school21 {\n    getPenaltyReasons {\n      id\n      name\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

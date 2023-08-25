@@ -27,7 +27,7 @@ type Response_GetStudentTraffic_PublicProfileGetStudentTraffic struct {
 
 func (ctx *RequestContext) PublicProfileGetStudentTraffic(variables Request_Variables_PublicProfileGetStudentTraffic) (Response_Data_PublicProfileGetStudentTraffic, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetStudentTraffic](
-		"query publicProfileGetStudentTraffic($login: String!, $schoolID: UUID!, $date: Date!) {   student {     getStudentTraffic(login: $login, schoolID: $schoolID, date: $date) {       days {         date         periodOnCampus         periodAuthorizSDP         periodAuthorizIMac         __typename       }       endDate       startDate       __typename     }     __typename   } } ",
+		"query publicProfileGetStudentTraffic($login: String!, $schoolID: UUID!, $date: Date!) {\n  student {\n    getStudentTraffic(login: $login, schoolID: $schoolID, date: $date) {\n      days {\n        date\n        periodOnCampus\n        periodAuthorizSDP\n        periodAuthorizIMac\n        __typename\n      }\n      endDate\n      startDate\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

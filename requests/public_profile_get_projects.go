@@ -31,7 +31,7 @@ type Response_GetStudentProjectsForPublicProfileByStageGroup_PublicProfileGetPro
 
 func (ctx *RequestContext) PublicProfileGetProjects(variables Request_Variables_PublicProfileGetProjects) (Response_Data_PublicProfileGetProjects, error) {
 	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetProjects](
-		"query publicProfileGetProjects($studentId: UUID!, $stageGroupId: ID!) {   school21 {     getStudentProjectsForPublicProfileByStageGroup(       studentId: $studentId       stageGroupId: $stageGroupId     ) {       groupName       name       experience       finalPercentage       goalId       goalStatus       amountAnswers       amountReviewedAnswers       __typename     }     __typename   } } ",
+		"query publicProfileGetProjects($studentId: UUID!, $stageGroupId: ID!) {\n  school21 {\n    getStudentProjectsForPublicProfileByStageGroup(\n      studentId: $studentId\n      stageGroupId: $stageGroupId\n    ) {\n      groupName\n      name\n      experience\n      finalPercentage\n      goalId\n      goalStatus\n      amountAnswers\n      amountReviewedAnswers\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

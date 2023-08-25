@@ -17,7 +17,7 @@ type Response_Student_GetTournamentNotificationResults struct {
 
 func (ctx *RequestContext) GetTournamentNotificationResults(variables Request_Variables_GetTournamentNotificationResults) (Response_Data_GetTournamentNotificationResults, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetTournamentNotificationResults](
-		"query getTournamentNotificationResults {   student {     getTournamentResults(isShown: false) {       id       power       coalitionRank       userRank       firstCoalitionName       coalitionName       timeClosed       __typename     }     __typename   } } ",
+		"query getTournamentNotificationResults {\n  student {\n    getTournamentResults(isShown: false) {\n      id\n      power\n      coalitionRank\n      userRank\n      firstCoalitionName\n      coalitionName\n      timeClosed\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

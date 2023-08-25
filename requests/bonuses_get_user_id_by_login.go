@@ -18,7 +18,7 @@ type Response_Student_BonusesGetUserIdByLogin struct {
 
 func (ctx *RequestContext) BonusesGetUserIdByLogin(variables Request_Variables_BonusesGetUserIdByLogin) (Response_Data_BonusesGetUserIdByLogin, error) {
 	request := gql.NewQueryRequest[Request_Variables_BonusesGetUserIdByLogin](
-		"query bonusesGetUserIdByLogin($login: String!) {   student {     getUserIdByLogin(login: $login)     __typename   } } ",
+		"query bonusesGetUserIdByLogin($login: String!) {\n  student {\n    getUserIdByLogin(login: $login)\n    __typename\n  }\n}\n",
 		variables,
 	)
 

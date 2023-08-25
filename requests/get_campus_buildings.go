@@ -41,7 +41,7 @@ type Response_ClassroomPlan_GetCampusBuildings struct {
 
 func (ctx *RequestContext) GetCampusBuildings(variables Request_Variables_GetCampusBuildings) (Response_Data_GetCampusBuildings, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetCampusBuildings](
-		"query getCampusBuildings {   student {     getBuildings {       id       name       classrooms {         id         number         capacity         availableCapacity         floor         classroomPlan {           classroomPlanId           planMeta           __typename         }         specializations         __typename       }       __typename     }     __typename   } } ",
+		"query getCampusBuildings {\n  student {\n    getBuildings {\n      id\n      name\n      classrooms {\n        id\n        number\n        capacity\n        availableCapacity\n        floor\n        classroomPlan {\n          classroomPlanId\n          planMeta\n          __typename\n        }\n        specializations\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

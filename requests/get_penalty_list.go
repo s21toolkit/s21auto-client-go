@@ -32,7 +32,7 @@ type Response_GetPenaltyReason_GetPenaltyList struct {
 
 func (ctx *RequestContext) GetPenaltyList(variables Request_Variables_GetPenaltyList) (Response_Data_GetPenaltyList, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetPenaltyList](
-		"query getPenaltyList($statuses: [String]!, $from: DateTime, $to: DateTime, $sorting: SortingField, $page: PagingInput!) {   school21 {     getMyPenalties(       statuses: $statuses       from: $from       to: $to       sorting: $sorting       page: $page     ) {       ...Penalty       __typename     }     getPenaltyReasons {       id       name       __typename     }     countMyPenalties(statuses: $statuses)     __typename   } }  fragment Penalty on Penalty {   comment   id   duration   status   startTime   createTime   penaltySlot {     currentStudentsCount     description     duration     startTime     id     endTime     __typename   }   reasonId   __typename } ",
+		"query getPenaltyList($statuses: [String]!, $from: DateTime, $to: DateTime, $sorting: SortingField, $page: PagingInput!) {\n  school21 {\n    getMyPenalties(\n      statuses: $statuses\n      from: $from\n      to: $to\n      sorting: $sorting\n      page: $page\n    ) {\n      ...Penalty\n      __typename\n    }\n    getPenaltyReasons {\n      id\n      name\n      __typename\n    }\n    countMyPenalties(statuses: $statuses)\n    __typename\n  }\n}\n\nfragment Penalty on Penalty {\n  comment\n  id\n  duration\n  status\n  startTime\n  createTime\n  penaltySlot {\n    currentStudentsCount\n    description\n    duration\n    startTime\n    id\n    endTime\n    __typename\n  }\n  reasonId\n  __typename\n}\n",
 		variables,
 	)
 

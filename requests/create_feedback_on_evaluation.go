@@ -49,7 +49,7 @@ type Response_ReviewFeedbackCategoryValue_CreateFeedbackOnEvaluation struct {
 
 func (ctx *RequestContext) CreateFeedbackOnEvaluation(variables Request_Variables_CreateFeedbackOnEvaluation) (Response_Data_CreateFeedbackOnEvaluation, error) {
 	request := gql.NewQueryRequest[Request_Variables_CreateFeedbackOnEvaluation](
-		"mutation createFeedbackOnEvaluation($reviewFeedbackInput: ReviewFeedbackInput!) {   student {     createReviewFeedback(reviewFeedbackInput: $reviewFeedbackInput) {       ...EvaluationFeedback       __typename     }     __typename   } }  fragment EvaluationFeedback on ReviewFeedback {   id   comment   filledChecklist {     id     __typename   }   reviewFeedbackCategoryValues {     feedbackCategory     feedbackValue     id     __typename   }   __typename } ",
+		"mutation createFeedbackOnEvaluation($reviewFeedbackInput: ReviewFeedbackInput!) {\n  student {\n    createReviewFeedback(reviewFeedbackInput: $reviewFeedbackInput) {\n      ...EvaluationFeedback\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment EvaluationFeedback on ReviewFeedback {\n  id\n  comment\n  filledChecklist {\n    id\n    __typename\n  }\n  reviewFeedbackCategoryValues {\n    feedbackCategory\n    feedbackValue\n    id\n    __typename\n  }\n  __typename\n}\n",
 		variables,
 	)
 

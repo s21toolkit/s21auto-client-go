@@ -17,7 +17,7 @@ type Response_Student_GetIsHonorRatingNeeded struct {
 
 func (ctx *RequestContext) GetIsHonorRatingNeeded(variables Request_Variables_GetIsHonorRatingNeeded) (Response_Data_GetIsHonorRatingNeeded, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetIsHonorRatingNeeded](
-		"query getIsHonorRatingNeeded {   student {     isHonorRatingNeeded     __typename   } } ",
+		"query getIsHonorRatingNeeded {\n  student {\n    isHonorRatingNeeded\n    __typename\n  }\n}\n",
 		variables,
 	)
 

@@ -55,7 +55,7 @@ type Response_GetCurrentUser_GetCurrentUser struct {
 
 func (ctx *RequestContext) GetCurrentUser(variables Request_Variables_GetCurrentUser) (Response_Data_GetCurrentUser, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetCurrentUser](
-		"query getCurrentUser {   user {     getCurrentUser {       ...CurrentUser       __typename     }     __typename   }   student {     getExperience {       ...CurrentUserExperience       __typename     }     __typename   } }  fragment CurrentUser on User {   id   avatarUrl   login   firstName   middleName   lastName   currentSchoolStudentId   __typename }  fragment CurrentUserExperience on UserExperience {   id   cookiesCount   codeReviewPoints   coinsCount   level {     id     range {       id       levelCode       __typename     }     __typename   }   __typename } ",
+		"query getCurrentUser {\n  user {\n    getCurrentUser {\n      ...CurrentUser\n      __typename\n    }\n    __typename\n  }\n  student {\n    getExperience {\n      ...CurrentUserExperience\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment CurrentUser on User {\n  id\n  avatarUrl\n  login\n  firstName\n  middleName\n  lastName\n  currentSchoolStudentId\n  __typename\n}\n\nfragment CurrentUserExperience on UserExperience {\n  id\n  cookiesCount\n  codeReviewPoints\n  coinsCount\n  level {\n    id\n    range {\n      id\n      levelCode\n      __typename\n    }\n    __typename\n  }\n  __typename\n}\n",
 		variables,
 	)
 

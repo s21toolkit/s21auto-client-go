@@ -24,7 +24,7 @@ type Response_GetActivityType_GetActivityTypes struct {
 
 func (ctx *RequestContext) GetActivityTypes(variables Request_Variables_GetActivityTypes) (Response_Data_GetActivityTypes, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetActivityTypes](
-		"query getActivityTypes {   school21 {     getActivityTypes {       id       description       category       __typename     }     __typename   } } ",
+		"query getActivityTypes {\n  school21 {\n    getActivityTypes {\n      id\n      description\n      category\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

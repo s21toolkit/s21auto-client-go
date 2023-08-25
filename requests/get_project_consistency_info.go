@@ -24,7 +24,7 @@ type Response_LoadGoalConsistencyInfo_GetProjectConsistencyInfo struct {
 
 func (ctx *RequestContext) GetProjectConsistencyInfo(variables Request_Variables_GetProjectConsistencyInfo) (Response_Data_GetProjectConsistencyInfo, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetProjectConsistencyInfo](
-		"query getProjectConsistencyInfo($goalId: ID!) {   school21 {     loadGoalConsistencyInfo(goalId: $goalId) {       goalId       isConsistent       __typename     }     __typename   } } ",
+		"query getProjectConsistencyInfo($goalId: ID!) {\n  school21 {\n    loadGoalConsistencyInfo(goalId: $goalId) {\n      goalId\n      isConsistent\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

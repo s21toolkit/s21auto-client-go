@@ -29,7 +29,7 @@ type Response_GetUser_GetUsers struct {
 
 func (ctx *RequestContext) GetUsers(variables Request_Variables_GetUsers) (Response_Data_GetUsers, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetUsers](
-		"query getUsers($userIds: [UUID!]!) {   school21 {     getUsers(userIds: $userIds) {       userId       login       firstName       middleName       lastName       avatarUrl       level       __typename     }     __typename   } } ",
+		"query getUsers($userIds: [UUID!]!) {\n  school21 {\n    getUsers(userIds: $userIds) {\n      userId\n      login\n      firstName\n      middleName\n      lastName\n      avatarUrl\n      level\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

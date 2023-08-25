@@ -29,7 +29,7 @@ type Response_Classroom_GetDashboardBuildings struct {
 
 func (ctx *RequestContext) GetDashboardBuildings(variables Request_Variables_GetDashboardBuildings) (Response_Data_GetDashboardBuildings, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetDashboardBuildings](
-		"query getDashboardBuildings {   student {     getBuildings {       id       classrooms {         id         number         __typename       }       __typename     }     __typename   } } ",
+		"query getDashboardBuildings {\n  student {\n    getBuildings {\n      id\n      classrooms {\n        id\n        number\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

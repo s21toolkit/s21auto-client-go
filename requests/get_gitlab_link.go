@@ -25,7 +25,7 @@ type Response_GetLinkToPrivateStudentGitlabProjectByTaskID_GetGitlabLink struct 
 
 func (ctx *RequestContext) GetGitlabLink(variables Request_Variables_GetGitlabLink) (Response_Data_GetGitlabLink, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetGitlabLink](
-		"query getGitlabLink($taskId: ID!) {   student {     getLinkToPrivateStudentGitlabProjectByTaskId(taskId: $taskId) {       sshLink       hasOpenedMR       httpsLink       __typename     }     __typename   } } ",
+		"query getGitlabLink($taskId: ID!) {\n  student {\n    getLinkToPrivateStudentGitlabProjectByTaskId(taskId: $taskId) {\n      sshLink\n      hasOpenedMR\n      httpsLink\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

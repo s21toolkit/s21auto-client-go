@@ -13,7 +13,7 @@ type Response_Data_GetGitlabSettingsToken struct {
 
 func (ctx *RequestContext) GetGitlabSettingsToken(variables Request_Variables_GetGitlabSettingsToken) (Response_Data_GetGitlabSettingsToken, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetGitlabSettingsToken](
-		"query getGitlabSettingsToken($taskId: ID!) {   student {     getLinkToPrivateStudentGitlabProjectByTaskId(taskId: $taskId) {       runnersToken       __typename     }     __typename   } } ",
+		"query getGitlabSettingsToken($taskId: ID!) {\n  student {\n    getLinkToPrivateStudentGitlabProjectByTaskId(taskId: $taskId) {\n      runnersToken\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

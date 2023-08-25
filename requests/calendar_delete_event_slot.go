@@ -18,7 +18,7 @@ type Response_Student_CalendarDeleteEventSlot struct {
 
 func (ctx *RequestContext) CalendarDeleteEventSlot(variables Request_Variables_CalendarDeleteEventSlot) (Response_Data_CalendarDeleteEventSlot, error) {
 	request := gql.NewQueryRequest[Request_Variables_CalendarDeleteEventSlot](
-		"mutation calendarDeleteEventSlot($eventSlotId: ID!) {   student {     deleteEventSlot(eventSlotId: $eventSlotId)     __typename   } } ",
+		"mutation calendarDeleteEventSlot($eventSlotId: ID!) {\n  student {\n    deleteEventSlot(eventSlotId: $eventSlotId)\n    __typename\n  }\n}\n",
 		variables,
 	)
 

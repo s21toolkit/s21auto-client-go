@@ -18,7 +18,7 @@ type Response_Student_GetDashboardWorkstation struct {
 
 func (ctx *RequestContext) GetDashboardWorkstation(variables Request_Variables_GetDashboardWorkstation) (Response_Data_GetDashboardWorkstation, error) {
 	request := gql.NewQueryRequest[Request_Variables_GetDashboardWorkstation](
-		"query getDashboardWorkstation($login: String!) {   student {     getWorkstationByLogin(login: $login) {       id       classroomId       hostName       classroom {         floor         __typename       }       __typename     }     __typename   } } ",
+		"query getDashboardWorkstation($login: String!) {\n  student {\n    getWorkstationByLogin(login: $login) {\n      id\n      classroomId\n      hostName\n      classroom {\n        floor\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
