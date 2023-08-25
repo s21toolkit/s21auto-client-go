@@ -2,21 +2,21 @@ package requests
 
 import "s21client/gql"
 
-type Variables_PublicProfileGetCredentialsByLogin struct {
+type Request_Variables_PublicProfileGetCredentialsByLogin struct {
 	Login string `json:"login"`
 }
 
 
-type Data_PublicProfileGetCredentialsByLogin struct {
-	School21_PublicProfileGetCredentialsByLogin School21_PublicProfileGetCredentialsByLogin `json:"school21"`
+type Response_Data_PublicProfileGetCredentialsByLogin struct {
+	Response_School21_PublicProfileGetCredentialsByLogin Response_School21_PublicProfileGetCredentialsByLogin `json:"school21"`
 }
 
-type School21_PublicProfileGetCredentialsByLogin struct {
-	GetStudentByLogin_PublicProfileGetCredentialsByLogin GetStudentByLogin_PublicProfileGetCredentialsByLogin `json:"getStudentByLogin"`
+type Response_School21_PublicProfileGetCredentialsByLogin struct {
+	Response_GetStudentByLogin_PublicProfileGetCredentialsByLogin Response_GetStudentByLogin_PublicProfileGetCredentialsByLogin `json:"getStudentByLogin"`
 	Typename          string            `json:"__typename"`
 }
 
-type GetStudentByLogin_PublicProfileGetCredentialsByLogin struct {
+type Response_GetStudentByLogin_PublicProfileGetCredentialsByLogin struct {
 	StudentID  string `json:"studentId"`
 	UserID     string `json:"userId"`
 	SchoolID   string `json:"schoolId"`
@@ -25,11 +25,11 @@ type GetStudentByLogin_PublicProfileGetCredentialsByLogin struct {
 	Typename   string `json:"__typename"`
 }
 
-func (ctx *RequestContext) PublicProfileGetCredentialsByLogin(variables Variables_PublicProfileGetCredentialsByLogin) (Data_PublicProfileGetCredentialsByLogin, error) {
-	request := gql.NewQueryRequest[Variables_PublicProfileGetCredentialsByLogin](
+func (ctx *RequestContext) PublicProfileGetCredentialsByLogin(variables Request_Variables_PublicProfileGetCredentialsByLogin) (Response_Data_PublicProfileGetCredentialsByLogin, error) {
+	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetCredentialsByLogin](
 		"query publicProfileGetCredentialsByLogin($login: String!) {   school21 {     getStudentByLogin(login: $login) {       studentId       userId       schoolId       isActive       isGraduate       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_PublicProfileGetCredentialsByLogin](ctx, request)
+	return GqlRequest[Response_Data_PublicProfileGetCredentialsByLogin](ctx, request)
 }

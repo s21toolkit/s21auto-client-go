@@ -2,35 +2,35 @@ package requests
 
 import "s21client/gql"
 
-type Variables_DeadlinesGetStudentData struct {
+type Request_Variables_DeadlinesGetStudentData struct {
 }
 
 
-type Data_DeadlinesGetStudentData struct {
-	Student_DeadlinesGetStudentData Student_DeadlinesGetStudentData `json:"student"`
+type Response_Data_DeadlinesGetStudentData struct {
+	Response_Student_DeadlinesGetStudentData Response_Student_DeadlinesGetStudentData `json:"student"`
 }
 
-type Student_DeadlinesGetStudentData struct {
-	GetStudentProfile_DeadlinesGetStudentData    GetStudentProfile_DeadlinesGetStudentData      `json:"getStudentProfile"`
-	GetExperience_DeadlinesGetStudentData        GetExperience_DeadlinesGetStudentData          `json:"getExperience"`
-	GetExperienceHistory_DeadlinesGetStudentData []GetExperienceHistory_DeadlinesGetStudentData `json:"getExperienceHistory"`
+type Response_Student_DeadlinesGetStudentData struct {
+	Response_GetStudentProfile_DeadlinesGetStudentData    Response_GetStudentProfile_DeadlinesGetStudentData      `json:"getStudentProfile"`
+	Response_GetExperience_DeadlinesGetStudentData        Response_GetExperience_DeadlinesGetStudentData          `json:"getExperience"`
+	Response_GetExperienceHistory_DeadlinesGetStudentData []Response_GetExperienceHistory_DeadlinesGetStudentData `json:"getExperienceHistory"`
 	Typename             string                 `json:"__typename"`
 }
 
-type GetExperience_DeadlinesGetStudentData struct {
+type Response_GetExperience_DeadlinesGetStudentData struct {
 	ID       string `json:"id"`
 	Value    int64  `json:"value"`
-	Level_DeadlinesGetStudentData    Level_DeadlinesGetStudentData  `json:"level"`
+	Response_Level_DeadlinesGetStudentData    Response_Level_DeadlinesGetStudentData  `json:"level"`
 	Typename string `json:"__typename"`
 }
 
-type Level_DeadlinesGetStudentData struct {
+type Response_Level_DeadlinesGetStudentData struct {
 	ID       int64  `json:"id"`
-	Range_DeadlinesGetStudentData    Range_DeadlinesGetStudentData  `json:"range"`
+	Response_Range_DeadlinesGetStudentData    Response_Range_DeadlinesGetStudentData  `json:"range"`
 	Typename string `json:"__typename"`
 }
 
-type Range_DeadlinesGetStudentData struct {
+type Response_Range_DeadlinesGetStudentData struct {
 	ID          string `json:"id"`
 	LevelCode   int64  `json:"levelCode"`
 	RightBorder int64  `json:"rightBorder"`
@@ -38,19 +38,19 @@ type Range_DeadlinesGetStudentData struct {
 	Typename    string `json:"__typename"`
 }
 
-type GetExperienceHistory_DeadlinesGetStudentData struct {
+type Response_GetExperienceHistory_DeadlinesGetStudentData struct {
 	ID                 string `json:"id"`
 	AwardDate          string `json:"awardDate"`
 	ExperienceReceived int64  `json:"experienceReceived"`
 	Typename           string `json:"__typename"`
 }
 
-type GetStudentProfile_DeadlinesGetStudentData struct {
-	User_DeadlinesGetStudentData     User_DeadlinesGetStudentData   `json:"user"`
+type Response_GetStudentProfile_DeadlinesGetStudentData struct {
+	Response_User_DeadlinesGetStudentData     Response_User_DeadlinesGetStudentData   `json:"user"`
 	Typename string `json:"__typename"`
 }
 
-type User_DeadlinesGetStudentData struct {
+type Response_User_DeadlinesGetStudentData struct {
 	ID         string `json:"id"`
 	Login      string `json:"login"`
 	FirstName  string `json:"firstName"`
@@ -59,11 +59,11 @@ type User_DeadlinesGetStudentData struct {
 	Typename   string `json:"__typename"`
 }
 
-func (ctx *RequestContext) DeadlinesGetStudentData(variables Variables_DeadlinesGetStudentData) (Data_DeadlinesGetStudentData, error) {
-	request := gql.NewQueryRequest[Variables_DeadlinesGetStudentData](
+func (ctx *RequestContext) DeadlinesGetStudentData(variables Request_Variables_DeadlinesGetStudentData) (Response_Data_DeadlinesGetStudentData, error) {
+	request := gql.NewQueryRequest[Request_Variables_DeadlinesGetStudentData](
 		"query deadlinesGetStudentData {   student {     getStudentProfile {       user {         id         login         firstName         middleName         lastName         __typename       }       __typename     }     getExperience {       id       value       level {         id         range {           id           levelCode           rightBorder           leftBorder           __typename         }         __typename       }       __typename     }     getExperienceHistory {       id       awardDate       experienceReceived       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_DeadlinesGetStudentData](ctx, request)
+	return GqlRequest[Response_Data_DeadlinesGetStudentData](ctx, request)
 }

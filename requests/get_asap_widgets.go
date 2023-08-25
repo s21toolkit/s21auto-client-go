@@ -2,25 +2,25 @@ package requests
 
 import "s21client/gql"
 
-type Variables_GetAsapWidgets struct {
+type Request_Variables_GetAsapWidgets struct {
 }
 
 
-type Data_GetAsapWidgets struct {
-	Student_GetAsapWidgets Student_GetAsapWidgets `json:"student"`
+type Response_Data_GetAsapWidgets struct {
+	Response_Student_GetAsapWidgets Response_Student_GetAsapWidgets `json:"student"`
 }
 
-type Student_GetAsapWidgets struct {
-	GetAsapWidgetList_GetAsapWidgets GetAsapWidgetList_GetAsapWidgets `json:"getAsapWidgetList"`
+type Response_Student_GetAsapWidgets struct {
+	Response_GetAsapWidgetList_GetAsapWidgets Response_GetAsapWidgetList_GetAsapWidgets `json:"getAsapWidgetList"`
 	Typename          string            `json:"__typename"`
 }
 
-type GetAsapWidgetList_GetAsapWidgets struct {
-	WidgetList_GetAsapWidgets []WidgetList_GetAsapWidgets `json:"widgetList"`
+type Response_GetAsapWidgetList_GetAsapWidgets struct {
+	Response_WidgetList_GetAsapWidgets []Response_WidgetList_GetAsapWidgets `json:"widgetList"`
 	Typename   string       `json:"__typename"`
 }
 
-type WidgetList_GetAsapWidgets struct {
+type Response_WidgetList_GetAsapWidgets struct {
 	ShortImg       string      `json:"shortImg"`
 	ShortTitle     string      `json:"shortTitle"`
 	ShortURL       interface{} `json:"shortUrl"`
@@ -35,11 +35,11 @@ type WidgetList_GetAsapWidgets struct {
 	Typename       string      `json:"__typename"`
 }
 
-func (ctx *RequestContext) GetAsapWidgets(variables Variables_GetAsapWidgets) (Data_GetAsapWidgets, error) {
-	request := gql.NewQueryRequest[Variables_GetAsapWidgets](
+func (ctx *RequestContext) GetAsapWidgets(variables Request_Variables_GetAsapWidgets) (Response_Data_GetAsapWidgets, error) {
+	request := gql.NewQueryRequest[Request_Variables_GetAsapWidgets](
 		"query getAsapWidgets {   student {     getAsapWidgetList {       widgetList {         ...AsapWidget         __typename       }       __typename     }     __typename   } }  fragment AsapWidget on AsapWidgetInfo {   shortImg   shortTitle   shortUrl   startDate   finishDate   showFinishDate   fullTitle   text   fullImgUrl   adtTypeId   adtWidgetId   __typename } ",
 		variables,
 	)
 
-	return GqlRequest[Data_GetAsapWidgets](ctx, request)
+	return GqlRequest[Response_Data_GetAsapWidgets](ctx, request)
 }

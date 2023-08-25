@@ -2,25 +2,25 @@ package requests
 
 import "s21client/gql"
 
-type Variables_GetUserNotificationsCount struct {
+type Request_Variables_GetUserNotificationsCount struct {
 	WasReadIncluded bool `json:"wasReadIncluded"`
 }
 
 
-type Data_GetUserNotificationsCount struct {
-	Student_GetUserNotificationsCount Student_GetUserNotificationsCount `json:"student"`
+type Response_Data_GetUserNotificationsCount struct {
+	Response_Student_GetUserNotificationsCount Response_Student_GetUserNotificationsCount `json:"student"`
 }
 
-type Student_GetUserNotificationsCount struct {
+type Response_Student_GetUserNotificationsCount struct {
 	GetS21NotificationsCount int64  `json:"getS21NotificationsCount"`
 	Typename                 string `json:"__typename"`
 }
 
-func (ctx *RequestContext) GetUserNotificationsCount(variables Variables_GetUserNotificationsCount) (Data_GetUserNotificationsCount, error) {
-	request := gql.NewQueryRequest[Variables_GetUserNotificationsCount](
+func (ctx *RequestContext) GetUserNotificationsCount(variables Request_Variables_GetUserNotificationsCount) (Response_Data_GetUserNotificationsCount, error) {
+	request := gql.NewQueryRequest[Request_Variables_GetUserNotificationsCount](
 		"query getUserNotificationsCount($wasReadIncluded: Boolean) {   student {     getS21NotificationsCount(wasReadIncluded: $wasReadIncluded)     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_GetUserNotificationsCount](ctx, request)
+	return GqlRequest[Response_Data_GetUserNotificationsCount](ctx, request)
 }

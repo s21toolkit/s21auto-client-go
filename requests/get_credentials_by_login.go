@@ -2,21 +2,21 @@ package requests
 
 import "s21client/gql"
 
-type Variables_GetCredentialsByLogin struct {
+type Request_Variables_GetCredentialsByLogin struct {
 	Login string `json:"login"`
 }
 
 
-type Data_GetCredentialsByLogin struct {
-	School21_GetCredentialsByLogin School21_GetCredentialsByLogin `json:"school21"`
+type Response_Data_GetCredentialsByLogin struct {
+	Response_School21_GetCredentialsByLogin Response_School21_GetCredentialsByLogin `json:"school21"`
 }
 
-type School21_GetCredentialsByLogin struct {
-	GetStudentByLogin_GetCredentialsByLogin GetStudentByLogin_GetCredentialsByLogin `json:"getStudentByLogin"`
+type Response_School21_GetCredentialsByLogin struct {
+	Response_GetStudentByLogin_GetCredentialsByLogin Response_GetStudentByLogin_GetCredentialsByLogin `json:"getStudentByLogin"`
 	Typename          string            `json:"__typename"`
 }
 
-type GetStudentByLogin_GetCredentialsByLogin struct {
+type Response_GetStudentByLogin_GetCredentialsByLogin struct {
 	StudentID  string `json:"studentId"`
 	UserID     string `json:"userId"`
 	SchoolID   string `json:"schoolId"`
@@ -25,11 +25,11 @@ type GetStudentByLogin_GetCredentialsByLogin struct {
 	Typename   string `json:"__typename"`
 }
 
-func (ctx *RequestContext) GetCredentialsByLogin(variables Variables_GetCredentialsByLogin) (Data_GetCredentialsByLogin, error) {
-	request := gql.NewQueryRequest[Variables_GetCredentialsByLogin](
+func (ctx *RequestContext) GetCredentialsByLogin(variables Request_Variables_GetCredentialsByLogin) (Response_Data_GetCredentialsByLogin, error) {
+	request := gql.NewQueryRequest[Request_Variables_GetCredentialsByLogin](
 		"query getCredentialsByLogin($login: String!) {   school21 {     getStudentByLogin(login: $login) {       studentId       userId       schoolId       isActive       isGraduate       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_GetCredentialsByLogin](ctx, request)
+	return GqlRequest[Response_Data_GetCredentialsByLogin](ctx, request)
 }

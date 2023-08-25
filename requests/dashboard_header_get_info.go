@@ -2,38 +2,38 @@ package requests
 
 import "s21client/gql"
 
-type Variables_DashboardHeaderGetInfo struct {
+type Request_Variables_DashboardHeaderGetInfo struct {
 }
 
 
-type Data_DashboardHeaderGetInfo struct {
-	User_DashboardHeaderGetInfo    User_DashboardHeaderGetInfo    `json:"user"`
-	Student_DashboardHeaderGetInfo Student_DashboardHeaderGetInfo `json:"student"`
+type Response_Data_DashboardHeaderGetInfo struct {
+	Response_User_DashboardHeaderGetInfo    Response_User_DashboardHeaderGetInfo    `json:"user"`
+	Response_Student_DashboardHeaderGetInfo Response_Student_DashboardHeaderGetInfo `json:"student"`
 }
 
-type Student_DashboardHeaderGetInfo struct {
-	GetUserTournamentWidget_DashboardHeaderGetInfo GetUserTournamentWidget_DashboardHeaderGetInfo `json:"getUserTournamentWidget"`
-	GetExperience_DashboardHeaderGetInfo           GetExperience_DashboardHeaderGetInfo           `json:"getExperience"`
+type Response_Student_DashboardHeaderGetInfo struct {
+	Response_GetUserTournamentWidget_DashboardHeaderGetInfo Response_GetUserTournamentWidget_DashboardHeaderGetInfo `json:"getUserTournamentWidget"`
+	Response_GetExperience_DashboardHeaderGetInfo           Response_GetExperience_DashboardHeaderGetInfo           `json:"getExperience"`
 	Typename                string                  `json:"__typename"`
 }
 
-type GetExperience_DashboardHeaderGetInfo struct {
+type Response_GetExperience_DashboardHeaderGetInfo struct {
 	ID               string `json:"id"`
 	Value            int64  `json:"value"`
-	Level_DashboardHeaderGetInfo            Level_DashboardHeaderGetInfo  `json:"level"`
+	Response_Level_DashboardHeaderGetInfo            Response_Level_DashboardHeaderGetInfo  `json:"level"`
 	CookiesCount     int64  `json:"cookiesCount"`
 	CoinsCount       int64  `json:"coinsCount"`
 	CodeReviewPoints int64  `json:"codeReviewPoints"`
 	Typename         string `json:"__typename"`
 }
 
-type Level_DashboardHeaderGetInfo struct {
+type Response_Level_DashboardHeaderGetInfo struct {
 	ID       int64  `json:"id"`
-	Range_DashboardHeaderGetInfo    Range_DashboardHeaderGetInfo  `json:"range"`
+	Response_Range_DashboardHeaderGetInfo    Response_Range_DashboardHeaderGetInfo  `json:"range"`
 	Typename string `json:"__typename"`
 }
 
-type Range_DashboardHeaderGetInfo struct {
+type Response_Range_DashboardHeaderGetInfo struct {
 	ID          string `json:"id"`
 	LevelCode   int64  `json:"levelCode"`
 	RightBorder int64  `json:"rightBorder"`
@@ -41,19 +41,19 @@ type Range_DashboardHeaderGetInfo struct {
 	Typename    string `json:"__typename"`
 }
 
-type GetUserTournamentWidget_DashboardHeaderGetInfo struct {
-	CoalitionMember_DashboardHeaderGetInfo      CoalitionMember_DashboardHeaderGetInfo      `json:"coalitionMember"`
-	LastTournamentResult_DashboardHeaderGetInfo LastTournamentResult_DashboardHeaderGetInfo `json:"lastTournamentResult"`
+type Response_GetUserTournamentWidget_DashboardHeaderGetInfo struct {
+	Response_CoalitionMember_DashboardHeaderGetInfo      Response_CoalitionMember_DashboardHeaderGetInfo      `json:"coalitionMember"`
+	Response_LastTournamentResult_DashboardHeaderGetInfo Response_LastTournamentResult_DashboardHeaderGetInfo `json:"lastTournamentResult"`
 	Typename             string               `json:"__typename"`
 }
 
-type CoalitionMember_DashboardHeaderGetInfo struct {
-	Coalition_DashboardHeaderGetInfo                  Coalition_DashboardHeaderGetInfo                  `json:"coalition"`
-	CurrentTournamentPowerRank_DashboardHeaderGetInfo CurrentTournamentPowerRank_DashboardHeaderGetInfo `json:"currentTournamentPowerRank"`
+type Response_CoalitionMember_DashboardHeaderGetInfo struct {
+	Response_Coalition_DashboardHeaderGetInfo                  Response_Coalition_DashboardHeaderGetInfo                  `json:"coalition"`
+	Response_CurrentTournamentPowerRank_DashboardHeaderGetInfo Response_CurrentTournamentPowerRank_DashboardHeaderGetInfo `json:"currentTournamentPowerRank"`
 	Typename                   string                     `json:"__typename"`
 }
 
-type Coalition_DashboardHeaderGetInfo struct {
+type Response_Coalition_DashboardHeaderGetInfo struct {
 	AvatarURL   string `json:"avatarUrl"`
 	Color       string `json:"color"`
 	Name        string `json:"name"`
@@ -61,22 +61,22 @@ type Coalition_DashboardHeaderGetInfo struct {
 	Typename    string `json:"__typename"`
 }
 
-type CurrentTournamentPowerRank_DashboardHeaderGetInfo struct {
+type Response_CurrentTournamentPowerRank_DashboardHeaderGetInfo struct {
 	Rank     int64  `json:"rank"`
 	Typename string `json:"__typename"`
 }
 
-type LastTournamentResult_DashboardHeaderGetInfo struct {
+type Response_LastTournamentResult_DashboardHeaderGetInfo struct {
 	UserRank int64  `json:"userRank"`
 	Typename string `json:"__typename"`
 }
 
-type User_DashboardHeaderGetInfo struct {
-	GetCurrentUser_DashboardHeaderGetInfo GetCurrentUser_DashboardHeaderGetInfo `json:"getCurrentUser"`
+type Response_User_DashboardHeaderGetInfo struct {
+	Response_GetCurrentUser_DashboardHeaderGetInfo Response_GetCurrentUser_DashboardHeaderGetInfo `json:"getCurrentUser"`
 	Typename       string         `json:"__typename"`
 }
 
-type GetCurrentUser_DashboardHeaderGetInfo struct {
+type Response_GetCurrentUser_DashboardHeaderGetInfo struct {
 	ID                     string        `json:"id"`
 	Login                  string        `json:"login"`
 	AvatarURL              string        `json:"avatarUrl"`
@@ -84,28 +84,28 @@ type GetCurrentUser_DashboardHeaderGetInfo struct {
 	MiddleName             string        `json:"middleName"`
 	LastName               string        `json:"lastName"`
 	CurrentSchoolStudentID string        `json:"currentSchoolStudentId"`
-	StudentRoles           []StudentRole_DashboardHeaderGetInfo `json:"studentRoles"`
+	StudentRoles           []Response_StudentRole_DashboardHeaderGetInfo `json:"studentRoles"`
 	Typename               string        `json:"__typename"`
 }
 
-type StudentRole_DashboardHeaderGetInfo struct {
+type Response_StudentRole_DashboardHeaderGetInfo struct {
 	ID       string `json:"id"`
 	Status   string `json:"status"`
-	School_DashboardHeaderGetInfo   School_DashboardHeaderGetInfo `json:"school"`
+	Response_School_DashboardHeaderGetInfo   Response_School_DashboardHeaderGetInfo `json:"school"`
 	Typename string `json:"__typename"`
 }
 
-type School_DashboardHeaderGetInfo struct {
+type Response_School_DashboardHeaderGetInfo struct {
 	ID        string `json:"id"`
 	ShortName string `json:"shortName"`
 	Typename  string `json:"__typename"`
 }
 
-func (ctx *RequestContext) DashboardHeaderGetInfo(variables Variables_DashboardHeaderGetInfo) (Data_DashboardHeaderGetInfo, error) {
-	request := gql.NewQueryRequest[Variables_DashboardHeaderGetInfo](
+func (ctx *RequestContext) DashboardHeaderGetInfo(variables Request_Variables_DashboardHeaderGetInfo) (Response_Data_DashboardHeaderGetInfo, error) {
+	request := gql.NewQueryRequest[Request_Variables_DashboardHeaderGetInfo](
 		"query dashboardHeaderGetInfo {   user {     getCurrentUser {       id       login       avatarUrl       firstName       middleName       lastName       currentSchoolStudentId       studentRoles {         id         status         school {           id           shortName           __typename         }         __typename       }       __typename     }     __typename   }   student {     getUserTournamentWidget {       coalitionMember {         coalition {           avatarUrl           color           name           memberCount           __typename         }         currentTournamentPowerRank {           rank           __typename         }         __typename       }       lastTournamentResult {         userRank         __typename       }       __typename     }     getExperience {       id       value       level {         id         range {           id           levelCode           rightBorder           leftBorder           __typename         }         __typename       }       cookiesCount       coinsCount       codeReviewPoints       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_DashboardHeaderGetInfo](ctx, request)
+	return GqlRequest[Response_Data_DashboardHeaderGetInfo](ctx, request)
 }

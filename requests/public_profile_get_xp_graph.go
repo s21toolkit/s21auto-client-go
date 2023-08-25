@@ -2,36 +2,36 @@ package requests
 
 import "s21client/gql"
 
-type Variables_PublicProfileGetXpGraph struct {
+type Request_Variables_PublicProfileGetXpGraph struct {
 	UserID string `json:"userId"`
 }
 
 
-type Data_PublicProfileGetXpGraph struct {
-	Student_PublicProfileGetXpGraph Student_PublicProfileGetXpGraph `json:"student"`
+type Response_Data_PublicProfileGetXpGraph struct {
+	Response_Student_PublicProfileGetXpGraph Response_Student_PublicProfileGetXpGraph `json:"student"`
 }
 
-type Student_PublicProfileGetXpGraph struct {
-	GetExperienceHistoryDate_PublicProfileGetXpGraph GetExperienceHistoryDate_PublicProfileGetXpGraph `json:"getExperienceHistoryDate"`
+type Response_Student_PublicProfileGetXpGraph struct {
+	Response_GetExperienceHistoryDate_PublicProfileGetXpGraph Response_GetExperienceHistoryDate_PublicProfileGetXpGraph `json:"getExperienceHistoryDate"`
 	Typename                 string                   `json:"__typename"`
 }
 
-type GetExperienceHistoryDate_PublicProfileGetXpGraph struct {
-	History_PublicProfileGetXpGraph  []History_PublicProfileGetXpGraph `json:"history"`
+type Response_GetExperienceHistoryDate_PublicProfileGetXpGraph struct {
+	Response_History_PublicProfileGetXpGraph  []Response_History_PublicProfileGetXpGraph `json:"history"`
 	Typename string    `json:"__typename"`
 }
 
-type History_PublicProfileGetXpGraph struct {
+type Response_History_PublicProfileGetXpGraph struct {
 	AwardDate string `json:"awardDate"`
 	ExpValue  int64  `json:"expValue"`
 	Typename  string `json:"__typename"`
 }
 
-func (ctx *RequestContext) PublicProfileGetXpGraph(variables Variables_PublicProfileGetXpGraph) (Data_PublicProfileGetXpGraph, error) {
-	request := gql.NewQueryRequest[Variables_PublicProfileGetXpGraph](
+func (ctx *RequestContext) PublicProfileGetXpGraph(variables Request_Variables_PublicProfileGetXpGraph) (Response_Data_PublicProfileGetXpGraph, error) {
+	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetXpGraph](
 		"query publicProfileGetXpGraph($userId: UUID!) {   student {     getExperienceHistoryDate(userId: $userId) {       history {         awardDate         expValue         __typename       }       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_PublicProfileGetXpGraph](ctx, request)
+	return GqlRequest[Response_Data_PublicProfileGetXpGraph](ctx, request)
 }

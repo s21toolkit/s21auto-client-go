@@ -2,21 +2,21 @@ package requests
 
 import "s21client/gql"
 
-type Variables_GetUsers struct {
+type Request_Variables_GetUsers struct {
 	UserIDS []string `json:"userIds"`
 }
 
 
-type Data_GetUsers struct {
-	School21_GetUsers School21_GetUsers `json:"school21"`
+type Response_Data_GetUsers struct {
+	Response_School21_GetUsers Response_School21_GetUsers `json:"school21"`
 }
 
-type School21_GetUsers struct {
-	GetUsers []GetUser_GetUsers `json:"getUsers"`
+type Response_School21_GetUsers struct {
+	GetUsers []Response_GetUser_GetUsers `json:"getUsers"`
 	Typename string    `json:"__typename"`
 }
 
-type GetUser_GetUsers struct {
+type Response_GetUser_GetUsers struct {
 	UserID     string      `json:"userId"`
 	Login      string      `json:"login"`
 	FirstName  string      `json:"firstName"`
@@ -27,11 +27,11 @@ type GetUser_GetUsers struct {
 	Typename   string      `json:"__typename"`
 }
 
-func (ctx *RequestContext) GetUsers(variables Variables_GetUsers) (Data_GetUsers, error) {
-	request := gql.NewQueryRequest[Variables_GetUsers](
+func (ctx *RequestContext) GetUsers(variables Request_Variables_GetUsers) (Response_Data_GetUsers, error) {
+	request := gql.NewQueryRequest[Request_Variables_GetUsers](
 		"query getUsers($userIds: [UUID!]!) {   school21 {     getUsers(userIds: $userIds) {       userId       login       firstName       middleName       lastName       avatarUrl       level       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_GetUsers](ctx, request)
+	return GqlRequest[Response_Data_GetUsers](ctx, request)
 }

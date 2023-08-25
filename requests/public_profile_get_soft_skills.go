@@ -2,27 +2,27 @@ package requests
 
 import "s21client/gql"
 
-type Variables_PublicProfileGetSoftSkills struct {
+type Request_Variables_PublicProfileGetSoftSkills struct {
 	StudentID string `json:"studentId"`
 }
 
 
-type Data_PublicProfileGetSoftSkills struct {
-	School21_PublicProfileGetSoftSkills School21_PublicProfileGetSoftSkills `json:"school21"`
+type Response_Data_PublicProfileGetSoftSkills struct {
+	Response_School21_PublicProfileGetSoftSkills Response_School21_PublicProfileGetSoftSkills `json:"school21"`
 }
 
-type School21_PublicProfileGetSoftSkills struct {
-	GetSoftSkillsByStudentID_PublicProfileGetSoftSkills     []GetSoftSkillsByStudentID_PublicProfileGetSoftSkills   `json:"getSoftSkillsByStudentId"`
-	GetSoftSkillLimitByStudentID_PublicProfileGetSoftSkills GetSoftSkillLimitByStudentID_PublicProfileGetSoftSkills `json:"getSoftSkillLimitByStudentId"`
+type Response_School21_PublicProfileGetSoftSkills struct {
+	Response_GetSoftSkillsByStudentID_PublicProfileGetSoftSkills     []Response_GetSoftSkillsByStudentID_PublicProfileGetSoftSkills   `json:"getSoftSkillsByStudentId"`
+	Response_GetSoftSkillLimitByStudentID_PublicProfileGetSoftSkills Response_GetSoftSkillLimitByStudentID_PublicProfileGetSoftSkills `json:"getSoftSkillLimitByStudentId"`
 	Typename                     string                       `json:"__typename"`
 }
 
-type GetSoftSkillLimitByStudentID_PublicProfileGetSoftSkills struct {
+type Response_GetSoftSkillLimitByStudentID_PublicProfileGetSoftSkills struct {
 	PowerLimit int64  `json:"powerLimit"`
 	Typename   string `json:"__typename"`
 }
 
-type GetSoftSkillsByStudentID_PublicProfileGetSoftSkills struct {
+type Response_GetSoftSkillsByStudentID_PublicProfileGetSoftSkills struct {
 	ID                     string `json:"id"`
 	Type                   string `json:"type"`
 	Code                   string `json:"code"`
@@ -31,11 +31,11 @@ type GetSoftSkillsByStudentID_PublicProfileGetSoftSkills struct {
 	Typename               string `json:"__typename"`
 }
 
-func (ctx *RequestContext) PublicProfileGetSoftSkills(variables Variables_PublicProfileGetSoftSkills) (Data_PublicProfileGetSoftSkills, error) {
-	request := gql.NewQueryRequest[Variables_PublicProfileGetSoftSkills](
+func (ctx *RequestContext) PublicProfileGetSoftSkills(variables Request_Variables_PublicProfileGetSoftSkills) (Response_Data_PublicProfileGetSoftSkills, error) {
+	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetSoftSkills](
 		"query publicProfileGetSoftSkills($studentId: UUID!) {   school21 {     getSoftSkillsByStudentId(studentId: $studentId) {       id       type       code       totalPower       hueSaturationLightness       __typename     }     getSoftSkillLimitByStudentId(studentId: $studentId) {       powerLimit       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_PublicProfileGetSoftSkills](ctx, request)
+	return GqlRequest[Response_Data_PublicProfileGetSoftSkills](ctx, request)
 }

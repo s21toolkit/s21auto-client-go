@@ -2,20 +2,20 @@ package requests
 
 import "s21client/gql"
 
-type Variables_GetGitlabSettingsToken struct {
+type Request_Variables_GetGitlabSettingsToken struct {
 	TaskID string `json:"taskId"`
 }
 
 
-type Data_GetGitlabSettingsToken struct {
+type Response_Data_GetGitlabSettingsToken struct {
 	Student interface{} `json:"student"`
 }
 
-func (ctx *RequestContext) GetGitlabSettingsToken(variables Variables_GetGitlabSettingsToken) (Data_GetGitlabSettingsToken, error) {
-	request := gql.NewQueryRequest[Variables_GetGitlabSettingsToken](
+func (ctx *RequestContext) GetGitlabSettingsToken(variables Request_Variables_GetGitlabSettingsToken) (Response_Data_GetGitlabSettingsToken, error) {
+	request := gql.NewQueryRequest[Request_Variables_GetGitlabSettingsToken](
 		"query getGitlabSettingsToken($taskId: ID!) {   student {     getLinkToPrivateStudentGitlabProjectByTaskId(taskId: $taskId) {       runnersToken       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_GetGitlabSettingsToken](ctx, request)
+	return GqlRequest[Response_Data_GetGitlabSettingsToken](ctx, request)
 }

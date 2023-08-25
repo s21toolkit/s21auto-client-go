@@ -2,21 +2,21 @@ package requests
 
 import "s21client/gql"
 
-type Variables_SubscribeToEvent struct {
+type Request_Variables_SubscribeToEvent struct {
 	EventID string `json:"eventId"`
 }
 
 
-type Data_SubscribeToEvent struct {
-	Student_SubscribeToEvent Student_SubscribeToEvent `json:"student"`
+type Response_Data_SubscribeToEvent struct {
+	Response_Student_SubscribeToEvent Response_Student_SubscribeToEvent `json:"student"`
 }
 
-type Student_SubscribeToEvent struct {
-	SubscribeToEvent_SubscribeToEvent SubscribeToEvent_SubscribeToEvent `json:"subscribeToEvent"`
+type Response_Student_SubscribeToEvent struct {
+	Response_SubscribeToEvent_SubscribeToEvent Response_SubscribeToEvent_SubscribeToEvent `json:"subscribeToEvent"`
 	Typename         string           `json:"__typename"`
 }
 
-type SubscribeToEvent_SubscribeToEvent struct {
+type Response_SubscribeToEvent_SubscribeToEvent struct {
 	ID                   string        `json:"id"`
 	Start                string        `json:"start"`
 	End                  string        `json:"end"`
@@ -32,12 +32,12 @@ type SubscribeToEvent_SubscribeToEvent struct {
 	CurrentStudentsCount int64         `json:"currentStudentsCount"`
 	Exam                 interface{}   `json:"exam"`
 	StudentCodeReview    interface{}   `json:"studentCodeReview"`
-	Activity_SubscribeToEvent             Activity_SubscribeToEvent      `json:"activity"`
+	Response_Activity_SubscribeToEvent             Response_Activity_SubscribeToEvent      `json:"activity"`
 	Penalty              interface{}   `json:"penalty"`
 	Typename             string        `json:"__typename"`
 }
 
-type Activity_SubscribeToEvent struct {
+type Response_Activity_SubscribeToEvent struct {
 	ActivityEventID      string      `json:"activityEventId"`
 	EventID              string      `json:"eventId"`
 	BeginDate            string      `json:"beginDate"`
@@ -59,21 +59,21 @@ type Activity_SubscribeToEvent struct {
 	EventType            string      `json:"eventType"`
 	IsMandatory          bool        `json:"isMandatory"`
 	Status               string      `json:"status"`
-	Organizers           []Organizer_SubscribeToEvent `json:"organizers"`
+	Organizers           []Response_Organizer_SubscribeToEvent `json:"organizers"`
 	Typename             string      `json:"__typename"`
 }
 
-type Organizer_SubscribeToEvent struct {
+type Response_Organizer_SubscribeToEvent struct {
 	ID       string `json:"id"`
 	Login    string `json:"login"`
 	Typename string `json:"__typename"`
 }
 
-func (ctx *RequestContext) SubscribeToEvent(variables Variables_SubscribeToEvent) (Data_SubscribeToEvent, error) {
-	request := gql.NewQueryRequest[Variables_SubscribeToEvent](
+func (ctx *RequestContext) SubscribeToEvent(variables Request_Variables_SubscribeToEvent) (Response_Data_SubscribeToEvent, error) {
+	request := gql.NewQueryRequest[Request_Variables_SubscribeToEvent](
 		"mutation subscribeToEvent($eventId: ID!) {   student {     subscribeToEvent(eventId: $eventId) {       ...UpcomingEvent       __typename     }     __typename   } }  fragment UpcomingEvent on CalendarEvent {   id   start   end   bookings {     id     task {       id       goalName       __typename     }     __typename   }   eventSlots {     id     eventId     type     start     end     __typename   }   maxStudentCount   location   ipRange   eventType   eventCode   description   externalId   currentStudentsCount   exam {     examId     eventId     beginDate     endDate     location     ip     maxStudentCount     isVisible     name     goalId     isWaitListActive     isInWaitList     currentStudentsCount     createDate     updateDate     schoolId     stopRegisterDate     isRegistered     goalName     eventType     registrationAccessStatus     __typename   }   studentCodeReview {     studentGoalId     __typename   }   activity {     activityEventId     eventId     beginDate     endDate     location     description     maxStudentCount     isVisible     name     isWaitListActive     isInWaitList     currentStudentsCount     createDate     updateDate     schoolId     stopRegisterDate     isRegistered     activityType     eventType     isMandatory     status     organizers {       id       login       __typename     }     __typename   }   penalty {     ...Penalty     __typename   }   __typename }  fragment Penalty on Penalty {   comment   id   duration   status   startTime   createTime   penaltySlot {     currentStudentsCount     description     duration     startTime     id     endTime     __typename   }   reasonId   __typename } ",
 		variables,
 	)
 
-	return GqlRequest[Data_SubscribeToEvent](ctx, request)
+	return GqlRequest[Response_Data_SubscribeToEvent](ctx, request)
 }

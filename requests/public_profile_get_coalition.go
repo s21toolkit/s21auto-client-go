@@ -2,33 +2,33 @@ package requests
 
 import "s21client/gql"
 
-type Variables_PublicProfileGetCoalition struct {
+type Request_Variables_PublicProfileGetCoalition struct {
 	UserID string `json:"userId"`
 }
 
 
-type Data_PublicProfileGetCoalition struct {
-	Student_PublicProfileGetCoalition Student_PublicProfileGetCoalition `json:"student"`
+type Response_Data_PublicProfileGetCoalition struct {
+	Response_Student_PublicProfileGetCoalition Response_Student_PublicProfileGetCoalition `json:"student"`
 }
 
-type Student_PublicProfileGetCoalition struct {
-	GetUserTournamentWidget_PublicProfileGetCoalition GetUserTournamentWidget_PublicProfileGetCoalition `json:"getUserTournamentWidget"`
+type Response_Student_PublicProfileGetCoalition struct {
+	Response_GetUserTournamentWidget_PublicProfileGetCoalition Response_GetUserTournamentWidget_PublicProfileGetCoalition `json:"getUserTournamentWidget"`
 	Typename                string                  `json:"__typename"`
 }
 
-type GetUserTournamentWidget_PublicProfileGetCoalition struct {
-	CoalitionMember_PublicProfileGetCoalition      CoalitionMember_PublicProfileGetCoalition      `json:"coalitionMember"`
-	LastTournamentResult_PublicProfileGetCoalition LastTournamentResult_PublicProfileGetCoalition `json:"lastTournamentResult"`
+type Response_GetUserTournamentWidget_PublicProfileGetCoalition struct {
+	Response_CoalitionMember_PublicProfileGetCoalition      Response_CoalitionMember_PublicProfileGetCoalition      `json:"coalitionMember"`
+	Response_LastTournamentResult_PublicProfileGetCoalition Response_LastTournamentResult_PublicProfileGetCoalition `json:"lastTournamentResult"`
 	Typename             string               `json:"__typename"`
 }
 
-type CoalitionMember_PublicProfileGetCoalition struct {
-	Coalition_PublicProfileGetCoalition                  Coalition_PublicProfileGetCoalition                  `json:"coalition"`
-	CurrentTournamentPowerRank_PublicProfileGetCoalition CurrentTournamentPowerRank_PublicProfileGetCoalition `json:"currentTournamentPowerRank"`
+type Response_CoalitionMember_PublicProfileGetCoalition struct {
+	Response_Coalition_PublicProfileGetCoalition                  Response_Coalition_PublicProfileGetCoalition                  `json:"coalition"`
+	Response_CurrentTournamentPowerRank_PublicProfileGetCoalition Response_CurrentTournamentPowerRank_PublicProfileGetCoalition `json:"currentTournamentPowerRank"`
 	Typename                   string                     `json:"__typename"`
 }
 
-type Coalition_PublicProfileGetCoalition struct {
+type Response_Coalition_PublicProfileGetCoalition struct {
 	AvatarURL   string `json:"avatarUrl"`
 	Color       string `json:"color"`
 	Name        string `json:"name"`
@@ -36,29 +36,29 @@ type Coalition_PublicProfileGetCoalition struct {
 	Typename    string `json:"__typename"`
 }
 
-type CurrentTournamentPowerRank_PublicProfileGetCoalition struct {
+type Response_CurrentTournamentPowerRank_PublicProfileGetCoalition struct {
 	Rank     int64  `json:"rank"`
-	Power_PublicProfileGetCoalition    Power_PublicProfileGetCoalition  `json:"power"`
+	Response_Power_PublicProfileGetCoalition    Response_Power_PublicProfileGetCoalition  `json:"power"`
 	Typename string `json:"__typename"`
 }
 
-type Power_PublicProfileGetCoalition struct {
+type Response_Power_PublicProfileGetCoalition struct {
 	ID       string `json:"id"`
 	Points   int64  `json:"points"`
 	Typename string `json:"__typename"`
 }
 
-type LastTournamentResult_PublicProfileGetCoalition struct {
+type Response_LastTournamentResult_PublicProfileGetCoalition struct {
 	UserRank int64  `json:"userRank"`
-	Power_PublicProfileGetCoalition    int64  `json:"power"`
+	Response_Power_PublicProfileGetCoalition    int64  `json:"power"`
 	Typename string `json:"__typename"`
 }
 
-func (ctx *RequestContext) PublicProfileGetCoalition(variables Variables_PublicProfileGetCoalition) (Data_PublicProfileGetCoalition, error) {
-	request := gql.NewQueryRequest[Variables_PublicProfileGetCoalition](
+func (ctx *RequestContext) PublicProfileGetCoalition(variables Request_Variables_PublicProfileGetCoalition) (Response_Data_PublicProfileGetCoalition, error) {
+	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetCoalition](
 		"query publicProfileGetCoalition($userId: UUID!) {   student {     getUserTournamentWidget(userId: $userId) {       coalitionMember {         coalition {           avatarUrl           color           name           memberCount           __typename         }         currentTournamentPowerRank {           rank           power {             id             points             __typename           }           __typename         }         __typename       }       lastTournamentResult {         userRank         power         __typename       }       __typename     }     __typename   } } ",
 		variables,
 	)
 
-	return GqlRequest[Data_PublicProfileGetCoalition](ctx, request)
+	return GqlRequest[Response_Data_PublicProfileGetCoalition](ctx, request)
 }
