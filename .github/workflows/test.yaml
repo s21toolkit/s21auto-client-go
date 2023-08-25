@@ -1,10 +1,12 @@
 on:
+  pull_request:
+    branches: [ master ]
   push:
     branches: [ master ]
 
 jobs:
   test:
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
     env:
       USERNAME: ${{ secrets.USERNAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
