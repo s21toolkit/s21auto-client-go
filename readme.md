@@ -3,9 +3,9 @@
 Клиент для внутреннего GQL API платформы edu.21-school.ru.
 
 ```golang
-cli := s21client.New(s21client.DefaultAuth(os.Getenv("USERNAME"), os.Getenv("PASSWORD")))
+client := s21client.New(s21client.DefaultAuth(os.Getenv("USERNAME"), os.Getenv("PASSWORD")))
 
-user, err := cli.R().GetCurrentUser(requests.Request_Variables_GetCurrentUser{})
+user, err := client.R().GetCurrentUser(requests.Request_Variables_GetCurrentUser{})
 if err != nil {
   t.Error(err)
 }
