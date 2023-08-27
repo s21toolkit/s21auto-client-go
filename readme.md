@@ -7,7 +7,7 @@
 ```golang
 client := s21client.New(s21client.DefaultAuth(os.Getenv("USERNAME"), os.Getenv("PASSWORD")))
 
-user, err := client.R().GetCurrentUser(requests.Request_Variables_GetCurrentUser{})
+user, err := client.R().GetCurrentUser(requests.Variables_GetCurrentUser{})
 if err != nil {
   t.Error(err)
 }
