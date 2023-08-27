@@ -26,7 +26,7 @@ func TestGetUser(t *testing.T) {
 	loadDotenv(t)
 	cli := s21client.New(s21client.DefaultAuth(os.Getenv("USERNAME"), os.Getenv("PASSWORD")))
 
-	u, err := cli.R().GetCurrentUser(requests.Request_Variables_GetCurrentUser{})
+	u, err := cli.R().GetCurrentUser(requests.Variables_GetCurrentUser{})
 	if err != nil {
 		t.Error(err)
 	}

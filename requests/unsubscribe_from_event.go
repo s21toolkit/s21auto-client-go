@@ -2,21 +2,21 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Request_Variables_UnsubscribeFromEvent struct {
+type Variables_UnsubscribeFromEvent struct {
 	EventID string `json:"eventId"`
 }
 
 
-type Response_Data_UnsubscribeFromEvent struct {
-	Response_Student_UnsubscribeFromEvent Response_Student_UnsubscribeFromEvent `json:"student"`
+type Data_UnsubscribeFromEvent struct {
+	Data_Student_UnsubscribeFromEvent Data_Student_UnsubscribeFromEvent `json:"student"`
 }
 
-type Response_Student_UnsubscribeFromEvent struct {
-	Response_UnsubscribeFromEvent_UnsubscribeFromEvent Response_UnsubscribeFromEvent_UnsubscribeFromEvent `json:"unsubscribeFromEvent"`
+type Data_Student_UnsubscribeFromEvent struct {
+	Data_UnsubscribeFromEvent_UnsubscribeFromEvent Data_UnsubscribeFromEvent_UnsubscribeFromEvent `json:"unsubscribeFromEvent"`
 	Typename             string               `json:"__typename"`
 }
 
-type Response_UnsubscribeFromEvent_UnsubscribeFromEvent struct {
+type Data_UnsubscribeFromEvent_UnsubscribeFromEvent struct {
 	ID                   string        `json:"id"`
 	Start                string        `json:"start"`
 	End                  string        `json:"end"`
@@ -32,12 +32,12 @@ type Response_UnsubscribeFromEvent_UnsubscribeFromEvent struct {
 	CurrentStudentsCount int64         `json:"currentStudentsCount"`
 	Exam                 interface{}   `json:"exam"`
 	StudentCodeReview    interface{}   `json:"studentCodeReview"`
-	Response_Activity_UnsubscribeFromEvent             Response_Activity_UnsubscribeFromEvent      `json:"activity"`
+	Data_Activity_UnsubscribeFromEvent             Data_Activity_UnsubscribeFromEvent      `json:"activity"`
 	Penalty              interface{}   `json:"penalty"`
 	Typename             string        `json:"__typename"`
 }
 
-type Response_Activity_UnsubscribeFromEvent struct {
+type Data_Activity_UnsubscribeFromEvent struct {
 	ActivityEventID      string      `json:"activityEventId"`
 	EventID              string      `json:"eventId"`
 	BeginDate            string      `json:"beginDate"`
@@ -59,21 +59,22 @@ type Response_Activity_UnsubscribeFromEvent struct {
 	EventType            string      `json:"eventType"`
 	IsMandatory          bool        `json:"isMandatory"`
 	Status               string      `json:"status"`
-	Organizers           []Response_Organizer_UnsubscribeFromEvent `json:"organizers"`
+	Organizers           []Data_Organizer_UnsubscribeFromEvent `json:"organizers"`
 	Typename             string      `json:"__typename"`
 }
 
-type Response_Organizer_UnsubscribeFromEvent struct {
+type Data_Organizer_UnsubscribeFromEvent struct {
 	ID       string `json:"id"`
 	Login    string `json:"login"`
 	Typename string `json:"__typename"`
 }
 
-func (ctx *RequestContext) UnsubscribeFromEvent(variables Request_Variables_UnsubscribeFromEvent) (Response_Data_UnsubscribeFromEvent, error) {
-	request := gql.NewQueryRequest[Request_Variables_UnsubscribeFromEvent](
+
+func (ctx *RequestContext) UnsubscribeFromEvent(variables Variables_UnsubscribeFromEvent) (Data_UnsubscribeFromEvent, error) {
+	request := gql.NewQueryRequest[Variables_UnsubscribeFromEvent](
 		"mutation unsubscribeFromEvent($eventId: ID!) {\n  student {\n    unsubscribeFromEvent(eventId: $eventId) {\n      ...UpcomingEvent\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment UpcomingEvent on CalendarEvent {\n  id\n  start\n  end\n  bookings {\n    id\n    task {\n      id\n      goalName\n      __typename\n    }\n    __typename\n  }\n  eventSlots {\n    id\n    eventId\n    type\n    start\n    end\n    __typename\n  }\n  maxStudentCount\n  location\n  ipRange\n  eventType\n  eventCode\n  description\n  externalId\n  currentStudentsCount\n  exam {\n    examId\n    eventId\n    beginDate\n    endDate\n    location\n    ip\n    maxStudentCount\n    isVisible\n    name\n    goalId\n    isWaitListActive\n    isInWaitList\n    currentStudentsCount\n    createDate\n    updateDate\n    schoolId\n    stopRegisterDate\n    isRegistered\n    goalName\n    eventType\n    registrationAccessStatus\n    __typename\n  }\n  studentCodeReview {\n    studentGoalId\n    __typename\n  }\n  activity {\n    activityEventId\n    eventId\n    beginDate\n    endDate\n    location\n    description\n    maxStudentCount\n    isVisible\n    name\n    isWaitListActive\n    isInWaitList\n    currentStudentsCount\n    createDate\n    updateDate\n    schoolId\n    stopRegisterDate\n    isRegistered\n    activityType\n    eventType\n    isMandatory\n    status\n    organizers {\n      id\n      login\n      __typename\n    }\n    __typename\n  }\n  penalty {\n    ...Penalty\n    __typename\n  }\n  __typename\n}\n\nfragment Penalty on Penalty {\n  comment\n  id\n  duration\n  status\n  startTime\n  createTime\n  penaltySlot {\n    currentStudentsCount\n    description\n    duration\n    startTime\n    id\n    endTime\n    __typename\n  }\n  reasonId\n  __typename\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Response_Data_UnsubscribeFromEvent](ctx, request)
+	return GqlRequest[Data_UnsubscribeFromEvent](ctx, request)
 }

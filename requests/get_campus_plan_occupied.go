@@ -2,50 +2,50 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Request_Variables_GetCampusPlanOccupied struct {
+type Variables_GetCampusPlanOccupied struct {
 	ClusterID string `json:"clusterId"`
 }
 
 
-type Response_Data_GetCampusPlanOccupied struct {
-	Response_Student_GetCampusPlanOccupied Response_Student_GetCampusPlanOccupied `json:"student"`
+type Data_GetCampusPlanOccupied struct {
+	Data_Student_GetCampusPlanOccupied Data_Student_GetCampusPlanOccupied `json:"student"`
 }
 
-type Response_Student_GetCampusPlanOccupied struct {
-	Response_GetClusterPlanStudentsByClusterID_GetCampusPlanOccupied Response_GetClusterPlanStudentsByClusterID_GetCampusPlanOccupied `json:"getClusterPlanStudentsByClusterId"`
+type Data_Student_GetCampusPlanOccupied struct {
+	Data_GetClusterPlanStudentsByClusterID_GetCampusPlanOccupied Data_GetClusterPlanStudentsByClusterID_GetCampusPlanOccupied `json:"getClusterPlanStudentsByClusterId"`
 	Typename                          string                            `json:"__typename"`
 }
 
-type Response_GetClusterPlanStudentsByClusterID_GetCampusPlanOccupied struct {
-	OccupiedPlaces []Response_OccupiedPlace_GetCampusPlanOccupied `json:"occupiedPlaces"`
+type Data_GetClusterPlanStudentsByClusterID_GetCampusPlanOccupied struct {
+	OccupiedPlaces []Data_OccupiedPlace_GetCampusPlanOccupied `json:"occupiedPlaces"`
 	Typename       string          `json:"__typename"`
 }
 
-type Response_OccupiedPlace_GetCampusPlanOccupied struct {
+type Data_OccupiedPlace_GetCampusPlanOccupied struct {
 	Row            string     `json:"row"`
 	Number         int64      `json:"number"`
 	StageGroupName string     `json:"stageGroupName"`
 	StageName      string     `json:"stageName"`
-	Response_User_GetCampusPlanOccupied           Response_User_GetCampusPlanOccupied       `json:"user"`
-	Response_Experience_GetCampusPlanOccupied     Response_Experience_GetCampusPlanOccupied `json:"experience"`
+	Data_User_GetCampusPlanOccupied           Data_User_GetCampusPlanOccupied       `json:"user"`
+	Data_Experience_GetCampusPlanOccupied     Data_Experience_GetCampusPlanOccupied `json:"experience"`
 	StudentType    string     `json:"studentType"`
 	Typename       string     `json:"__typename"`
 }
 
-type Response_Experience_GetCampusPlanOccupied struct {
+type Data_Experience_GetCampusPlanOccupied struct {
 	ID       string `json:"id"`
 	Value    int64  `json:"value"`
-	Response_Level_GetCampusPlanOccupied    Response_Level_GetCampusPlanOccupied  `json:"level"`
+	Data_Level_GetCampusPlanOccupied    Data_Level_GetCampusPlanOccupied  `json:"level"`
 	Typename string `json:"__typename"`
 }
 
-type Response_Level_GetCampusPlanOccupied struct {
+type Data_Level_GetCampusPlanOccupied struct {
 	ID       int64  `json:"id"`
-	Response_Range_GetCampusPlanOccupied    Response_Range_GetCampusPlanOccupied  `json:"range"`
+	Data_Range_GetCampusPlanOccupied    Data_Range_GetCampusPlanOccupied  `json:"range"`
 	Typename string `json:"__typename"`
 }
 
-type Response_Range_GetCampusPlanOccupied struct {
+type Data_Range_GetCampusPlanOccupied struct {
 	ID          string `json:"id"`
 	LevelCode   int64  `json:"levelCode"`
 	LeftBorder  int64  `json:"leftBorder"`
@@ -53,18 +53,19 @@ type Response_Range_GetCampusPlanOccupied struct {
 	Typename    string `json:"__typename"`
 }
 
-type Response_User_GetCampusPlanOccupied struct {
+type Data_User_GetCampusPlanOccupied struct {
 	ID        string `json:"id"`
 	Login     string `json:"login"`
 	AvatarURL string `json:"avatarUrl"`
 	Typename  string `json:"__typename"`
 }
 
-func (ctx *RequestContext) GetCampusPlanOccupied(variables Request_Variables_GetCampusPlanOccupied) (Response_Data_GetCampusPlanOccupied, error) {
-	request := gql.NewQueryRequest[Request_Variables_GetCampusPlanOccupied](
+
+func (ctx *RequestContext) GetCampusPlanOccupied(variables Variables_GetCampusPlanOccupied) (Data_GetCampusPlanOccupied, error) {
+	request := gql.NewQueryRequest[Variables_GetCampusPlanOccupied](
 		"query getCampusPlanOccupied($clusterId: ID!) {\n  student {\n    getClusterPlanStudentsByClusterId(clusterId: $clusterId) {\n      occupiedPlaces {\n        row\n        number\n        stageGroupName\n        stageName\n        user {\n          id\n          login\n          avatarUrl\n          __typename\n        }\n        experience {\n          id\n          value\n          level {\n            id\n            range {\n              id\n              levelCode\n              leftBorder\n              rightBorder\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        studentType\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Response_Data_GetCampusPlanOccupied](ctx, request)
+	return GqlRequest[Data_GetCampusPlanOccupied](ctx, request)
 }

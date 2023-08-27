@@ -2,49 +2,50 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Request_Variables_WidgetAchievementsGetLastBadges struct {
+type Variables_WidgetAchievementsGetLastBadges struct {
 	Limit int64 `json:"limit"`
 }
 
 
-type Response_Data_WidgetAchievementsGetLastBadges struct {
-	Response_Student_WidgetAchievementsGetLastBadges Response_Student_WidgetAchievementsGetLastBadges `json:"student"`
+type Data_WidgetAchievementsGetLastBadges struct {
+	Data_Student_WidgetAchievementsGetLastBadges Data_Student_WidgetAchievementsGetLastBadges `json:"student"`
 }
 
-type Response_Student_WidgetAchievementsGetLastBadges struct {
-	GetLastBadges []Response_GetLastBadge_WidgetAchievementsGetLastBadges `json:"getLastBadges"`
+type Data_Student_WidgetAchievementsGetLastBadges struct {
+	GetLastBadges []Data_GetLastBadge_WidgetAchievementsGetLastBadges `json:"getLastBadges"`
 	Typename      string         `json:"__typename"`
 }
 
-type Response_GetLastBadge_WidgetAchievementsGetLastBadges struct {
+type Data_GetLastBadge_WidgetAchievementsGetLastBadges struct {
 	ID       string `json:"id"`
 	Points   int64  `json:"points"`
-	Response_Badge_WidgetAchievementsGetLastBadges    Response_Badge_WidgetAchievementsGetLastBadges  `json:"badge"`
-	Response_Award_WidgetAchievementsGetLastBadges    Response_Award_WidgetAchievementsGetLastBadges  `json:"award"`
+	Data_Badge_WidgetAchievementsGetLastBadges    Data_Badge_WidgetAchievementsGetLastBadges  `json:"badge"`
+	Data_Award_WidgetAchievementsGetLastBadges    Data_Award_WidgetAchievementsGetLastBadges  `json:"award"`
 	Typename string `json:"__typename"`
 }
 
-type Response_Award_WidgetAchievementsGetLastBadges struct {
-	AwardBounties []Response_AwardBounty_WidgetAchievementsGetLastBadges `json:"awardBounties"`
+type Data_Award_WidgetAchievementsGetLastBadges struct {
+	AwardBounties []Data_AwardBounty_WidgetAchievementsGetLastBadges `json:"awardBounties"`
 	Typename      string        `json:"__typename"`
 }
 
-type Response_AwardBounty_WidgetAchievementsGetLastBadges struct {
+type Data_AwardBounty_WidgetAchievementsGetLastBadges struct {
 	AwardLevelID *int64 `json:"awardLevelId"`
 	Typename     string `json:"__typename"`
 }
 
-type Response_Badge_WidgetAchievementsGetLastBadges struct {
+type Data_Badge_WidgetAchievementsGetLastBadges struct {
 	Name      string `json:"name"`
 	AvatarURL string `json:"avatarUrl"`
 	Typename  string `json:"__typename"`
 }
 
-func (ctx *RequestContext) WidgetAchievementsGetLastBadges(variables Request_Variables_WidgetAchievementsGetLastBadges) (Response_Data_WidgetAchievementsGetLastBadges, error) {
-	request := gql.NewQueryRequest[Request_Variables_WidgetAchievementsGetLastBadges](
+
+func (ctx *RequestContext) WidgetAchievementsGetLastBadges(variables Variables_WidgetAchievementsGetLastBadges) (Data_WidgetAchievementsGetLastBadges, error) {
+	request := gql.NewQueryRequest[Variables_WidgetAchievementsGetLastBadges](
 		"query widgetAchievementsGetLastBadges($limit: Int) {\n  student {\n    getLastBadges(limit: $limit) {\n      id\n      points\n      badge {\n        name\n        avatarUrl\n        __typename\n      }\n      award {\n        awardBounties {\n          awardLevelId\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Response_Data_WidgetAchievementsGetLastBadges](ctx, request)
+	return GqlRequest[Data_WidgetAchievementsGetLastBadges](ctx, request)
 }

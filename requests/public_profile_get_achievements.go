@@ -2,39 +2,40 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Request_Variables_PublicProfileGetAchievements struct {
+type Variables_PublicProfileGetAchievements struct {
 	UserID string `json:"userId"`
 }
 
 
-type Response_Data_PublicProfileGetAchievements struct {
-	Response_Student_PublicProfileGetAchievements Response_Student_PublicProfileGetAchievements `json:"student"`
+type Data_PublicProfileGetAchievements struct {
+	Data_Student_PublicProfileGetAchievements Data_Student_PublicProfileGetAchievements `json:"student"`
 }
 
-type Response_Student_PublicProfileGetAchievements struct {
-	Response_GetBadgesPublicProfile_PublicProfileGetAchievements []Response_GetBadgesPublicProfile_PublicProfileGetAchievements `json:"getBadgesPublicProfile"`
+type Data_Student_PublicProfileGetAchievements struct {
+	Data_GetBadgesPublicProfile_PublicProfileGetAchievements []Data_GetBadgesPublicProfile_PublicProfileGetAchievements `json:"getBadgesPublicProfile"`
 	Typename               string                   `json:"__typename"`
 }
 
-type Response_GetBadgesPublicProfile_PublicProfileGetAchievements struct {
+type Data_GetBadgesPublicProfile_PublicProfileGetAchievements struct {
 	Points   int64  `json:"points"`
 	ID       string `json:"id"`
-	Response_Badge_PublicProfileGetAchievements    Response_Badge_PublicProfileGetAchievements  `json:"badge"`
+	Data_Badge_PublicProfileGetAchievements    Data_Badge_PublicProfileGetAchievements  `json:"badge"`
 	Typename string `json:"__typename"`
 }
 
-type Response_Badge_PublicProfileGetAchievements struct {
+type Data_Badge_PublicProfileGetAchievements struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`
 	AvatarURL string `json:"avatarUrl"`
 	Typename  string `json:"__typename"`
 }
 
-func (ctx *RequestContext) PublicProfileGetAchievements(variables Request_Variables_PublicProfileGetAchievements) (Response_Data_PublicProfileGetAchievements, error) {
-	request := gql.NewQueryRequest[Request_Variables_PublicProfileGetAchievements](
+
+func (ctx *RequestContext) PublicProfileGetAchievements(variables Variables_PublicProfileGetAchievements) (Data_PublicProfileGetAchievements, error) {
+	request := gql.NewQueryRequest[Variables_PublicProfileGetAchievements](
 		"query publicProfileGetAchievements($userId: UUID!) {\n  student {\n    getBadgesPublicProfile(userId: $userId) {\n      points\n      id\n      badge {\n        id\n        name\n        avatarUrl\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Response_Data_PublicProfileGetAchievements](ctx, request)
+	return GqlRequest[Data_PublicProfileGetAchievements](ctx, request)
 }
