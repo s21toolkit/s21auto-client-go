@@ -28,10 +28,48 @@ type Data_GetMyCalendarEvent_CalendarGetEvents struct {
 	Bookings          []interface{} `json:"bookings"`
 	Exam              interface{}   `json:"exam"`
 	StudentCodeReview interface{}   `json:"studentCodeReview"`
-	Activity          interface{}   `json:"activity"`
+	Data_Activity_CalendarGetEvents          *Data_Activity_CalendarGetEvents     `json:"activity"`
 	Goals             []interface{} `json:"goals"`
 	Penalty           interface{}   `json:"penalty"`
 	Typename          string        `json:"__typename"`
+}
+
+type Data_Activity_CalendarGetEvents struct {
+	ActivityEventID      string          `json:"activityEventId"`
+	EventID              string          `json:"eventId"`
+	Name                 string          `json:"name"`
+	BeginDate            string          `json:"beginDate"`
+	EndDate              string          `json:"endDate"`
+	IsRegistered         bool            `json:"isRegistered"`
+	Description          string          `json:"description"`
+	CurrentStudentsCount int64           `json:"currentStudentsCount"`
+	MaxStudentCount      int64           `json:"maxStudentCount"`
+	Location             string          `json:"location"`
+	UpdateDate           string          `json:"updateDate"`
+	IsWaitListActive     bool            `json:"isWaitListActive"`
+	IsInWaitList         bool            `json:"isInWaitList"`
+	StopRegisterDate     string          `json:"stopRegisterDate"`
+	Typename             string          `json:"__typename"`
+	Data_StudentFeedback_CalendarGetEvents      Data_StudentFeedback_CalendarGetEvents `json:"studentFeedback"`
+	Status               string          `json:"status"`
+	ActivityType         string          `json:"activityType"`
+	IsMandatory          bool            `json:"isMandatory"`
+	IsVisible            bool            `json:"isVisible"`
+	Comments             []interface{}   `json:"comments"`
+	Organizers           []Data_Organizer_CalendarGetEvents     `json:"organizers"`
+}
+
+type Data_Organizer_CalendarGetEvents struct {
+	ID       string `json:"id"`
+	Login    string `json:"login"`
+	Typename string `json:"__typename"`
+}
+
+type Data_StudentFeedback_CalendarGetEvents struct {
+	ID       string `json:"id"`
+	Rating   int64  `json:"rating"`
+	Comment  string `json:"comment"`
+	Typename string `json:"__typename"`
 }
 
 type Data_EventSlot_CalendarGetEvents struct {
