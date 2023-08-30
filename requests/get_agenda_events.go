@@ -14,8 +14,31 @@ type Data_GetAgendaEvents struct {
 }
 
 type Data_Student_GetAgendaEvents struct {
-	GetMyAgendaEvents []interface{} `json:"getMyAgendaEvents"`
-	Typename          string        `json:"__typename"`
+	GetMyAgendaEvents []Data_GetMyAgendaEvent_GetAgendaEvents `json:"getMyAgendaEvents"`
+	Typename          string             `json:"__typename"`
+}
+
+type Data_GetMyAgendaEvent_GetAgendaEvents struct {
+	Data_AgendaItemContext_GetAgendaEvents Data_AgendaItemContext_GetAgendaEvents `json:"agendaItemContext"`
+	Start             string            `json:"start"`
+	End               string            `json:"end"`
+	Label             string            `json:"label"`
+	Description       string            `json:"description"`
+	AgendaEventType   string            `json:"agendaEventType"`
+	Data_AdditionalInfo_GetAgendaEvents    []Data_AdditionalInfo_GetAgendaEvents  `json:"additionalInfo"`
+	Typename          string            `json:"__typename"`
+}
+
+type Data_AdditionalInfo_GetAgendaEvents struct {
+	Key      string `json:"key"`
+	Value    string `json:"value"`
+	Typename string `json:"__typename"`
+}
+
+type Data_AgendaItemContext_GetAgendaEvents struct {
+	EntityID   string `json:"entityId"`
+	EntityType string `json:"entityType"`
+	Typename   string `json:"__typename"`
 }
 
 

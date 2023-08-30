@@ -65,7 +65,7 @@ type Data_Activity_GetUpcomingEvents struct {
 	ActivityType         string      `json:"activityType"`
 	EventType            string      `json:"eventType"`
 	IsMandatory          bool        `json:"isMandatory"`
-	Status               string      `json:"status"`
+	Status               *string     `json:"status"`
 	Organizers           []Data_Organizer_GetUpcomingEvents `json:"organizers"`
 	Typename             string      `json:"__typename"`
 }

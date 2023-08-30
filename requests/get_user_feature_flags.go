@@ -3,8 +3,8 @@ package requests
 import "github.com/s21toolkit/s21client/gql"
 
 type Variables_GetUserFeatureFlags struct {
-	EntityIDList []string `json:"entityIdList,omitempty"`
 	EntityID     *string  `json:"entityId,omitempty"`
+	EntityIDList []string `json:"entityIdList,omitempty"`
 }
 
 
@@ -26,7 +26,7 @@ type Data_GetAllBackendConfiguration_GetUserFeatureFlags struct {
 
 func (ctx *RequestContext) GetUserFeatureFlags(variables Variables_GetUserFeatureFlags) (Data_GetUserFeatureFlags, error) {
 	request := gql.NewQueryRequest[Variables_GetUserFeatureFlags](
-		"query getUserFeatureFlags($entityIdList: [ID!]!) {\n  user {\n    getAllBackendConfigurations(entityIdList: $entityIdList) {\n      propertyCode\n      value\n      __typename\n    }\n    __typename\n  }\n}\n",
+		"query getUserFeatureFlags($entityId: String!) {\n  user {\n    getAllBackendConfigurations: getAllBackendConfigurationsV2(entityId: $entityId) {\n      propertyCode\n      value\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

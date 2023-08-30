@@ -12,8 +12,53 @@ type Data_CalendarGetMyReviews struct {
 }
 
 type Data_Student_CalendarGetMyReviews struct {
-	GetMyUpcomingBookings []interface{} `json:"getMyUpcomingBookings"`
-	Typename              string        `json:"__typename"`
+	GetMyUpcomingBookings []Data_GetMyUpcomingBooking_CalendarGetMyReviews `json:"getMyUpcomingBookings"`
+	Typename              string                 `json:"__typename"`
+}
+
+type Data_GetMyUpcomingBooking_CalendarGetMyReviews struct {
+	ID                string       `json:"id"`
+	AnswerID          interface{}  `json:"answerId"`
+	Data_EventSlot_CalendarGetMyReviews         Data_EventSlot_CalendarGetMyReviews    `json:"eventSlot"`
+	Task              interface{}  `json:"task"`
+	Data_VerifierUser_CalendarGetMyReviews      Data_VerifierUser_CalendarGetMyReviews `json:"verifierUser"`
+	VerifiableStudent interface{}  `json:"verifiableStudent"`
+	Team              interface{}  `json:"team"`
+	BookingStatus     string       `json:"bookingStatus"`
+	IsOnline          bool         `json:"isOnline"`
+	VcLinkURL         interface{}  `json:"vcLinkUrl"`
+	Typename          string       `json:"__typename"`
+}
+
+type Data_EventSlot_CalendarGetMyReviews struct {
+	ID       string `json:"id"`
+	Start    string `json:"start"`
+	End      string `json:"end"`
+	Typename string `json:"__typename"`
+}
+
+type Data_VerifierUser_CalendarGetMyReviews struct {
+	ID             string         `json:"id"`
+	Login          string         `json:"login"`
+	AvatarURL      string         `json:"avatarUrl"`
+	Data_UserExperience_CalendarGetMyReviews Data_UserExperience_CalendarGetMyReviews `json:"userExperience"`
+	Typename       string         `json:"__typename"`
+}
+
+type Data_UserExperience_CalendarGetMyReviews struct {
+	Data_Level_CalendarGetMyReviews    Data_Level_CalendarGetMyReviews  `json:"level"`
+	Typename string `json:"__typename"`
+}
+
+type Data_Level_CalendarGetMyReviews struct {
+	ID       int64  `json:"id"`
+	Data_Range_CalendarGetMyReviews    Data_Range_CalendarGetMyReviews  `json:"range"`
+	Typename string `json:"__typename"`
+}
+
+type Data_Range_CalendarGetMyReviews struct {
+	LevelCode int64  `json:"levelCode"`
+	Typename  string `json:"__typename"`
 }
 
 
