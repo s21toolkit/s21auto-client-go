@@ -17,17 +17,17 @@ type Data_Student_CalendarGetMyReviews struct {
 }
 
 type Data_GetMyUpcomingBooking_CalendarGetMyReviews struct {
-	ID                string       `json:"id"`
-	AnswerID          interface{}  `json:"answerId"`
-	Data_EventSlot_CalendarGetMyReviews         Data_EventSlot_CalendarGetMyReviews    `json:"eventSlot"`
-	Task              interface{}  `json:"task"`
-	Data_VerifierUser_CalendarGetMyReviews      Data_VerifierUser_CalendarGetMyReviews `json:"verifierUser"`
-	VerifiableStudent interface{}  `json:"verifiableStudent"`
-	Team              interface{}  `json:"team"`
-	BookingStatus     string       `json:"bookingStatus"`
-	IsOnline          bool         `json:"isOnline"`
-	VcLinkURL         interface{}  `json:"vcLinkUrl"`
-	Typename          string       `json:"__typename"`
+	ID                string             `json:"id"`
+	AnswerID          *string            `json:"answerId"`
+	Data_EventSlot_CalendarGetMyReviews         Data_EventSlot_CalendarGetMyReviews          `json:"eventSlot"`
+	Data_Task_CalendarGetMyReviews              *Data_Task_CalendarGetMyReviews              `json:"task"`
+	VerifierUser      Data_User_CalendarGetMyReviews               `json:"verifierUser"`
+	Data_VerifiableStudent_CalendarGetMyReviews *Data_VerifiableStudent_CalendarGetMyReviews `json:"verifiableStudent"`
+	Data_Team_CalendarGetMyReviews              *Data_Team_CalendarGetMyReviews              `json:"team"`
+	BookingStatus     string             `json:"bookingStatus"`
+	IsOnline          bool               `json:"isOnline"`
+	VcLinkURL         interface{}        `json:"vcLinkUrl"`
+	Typename          string             `json:"__typename"`
 }
 
 type Data_EventSlot_CalendarGetMyReviews struct {
@@ -37,17 +37,46 @@ type Data_EventSlot_CalendarGetMyReviews struct {
 	Typename string `json:"__typename"`
 }
 
-type Data_VerifierUser_CalendarGetMyReviews struct {
-	ID             string         `json:"id"`
-	Login          string         `json:"login"`
-	AvatarURL      string         `json:"avatarUrl"`
-	Data_UserExperience_CalendarGetMyReviews Data_UserExperience_CalendarGetMyReviews `json:"userExperience"`
-	Typename       string         `json:"__typename"`
+type Data_Task_CalendarGetMyReviews struct {
+	ID                              string                          `json:"id"`
+	Title                           string                          `json:"title"`
+	AssignmentType                  string                          `json:"assignmentType"`
+	GoalID                          string                          `json:"goalId"`
+	GoalName                        string                          `json:"goalName"`
+	Data_StudentTaskAdditionalAttributes_CalendarGetMyReviews Data_StudentTaskAdditionalAttributes_CalendarGetMyReviews `json:"studentTaskAdditionalAttributes"`
+	Typename                        string                          `json:"__typename"`
 }
 
-type Data_UserExperience_CalendarGetMyReviews struct {
-	Data_Level_CalendarGetMyReviews    Data_Level_CalendarGetMyReviews  `json:"level"`
-	Typename string `json:"__typename"`
+type Data_StudentTaskAdditionalAttributes_CalendarGetMyReviews struct {
+	CookiesCount int64  `json:"cookiesCount"`
+	Typename     string `json:"__typename"`
+}
+
+type Data_Team_CalendarGetMyReviews struct {
+	ID                 string        `json:"id"`
+	Data_TeamLead_CalendarGetMyReviews           Data_TeamLead_CalendarGetMyReviews      `json:"teamLead"`
+	Members            []Data_TeamLead_CalendarGetMyReviews    `json:"members"`
+	InvitedUsers       []interface{} `json:"invitedUsers"`
+	TeamName           string        `json:"teamName"`
+	TeamStatus         string        `json:"teamStatus"`
+	MinTeamMemberCount int64         `json:"minTeamMemberCount"`
+	MaxTeamMemberCount int64         `json:"maxTeamMemberCount"`
+	Typename           string        `json:"__typename"`
+}
+
+type Data_TeamLead_CalendarGetMyReviews struct {
+	ID             string                 `json:"id"`
+	AvatarURL      string                 `json:"avatarUrl"`
+	Login          string                 `json:"login"`
+	UserExperience Data_TeamLeadUserExperience_CalendarGetMyReviews `json:"userExperience"`
+	Typename       string                 `json:"__typename"`
+}
+
+type Data_TeamLeadUserExperience_CalendarGetMyReviews struct {
+	Data_Level_CalendarGetMyReviews            Data_Level_CalendarGetMyReviews  `json:"level"`
+	CookiesCount     int64  `json:"cookiesCount"`
+	CodeReviewPoints int64  `json:"codeReviewPoints"`
+	Typename         string `json:"__typename"`
 }
 
 type Data_Level_CalendarGetMyReviews struct {
@@ -59,6 +88,25 @@ type Data_Level_CalendarGetMyReviews struct {
 type Data_Range_CalendarGetMyReviews struct {
 	LevelCode int64  `json:"levelCode"`
 	Typename  string `json:"__typename"`
+}
+
+type Data_VerifiableStudent_CalendarGetMyReviews struct {
+	ID       string `json:"id"`
+	Data_User_CalendarGetMyReviews     Data_User_CalendarGetMyReviews   `json:"user"`
+	Typename string `json:"__typename"`
+}
+
+type Data_User_CalendarGetMyReviews struct {
+	ID             string                     `json:"id"`
+	Login          string                     `json:"login"`
+	AvatarURL      string                     `json:"avatarUrl"`
+	UserExperience Data_VerifierUserUserExperience_CalendarGetMyReviews `json:"userExperience"`
+	Typename       string                     `json:"__typename"`
+}
+
+type Data_VerifierUserUserExperience_CalendarGetMyReviews struct {
+	Data_Level_CalendarGetMyReviews    Data_Level_CalendarGetMyReviews  `json:"level"`
+	Typename string `json:"__typename"`
 }
 
 

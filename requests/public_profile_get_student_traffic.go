@@ -19,10 +19,18 @@ type Data_Student_PublicProfileGetStudentTraffic struct {
 }
 
 type Data_GetStudentTraffic_PublicProfileGetStudentTraffic struct {
-	Days      []interface{} `json:"days"`
-	EndDate   string        `json:"endDate"`
-	StartDate string        `json:"startDate"`
-	Typename  string        `json:"__typename"`
+	Days      []Data_Day_PublicProfileGetStudentTraffic  `json:"days"`
+	EndDate   string `json:"endDate"`
+	StartDate string `json:"startDate"`
+	Typename  string `json:"__typename"`
+}
+
+type Data_Day_PublicProfileGetStudentTraffic struct {
+	Date               string `json:"date"`
+	PeriodOnCampus     string `json:"periodOnCampus"`
+	PeriodAuthorizSDP  string `json:"periodAuthorizSDP"`
+	PeriodAuthorizIMAC string `json:"periodAuthorizIMac"`
+	Typename           string `json:"__typename"`
 }
 
 

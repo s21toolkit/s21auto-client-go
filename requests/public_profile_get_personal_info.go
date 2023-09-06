@@ -20,10 +20,17 @@ type Data_Student_PublicProfileGetPersonalInfo struct {
 	Data_GetStageGroupS21PublicProfile_PublicProfileGetPersonalInfo     Data_GetStageGroupS21PublicProfile_PublicProfileGetPersonalInfo     `json:"getStageGroupS21PublicProfile"`
 	Data_GetExperiencePublicProfile_PublicProfileGetPersonalInfo        Data_GetExperiencePublicProfile_PublicProfileGetPersonalInfo        `json:"getExperiencePublicProfile"`
 	GetEmailbyUserID                  string                            `json:"getEmailbyUserId"`
-	GetWorkstationByLogin             interface{}                       `json:"getWorkstationByLogin"`
-	GetClassRoomByLogin               interface{}                       `json:"getClassRoomByLogin"`
+	Data_GetWorkstationByLogin_PublicProfileGetPersonalInfo             *Data_GetWorkstationByLogin_PublicProfileGetPersonalInfo            `json:"getWorkstationByLogin"`
+	Data_GetClassRoomByLogin_PublicProfileGetPersonalInfo               *Data_GetClassRoomByLogin_PublicProfileGetPersonalInfo              `json:"getClassRoomByLogin"`
 	Data_GetFeedbackStatisticsAverageScore_PublicProfileGetPersonalInfo Data_GetFeedbackStatisticsAverageScore_PublicProfileGetPersonalInfo `json:"getFeedbackStatisticsAverageScore"`
 	Typename                          string                            `json:"__typename"`
+}
+
+type Data_GetClassRoomByLogin_PublicProfileGetPersonalInfo struct {
+	ID       string `json:"id"`
+	Number   string `json:"number"`
+	Floor    int64  `json:"floor"`
+	Typename string `json:"__typename"`
 }
 
 type Data_GetExperiencePublicProfile_PublicProfileGetPersonalInfo struct {
@@ -65,6 +72,14 @@ type Data_GetStageGroupS21PublicProfile_PublicProfileGetPersonalInfo struct {
 	WaveName string `json:"waveName"`
 	EduForm  string `json:"eduForm"`
 	Typename string `json:"__typename"`
+}
+
+type Data_GetWorkstationByLogin_PublicProfileGetPersonalInfo struct {
+	WorkstationID int64  `json:"workstationId"`
+	HostName      string `json:"hostName"`
+	Row           string `json:"row"`
+	Number        int64  `json:"number"`
+	Typename      string `json:"__typename"`
 }
 
 type Data_User_PublicProfileGetPersonalInfo struct {

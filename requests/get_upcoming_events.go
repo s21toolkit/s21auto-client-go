@@ -31,15 +31,15 @@ type Data_GetUpcomingEventsForRegistration_GetUpcomingEvents struct {
 	EventSlots           []interface{} `json:"eventSlots"`
 	MaxStudentCount      int64         `json:"maxStudentCount"`
 	Location             string        `json:"location"`
-	IPRange              string        `json:"ipRange"`
+	IPRange              *string       `json:"ipRange"`
 	EventType            string        `json:"eventType"`
 	EventCode            string        `json:"eventCode"`
 	Description          string        `json:"description"`
 	ExternalID           int64         `json:"externalId"`
 	CurrentStudentsCount int64         `json:"currentStudentsCount"`
-	Exam                 interface{}   `json:"exam"`
+	Data_Exam_GetUpcomingEvents                 *Data_Exam_GetUpcomingEvents         `json:"exam"`
 	StudentCodeReview    interface{}   `json:"studentCodeReview"`
-	Data_Activity_GetUpcomingEvents             Data_Activity_GetUpcomingEvents      `json:"activity"`
+	Data_Activity_GetUpcomingEvents             *Data_Activity_GetUpcomingEvents     `json:"activity"`
 	Penalty              interface{}   `json:"penalty"`
 	Typename             string        `json:"__typename"`
 }
@@ -74,6 +74,31 @@ type Data_Organizer_GetUpcomingEvents struct {
 	ID       string `json:"id"`
 	Login    string `json:"login"`
 	Typename string `json:"__typename"`
+}
+
+type Data_Exam_GetUpcomingEvents struct {
+	ExamID                   string      `json:"examId"`
+	EventID                  string      `json:"eventId"`
+	BeginDate                string      `json:"beginDate"`
+	EndDate                  string      `json:"endDate"`
+	Location                 string      `json:"location"`
+	IP                       interface{} `json:"ip"`
+	MaxStudentCount          int64       `json:"maxStudentCount"`
+	IsVisible                bool        `json:"isVisible"`
+	Name                     string      `json:"name"`
+	GoalID                   string      `json:"goalId"`
+	IsWaitListActive         bool        `json:"isWaitListActive"`
+	IsInWaitList             bool        `json:"isInWaitList"`
+	CurrentStudentsCount     int64       `json:"currentStudentsCount"`
+	CreateDate               string      `json:"createDate"`
+	UpdateDate               string      `json:"updateDate"`
+	SchoolID                 string      `json:"schoolId"`
+	StopRegisterDate         string      `json:"stopRegisterDate"`
+	IsRegistered             bool        `json:"isRegistered"`
+	GoalName                 string      `json:"goalName"`
+	EventType                string      `json:"eventType"`
+	RegistrationAccessStatus string      `json:"registrationAccessStatus"`
+	Typename                 string      `json:"__typename"`
 }
 
 
