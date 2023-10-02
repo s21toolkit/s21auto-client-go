@@ -2,21 +2,21 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetStudentCurrentProjects struct {
+type GetStudentCurrentProjects_Variables struct {
 	UserID string `json:"userId"`
 }
 
 
-type Data_GetStudentCurrentProjects struct {
-	Data_Student_GetStudentCurrentProjects Data_Student_GetStudentCurrentProjects `json:"student"`
+type GetStudentCurrentProjects_Data struct {
+	Student GetStudentCurrentProjects_Data_Student `json:"student"`
 }
 
-type Data_Student_GetStudentCurrentProjects struct {
-	GetStudentCurrentProjects []Data_GetStudentCurrentProject_GetStudentCurrentProjects `json:"getStudentCurrentProjects"`
+type GetStudentCurrentProjects_Data_Student struct {
+	GetStudentCurrentProjects []GetStudentCurrentProjects_Data_GetStudentCurrentProject `json:"getStudentCurrentProjects"`
 	Typename                  string                     `json:"__typename"`
 }
 
-type Data_GetStudentCurrentProject_GetStudentCurrentProjects struct {
+type GetStudentCurrentProjects_Data_GetStudentCurrentProject struct {
 	GoalID                         *int64      `json:"goalId"`
 	Name                           string      `json:"name"`
 	Description                    string      `json:"description"`
@@ -40,11 +40,11 @@ type Data_GetStudentCurrentProject_GetStudentCurrentProjects struct {
 }
 
 
-func (ctx *RequestContext) GetStudentCurrentProjects(variables Variables_GetStudentCurrentProjects) (Data_GetStudentCurrentProjects, error) {
-	request := gql.NewQueryRequest[Variables_GetStudentCurrentProjects](
+func (ctx *RequestContext) GetStudentCurrentProjects(variables GetStudentCurrentProjects_Variables) (GetStudentCurrentProjects_Data, error) {
+	request := gql.NewQueryRequest[GetStudentCurrentProjects_Variables](
 		"query getStudentCurrentProjects($userId: ID!) {\n  student {\n    getStudentCurrentProjects(userId: $userId) {\n      ...StudentProjectItem\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment StudentProjectItem on StudentItem {\n  goalId\n  name\n  description\n  experience\n  dateTime\n  finalPercentage\n  laboriousness\n  executionType\n  goalStatus\n  courseType\n  displayedCourseStatus\n  amountAnswers\n  amountMembers\n  amountJoinedMembers\n  amountReviewedAnswers\n  amountCodeReviewMembers\n  amountCurrentCodeReviewMembers\n  groupName\n  localCourseId\n  __typename\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetStudentCurrentProjects](ctx, request)
+	return GqlRequest[GetStudentCurrentProjects_Data](ctx, request)
 }

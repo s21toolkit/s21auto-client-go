@@ -2,31 +2,31 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetCampusCurrentUser struct {
+type GetCampusCurrentUser_Variables struct {
 }
 
 
-type Data_GetCampusCurrentUser struct {
-	Data_User_GetCampusCurrentUser Data_User_GetCampusCurrentUser `json:"user"`
+type GetCampusCurrentUser_Data struct {
+	User GetCampusCurrentUser_Data_User `json:"user"`
 }
 
-type Data_User_GetCampusCurrentUser struct {
-	Data_GetCurrentUser_GetCampusCurrentUser Data_GetCurrentUser_GetCampusCurrentUser `json:"getCurrentUser"`
+type GetCampusCurrentUser_Data_User struct {
+	GetCurrentUser GetCampusCurrentUser_Data_GetCurrentUser `json:"getCurrentUser"`
 	Typename       string         `json:"__typename"`
 }
 
-type Data_GetCurrentUser_GetCampusCurrentUser struct {
+type GetCampusCurrentUser_Data_GetCurrentUser struct {
 	ID       string `json:"id"`
 	Login    string `json:"login"`
 	Typename string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) GetCampusCurrentUser(variables Variables_GetCampusCurrentUser) (Data_GetCampusCurrentUser, error) {
-	request := gql.NewQueryRequest[Variables_GetCampusCurrentUser](
+func (ctx *RequestContext) GetCampusCurrentUser(variables GetCampusCurrentUser_Variables) (GetCampusCurrentUser_Data, error) {
+	request := gql.NewQueryRequest[GetCampusCurrentUser_Variables](
 		"query getCampusCurrentUser {\n  user {\n    getCurrentUser {\n      id\n      login\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetCampusCurrentUser](ctx, request)
+	return GqlRequest[GetCampusCurrentUser_Data](ctx, request)
 }

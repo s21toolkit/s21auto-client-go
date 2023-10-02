@@ -2,21 +2,21 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetProjectGitlabStatus struct {
+type GetProjectGitlabStatus_Variables struct {
 	TaskID string `json:"taskId"`
 }
 
 
-type Data_GetProjectGitlabStatus struct {
-	Data_Student_GetProjectGitlabStatus Data_Student_GetProjectGitlabStatus `json:"student"`
+type GetProjectGitlabStatus_Data struct {
+	Student GetProjectGitlabStatus_Data_Student `json:"student"`
 }
 
-type Data_Student_GetProjectGitlabStatus struct {
-	Data_GetGitlabLinksWithStatus_GetProjectGitlabStatus Data_GetGitlabLinksWithStatus_GetProjectGitlabStatus `json:"getGitlabLinksWithStatus"`
+type GetProjectGitlabStatus_Data_Student struct {
+	GetGitlabLinksWithStatus GetProjectGitlabStatus_Data_GetGitlabLinksWithStatus `json:"getGitlabLinksWithStatus"`
 	Typename                 string                   `json:"__typename"`
 }
 
-type Data_GetGitlabLinksWithStatus_GetProjectGitlabStatus struct {
+type GetProjectGitlabStatus_Data_GetGitlabLinksWithStatus struct {
 	ID              int64  `json:"id"`
 	SSHLink         string `json:"sshLink"`
 	HTTPSLink       string `json:"httpsLink"`
@@ -26,11 +26,11 @@ type Data_GetGitlabLinksWithStatus_GetProjectGitlabStatus struct {
 }
 
 
-func (ctx *RequestContext) GetProjectGitlabStatus(variables Variables_GetProjectGitlabStatus) (Data_GetProjectGitlabStatus, error) {
-	request := gql.NewQueryRequest[Variables_GetProjectGitlabStatus](
+func (ctx *RequestContext) GetProjectGitlabStatus(variables GetProjectGitlabStatus_Variables) (GetProjectGitlabStatus_Data, error) {
+	request := gql.NewQueryRequest[GetProjectGitlabStatus_Variables](
 		"query getProjectGitlabStatus($taskId: ID!) {\n  student {\n    getGitlabLinksWithStatus(taskId: $taskId) {\n      id\n      sshLink\n      httpsLink\n      readyToUse\n      restartsCounter\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetProjectGitlabStatus](ctx, request)
+	return GqlRequest[GetProjectGitlabStatus_Data](ctx, request)
 }

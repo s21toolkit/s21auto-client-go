@@ -2,31 +2,31 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetFirstRoundCodeReviewProjects struct {
-	Variables_Paging_GetFirstRoundCodeReviewProjects Variables_Paging_GetFirstRoundCodeReviewProjects `json:"paging"`
+type GetFirstRoundCodeReviewProjects_Variables struct {
+	Paging GetFirstRoundCodeReviewProjects_Variables_Paging `json:"paging"`
 }
 
-type Variables_Paging_GetFirstRoundCodeReviewProjects struct {
+type GetFirstRoundCodeReviewProjects_Variables_Paging struct {
 	Offset int64 `json:"offset"`
 	Limit  int64 `json:"limit"`
 }
 
 
-type Data_GetFirstRoundCodeReviewProjects struct {
-	Data_Student_GetFirstRoundCodeReviewProjects Data_Student_GetFirstRoundCodeReviewProjects `json:"student"`
+type GetFirstRoundCodeReviewProjects_Data struct {
+	Student GetFirstRoundCodeReviewProjects_Data_Student `json:"student"`
 }
 
-type Data_Student_GetFirstRoundCodeReviewProjects struct {
+type GetFirstRoundCodeReviewProjects_Data_Student struct {
 	GetFirstRoundCodeReviewProjects []interface{} `json:"getFirstRoundCodeReviewProjects"`
 	Typename                        string        `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) GetFirstRoundCodeReviewProjects(variables Variables_GetFirstRoundCodeReviewProjects) (Data_GetFirstRoundCodeReviewProjects, error) {
-	request := gql.NewQueryRequest[Variables_GetFirstRoundCodeReviewProjects](
+func (ctx *RequestContext) GetFirstRoundCodeReviewProjects(variables GetFirstRoundCodeReviewProjects_Variables) (GetFirstRoundCodeReviewProjects_Data, error) {
+	request := gql.NewQueryRequest[GetFirstRoundCodeReviewProjects_Variables](
 		"query getFirstRoundCodeReviewProjects($paging: PagingInput!) {\n  student {\n    getFirstRoundCodeReviewProjects(paging: $paging) {\n      ...CodeReviewProject\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment CodeReviewProject on CodeReview {\n  goalId\n  goalTitle\n  studentGoalId\n  studentCodeReviewStatus\n  goalExecutionType\n  studentTaskAdditionalAttributesModel {\n    codeReviewCost\n    codeReviewDuration\n    __typename\n  }\n  __typename\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetFirstRoundCodeReviewProjects](ctx, request)
+	return GqlRequest[GetFirstRoundCodeReviewProjects_Data](ctx, request)
 }

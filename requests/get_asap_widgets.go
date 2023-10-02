@@ -2,25 +2,25 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetAsapWidgets struct {
+type GetAsapWidgets_Variables struct {
 }
 
 
-type Data_GetAsapWidgets struct {
-	Data_Student_GetAsapWidgets Data_Student_GetAsapWidgets `json:"student"`
+type GetAsapWidgets_Data struct {
+	Student GetAsapWidgets_Data_Student `json:"student"`
 }
 
-type Data_Student_GetAsapWidgets struct {
-	Data_GetAsapWidgetList_GetAsapWidgets Data_GetAsapWidgetList_GetAsapWidgets `json:"getAsapWidgetList"`
+type GetAsapWidgets_Data_Student struct {
+	GetAsapWidgetList GetAsapWidgets_Data_GetAsapWidgetList `json:"getAsapWidgetList"`
 	Typename          string            `json:"__typename"`
 }
 
-type Data_GetAsapWidgetList_GetAsapWidgets struct {
-	Data_WidgetList_GetAsapWidgets []Data_WidgetList_GetAsapWidgets `json:"widgetList"`
+type GetAsapWidgets_Data_GetAsapWidgetList struct {
+	WidgetList []GetAsapWidgets_Data_WidgetList `json:"widgetList"`
 	Typename   string       `json:"__typename"`
 }
 
-type Data_WidgetList_GetAsapWidgets struct {
+type GetAsapWidgets_Data_WidgetList struct {
 	ShortImg       string      `json:"shortImg"`
 	ShortTitle     string      `json:"shortTitle"`
 	ShortURL       interface{} `json:"shortUrl"`
@@ -36,11 +36,11 @@ type Data_WidgetList_GetAsapWidgets struct {
 }
 
 
-func (ctx *RequestContext) GetAsapWidgets(variables Variables_GetAsapWidgets) (Data_GetAsapWidgets, error) {
-	request := gql.NewQueryRequest[Variables_GetAsapWidgets](
+func (ctx *RequestContext) GetAsapWidgets(variables GetAsapWidgets_Variables) (GetAsapWidgets_Data, error) {
+	request := gql.NewQueryRequest[GetAsapWidgets_Variables](
 		"query getAsapWidgets {\n  student {\n    getAsapWidgetList {\n      widgetList {\n        ...AsapWidget\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment AsapWidget on AsapWidgetInfo {\n  shortImg\n  shortTitle\n  shortUrl\n  startDate\n  finishDate\n  showFinishDate\n  fullTitle\n  text\n  fullImgUrl\n  adtTypeId\n  adtWidgetId\n  __typename\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetAsapWidgets](ctx, request)
+	return GqlRequest[GetAsapWidgets_Data](ctx, request)
 }

@@ -2,47 +2,47 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetAvailableCodeReviewProjects struct {
-	Variables_Paging_GetAvailableCodeReviewProjects Variables_Paging_GetAvailableCodeReviewProjects `json:"paging"`
+type GetAvailableCodeReviewProjects_Variables struct {
+	Paging GetAvailableCodeReviewProjects_Variables_Paging `json:"paging"`
 }
 
-type Variables_Paging_GetAvailableCodeReviewProjects struct {
+type GetAvailableCodeReviewProjects_Variables_Paging struct {
 	Offset int64 `json:"offset"`
 	Limit  int64 `json:"limit"`
 }
 
 
-type Data_GetAvailableCodeReviewProjects struct {
-	Data_Student_GetAvailableCodeReviewProjects Data_Student_GetAvailableCodeReviewProjects `json:"student"`
+type GetAvailableCodeReviewProjects_Data struct {
+	Student GetAvailableCodeReviewProjects_Data_Student `json:"student"`
 }
 
-type Data_Student_GetAvailableCodeReviewProjects struct {
-	GetAvailableCodeReviewProjects []Data_GetAvailableCodeReviewProject_GetAvailableCodeReviewProjects `json:"getAvailableCodeReviewProjects"`
+type GetAvailableCodeReviewProjects_Data_Student struct {
+	GetAvailableCodeReviewProjects []GetAvailableCodeReviewProjects_Data_GetAvailableCodeReviewProject `json:"getAvailableCodeReviewProjects"`
 	Typename                       string                          `json:"__typename"`
 }
 
-type Data_GetAvailableCodeReviewProject_GetAvailableCodeReviewProjects struct {
+type GetAvailableCodeReviewProjects_Data_GetAvailableCodeReviewProject struct {
 	GoalID                               string                               `json:"goalId"`
 	GoalTitle                            string                               `json:"goalTitle"`
 	StudentGoalID                        string                               `json:"studentGoalId"`
 	StudentCodeReviewStatus              string                               `json:"studentCodeReviewStatus"`
 	GoalExecutionType                    string                               `json:"goalExecutionType"`
-	Data_StudentTaskAdditionalAttributesModel_GetAvailableCodeReviewProjects Data_StudentTaskAdditionalAttributesModel_GetAvailableCodeReviewProjects `json:"studentTaskAdditionalAttributesModel"`
+	StudentTaskAdditionalAttributesModel GetAvailableCodeReviewProjects_Data_StudentTaskAdditionalAttributesModel `json:"studentTaskAdditionalAttributesModel"`
 	Typename                             string                               `json:"__typename"`
 }
 
-type Data_StudentTaskAdditionalAttributesModel_GetAvailableCodeReviewProjects struct {
+type GetAvailableCodeReviewProjects_Data_StudentTaskAdditionalAttributesModel struct {
 	CodeReviewCost     int64  `json:"codeReviewCost"`
 	CodeReviewDuration int64  `json:"codeReviewDuration"`
 	Typename           string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) GetAvailableCodeReviewProjects(variables Variables_GetAvailableCodeReviewProjects) (Data_GetAvailableCodeReviewProjects, error) {
-	request := gql.NewQueryRequest[Variables_GetAvailableCodeReviewProjects](
+func (ctx *RequestContext) GetAvailableCodeReviewProjects(variables GetAvailableCodeReviewProjects_Variables) (GetAvailableCodeReviewProjects_Data, error) {
+	request := gql.NewQueryRequest[GetAvailableCodeReviewProjects_Variables](
 		"query getAvailableCodeReviewProjects($paging: PagingInput!) {\n  student {\n    getAvailableCodeReviewProjects(paging: $paging) {\n      ...CodeReviewProject\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment CodeReviewProject on CodeReview {\n  goalId\n  goalTitle\n  studentGoalId\n  studentCodeReviewStatus\n  goalExecutionType\n  studentTaskAdditionalAttributesModel {\n    codeReviewCost\n    codeReviewDuration\n    __typename\n  }\n  __typename\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetAvailableCodeReviewProjects](ctx, request)
+	return GqlRequest[GetAvailableCodeReviewProjects_Data](ctx, request)
 }

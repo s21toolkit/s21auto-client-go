@@ -2,25 +2,25 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetStudentIsDeadlinesEnabled struct {
+type GetStudentIsDeadlinesEnabled_Variables struct {
 }
 
 
-type Data_GetStudentIsDeadlinesEnabled struct {
-	Data_Student_GetStudentIsDeadlinesEnabled Data_Student_GetStudentIsDeadlinesEnabled `json:"student"`
+type GetStudentIsDeadlinesEnabled_Data struct {
+	Student GetStudentIsDeadlinesEnabled_Data_Student `json:"student"`
 }
 
-type Data_Student_GetStudentIsDeadlinesEnabled struct {
+type GetStudentIsDeadlinesEnabled_Data_Student struct {
 	IsDeadlinesEnabled bool   `json:"isDeadlinesEnabled"`
 	Typename           string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) GetStudentIsDeadlinesEnabled(variables Variables_GetStudentIsDeadlinesEnabled) (Data_GetStudentIsDeadlinesEnabled, error) {
-	request := gql.NewQueryRequest[Variables_GetStudentIsDeadlinesEnabled](
+func (ctx *RequestContext) GetStudentIsDeadlinesEnabled(variables GetStudentIsDeadlinesEnabled_Variables) (GetStudentIsDeadlinesEnabled_Data, error) {
+	request := gql.NewQueryRequest[GetStudentIsDeadlinesEnabled_Variables](
 		"query getStudentIsDeadlinesEnabled {\n  student {\n    isDeadlinesEnabled\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetStudentIsDeadlinesEnabled](ctx, request)
+	return GqlRequest[GetStudentIsDeadlinesEnabled_Data](ctx, request)
 }

@@ -2,37 +2,37 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_PublicProfileGetXpGraph struct {
+type PublicProfileGetXpGraph_Variables struct {
 	UserID string `json:"userId"`
 }
 
 
-type Data_PublicProfileGetXpGraph struct {
-	Data_Student_PublicProfileGetXpGraph Data_Student_PublicProfileGetXpGraph `json:"student"`
+type PublicProfileGetXpGraph_Data struct {
+	Student PublicProfileGetXpGraph_Data_Student `json:"student"`
 }
 
-type Data_Student_PublicProfileGetXpGraph struct {
-	Data_GetExperienceHistoryDate_PublicProfileGetXpGraph Data_GetExperienceHistoryDate_PublicProfileGetXpGraph `json:"getExperienceHistoryDate"`
+type PublicProfileGetXpGraph_Data_Student struct {
+	GetExperienceHistoryDate PublicProfileGetXpGraph_Data_GetExperienceHistoryDate `json:"getExperienceHistoryDate"`
 	Typename                 string                   `json:"__typename"`
 }
 
-type Data_GetExperienceHistoryDate_PublicProfileGetXpGraph struct {
-	Data_History_PublicProfileGetXpGraph  []Data_History_PublicProfileGetXpGraph `json:"history"`
+type PublicProfileGetXpGraph_Data_GetExperienceHistoryDate struct {
+	History  []PublicProfileGetXpGraph_Data_History `json:"history"`
 	Typename string    `json:"__typename"`
 }
 
-type Data_History_PublicProfileGetXpGraph struct {
+type PublicProfileGetXpGraph_Data_History struct {
 	AwardDate string `json:"awardDate"`
 	ExpValue  int64  `json:"expValue"`
 	Typename  string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) PublicProfileGetXpGraph(variables Variables_PublicProfileGetXpGraph) (Data_PublicProfileGetXpGraph, error) {
-	request := gql.NewQueryRequest[Variables_PublicProfileGetXpGraph](
+func (ctx *RequestContext) PublicProfileGetXpGraph(variables PublicProfileGetXpGraph_Variables) (PublicProfileGetXpGraph_Data, error) {
+	request := gql.NewQueryRequest[PublicProfileGetXpGraph_Variables](
 		"query publicProfileGetXpGraph($userId: UUID!) {\n  student {\n    getExperienceHistoryDate(userId: $userId) {\n      history {\n        awardDate\n        expValue\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_PublicProfileGetXpGraph](ctx, request)
+	return GqlRequest[PublicProfileGetXpGraph_Data](ctx, request)
 }

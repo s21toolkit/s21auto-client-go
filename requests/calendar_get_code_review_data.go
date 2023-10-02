@@ -2,47 +2,47 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_CalendarGetCodeReviewData struct {
+type CalendarGetCodeReviewData_Variables struct {
 	StudentGoalID string `json:"studentGoalId"`
 }
 
 
-type Data_CalendarGetCodeReviewData struct {
-	Data_Student_CalendarGetCodeReviewData Data_Student_CalendarGetCodeReviewData `json:"student"`
+type CalendarGetCodeReviewData_Data struct {
+	Student CalendarGetCodeReviewData_Data_Student `json:"student"`
 }
 
-type Data_Student_CalendarGetCodeReviewData struct {
-	Data_GetStudentModuleByStudentGoalID_CalendarGetCodeReviewData Data_GetStudentModuleByStudentGoalID_CalendarGetCodeReviewData `json:"getStudentModuleByStudentGoalId"`
+type CalendarGetCodeReviewData_Data_Student struct {
+	GetStudentModuleByStudentGoalID CalendarGetCodeReviewData_Data_GetStudentModuleByStudentGoalID `json:"getStudentModuleByStudentGoalId"`
 	Typename                        string                          `json:"__typename"`
 }
 
-type Data_GetStudentModuleByStudentGoalID_CalendarGetCodeReviewData struct {
+type CalendarGetCodeReviewData_Data_GetStudentModuleByStudentGoalID struct {
 	ModuleTitle string      `json:"moduleTitle"`
-	Data_CurrentTask_CalendarGetCodeReviewData Data_CurrentTask_CalendarGetCodeReviewData `json:"currentTask"`
+	CurrentTask CalendarGetCodeReviewData_Data_CurrentTask `json:"currentTask"`
 	Typename    string      `json:"__typename"`
 }
 
-type Data_CurrentTask_CalendarGetCodeReviewData struct {
-	Data_Task_CalendarGetCodeReviewData     Data_Task_CalendarGetCodeReviewData   `json:"task"`
+type CalendarGetCodeReviewData_Data_CurrentTask struct {
+	Task     CalendarGetCodeReviewData_Data_Task   `json:"task"`
 	Typename string `json:"__typename"`
 }
 
-type Data_Task_CalendarGetCodeReviewData struct {
-	Data_StudentTaskAdditionalAttributes_CalendarGetCodeReviewData Data_StudentTaskAdditionalAttributes_CalendarGetCodeReviewData `json:"studentTaskAdditionalAttributes"`
+type CalendarGetCodeReviewData_Data_Task struct {
+	StudentTaskAdditionalAttributes CalendarGetCodeReviewData_Data_StudentTaskAdditionalAttributes `json:"studentTaskAdditionalAttributes"`
 	Typename                        string                          `json:"__typename"`
 }
 
-type Data_StudentTaskAdditionalAttributes_CalendarGetCodeReviewData struct {
+type CalendarGetCodeReviewData_Data_StudentTaskAdditionalAttributes struct {
 	CodeReviewDuration int64  `json:"codeReviewDuration"`
 	Typename           string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) CalendarGetCodeReviewData(variables Variables_CalendarGetCodeReviewData) (Data_CalendarGetCodeReviewData, error) {
-	request := gql.NewQueryRequest[Variables_CalendarGetCodeReviewData](
+func (ctx *RequestContext) CalendarGetCodeReviewData(variables CalendarGetCodeReviewData_Variables) (CalendarGetCodeReviewData_Data, error) {
+	request := gql.NewQueryRequest[CalendarGetCodeReviewData_Variables](
 		"query calendarGetCodeReviewData($studentGoalId: ID!) {\n  student {\n    getStudentModuleByStudentGoalId(studentGoalId: $studentGoalId) {\n      moduleTitle\n      currentTask {\n        task {\n          studentTaskAdditionalAttributes {\n            codeReviewDuration\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_CalendarGetCodeReviewData](ctx, request)
+	return GqlRequest[CalendarGetCodeReviewData_Data](ctx, request)
 }

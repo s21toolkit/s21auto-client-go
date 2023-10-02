@@ -2,60 +2,60 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_CompetitionCoalitionGetMyCoalitionMembers struct {
-	Variables_Page_CompetitionCoalitionGetMyCoalitionMembers Variables_Page_CompetitionCoalitionGetMyCoalitionMembers `json:"page"`
+type CompetitionCoalitionGetMyCoalitionMembers_Variables struct {
+	Page CompetitionCoalitionGetMyCoalitionMembers_Variables_Page `json:"page"`
 }
 
-type Variables_Page_CompetitionCoalitionGetMyCoalitionMembers struct {
+type CompetitionCoalitionGetMyCoalitionMembers_Variables_Page struct {
 	Offset int64 `json:"offset"`
 	Limit  int64 `json:"limit"`
 }
 
 
-type Data_CompetitionCoalitionGetMyCoalitionMembers struct {
-	Data_Student_CompetitionCoalitionGetMyCoalitionMembers Data_Student_CompetitionCoalitionGetMyCoalitionMembers `json:"student"`
+type CompetitionCoalitionGetMyCoalitionMembers_Data struct {
+	Student CompetitionCoalitionGetMyCoalitionMembers_Data_Student `json:"student"`
 }
 
-type Data_Student_CompetitionCoalitionGetMyCoalitionMembers struct {
-	Data_GetUserTournamentWidget_CompetitionCoalitionGetMyCoalitionMembers Data_GetUserTournamentWidget_CompetitionCoalitionGetMyCoalitionMembers `json:"getUserTournamentWidget"`
+type CompetitionCoalitionGetMyCoalitionMembers_Data_Student struct {
+	GetUserTournamentWidget CompetitionCoalitionGetMyCoalitionMembers_Data_GetUserTournamentWidget `json:"getUserTournamentWidget"`
 	Typename                string                  `json:"__typename"`
 }
 
-type Data_GetUserTournamentWidget_CompetitionCoalitionGetMyCoalitionMembers struct {
-	GetMyCoalitionMembers []Data_GetMyCoalitionMember_CompetitionCoalitionGetMyCoalitionMembers `json:"getMyCoalitionMembers"`
+type CompetitionCoalitionGetMyCoalitionMembers_Data_GetUserTournamentWidget struct {
+	GetMyCoalitionMembers []CompetitionCoalitionGetMyCoalitionMembers_Data_GetMyCoalitionMember `json:"getMyCoalitionMembers"`
 	Typename              string                 `json:"__typename"`
 }
 
-type Data_GetMyCoalitionMember_CompetitionCoalitionGetMyCoalitionMembers struct {
-	Data_User_CompetitionCoalitionGetMyCoalitionMembers     Data_User_CompetitionCoalitionGetMyCoalitionMembers   `json:"user"`
+type CompetitionCoalitionGetMyCoalitionMembers_Data_GetMyCoalitionMember struct {
+	User     CompetitionCoalitionGetMyCoalitionMembers_Data_User   `json:"user"`
 	Typename string `json:"__typename"`
 }
 
-type Data_User_CompetitionCoalitionGetMyCoalitionMembers struct {
+type CompetitionCoalitionGetMyCoalitionMembers_Data_User struct {
 	ID             string         `json:"id"`
 	Login          string         `json:"login"`
 	AvatarURL      string         `json:"avatarUrl"`
-	Data_UserExperience_CompetitionCoalitionGetMyCoalitionMembers Data_UserExperience_CompetitionCoalitionGetMyCoalitionMembers `json:"userExperience"`
+	UserExperience CompetitionCoalitionGetMyCoalitionMembers_Data_UserExperience `json:"userExperience"`
 	Typename       string         `json:"__typename"`
 }
 
-type Data_UserExperience_CompetitionCoalitionGetMyCoalitionMembers struct {
-	Data_Level_CompetitionCoalitionGetMyCoalitionMembers    Data_Level_CompetitionCoalitionGetMyCoalitionMembers  `json:"level"`
+type CompetitionCoalitionGetMyCoalitionMembers_Data_UserExperience struct {
+	Level    CompetitionCoalitionGetMyCoalitionMembers_Data_Level  `json:"level"`
 	Typename string `json:"__typename"`
 }
 
-type Data_Level_CompetitionCoalitionGetMyCoalitionMembers struct {
+type CompetitionCoalitionGetMyCoalitionMembers_Data_Level struct {
 	ID        int64  `json:"id"`
 	LevelCode int64  `json:"levelCode"`
 	Typename  string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) CompetitionCoalitionGetMyCoalitionMembers(variables Variables_CompetitionCoalitionGetMyCoalitionMembers) (Data_CompetitionCoalitionGetMyCoalitionMembers, error) {
-	request := gql.NewQueryRequest[Variables_CompetitionCoalitionGetMyCoalitionMembers](
+func (ctx *RequestContext) CompetitionCoalitionGetMyCoalitionMembers(variables CompetitionCoalitionGetMyCoalitionMembers_Variables) (CompetitionCoalitionGetMyCoalitionMembers_Data, error) {
+	request := gql.NewQueryRequest[CompetitionCoalitionGetMyCoalitionMembers_Variables](
 		"query competitionCoalitionGetMyCoalitionMembers($page: PagingInput) {\n  student {\n    getUserTournamentWidget {\n      getMyCoalitionMembers(page: $page) {\n        user {\n          id\n          login\n          avatarUrl\n          userExperience {\n            level {\n              id\n              levelCode\n              __typename\n            }\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_CompetitionCoalitionGetMyCoalitionMembers](ctx, request)
+	return GqlRequest[CompetitionCoalitionGetMyCoalitionMembers_Data](ctx, request)
 }

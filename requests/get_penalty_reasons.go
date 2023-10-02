@@ -2,31 +2,31 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetPenaltyReasons struct {
+type GetPenaltyReasons_Variables struct {
 }
 
 
-type Data_GetPenaltyReasons struct {
-	Data_School21_GetPenaltyReasons Data_School21_GetPenaltyReasons `json:"school21"`
+type GetPenaltyReasons_Data struct {
+	School21 GetPenaltyReasons_Data_School21 `json:"school21"`
 }
 
-type Data_School21_GetPenaltyReasons struct {
-	GetPenaltyReasons []Data_GetPenaltyReason_GetPenaltyReasons `json:"getPenaltyReasons"`
+type GetPenaltyReasons_Data_School21 struct {
+	GetPenaltyReasons []GetPenaltyReasons_Data_GetPenaltyReason `json:"getPenaltyReasons"`
 	Typename          string             `json:"__typename"`
 }
 
-type Data_GetPenaltyReason_GetPenaltyReasons struct {
+type GetPenaltyReasons_Data_GetPenaltyReason struct {
 	ID       string `json:"id"`
 	Name     string `json:"name"`
 	Typename string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) GetPenaltyReasons(variables Variables_GetPenaltyReasons) (Data_GetPenaltyReasons, error) {
-	request := gql.NewQueryRequest[Variables_GetPenaltyReasons](
+func (ctx *RequestContext) GetPenaltyReasons(variables GetPenaltyReasons_Variables) (GetPenaltyReasons_Data, error) {
+	request := gql.NewQueryRequest[GetPenaltyReasons_Variables](
 		"query getPenaltyReasons {\n  school21 {\n    getPenaltyReasons {\n      id\n      name\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetPenaltyReasons](ctx, request)
+	return GqlRequest[GetPenaltyReasons_Data](ctx, request)
 }

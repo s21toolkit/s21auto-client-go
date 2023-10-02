@@ -2,39 +2,39 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetGraphBasisGoals struct {
+type GetGraphBasisGoals_Variables struct {
 	StudentID string `json:"studentId"`
 }
 
 
-type Data_GetGraphBasisGoals struct {
-	Data_Student_GetGraphBasisGoals Data_Student_GetGraphBasisGoals `json:"student"`
+type GetGraphBasisGoals_Data struct {
+	Student GetGraphBasisGoals_Data_Student `json:"student"`
 }
 
-type Data_Student_GetGraphBasisGoals struct {
-	Data_GetBasisGraph_GetGraphBasisGoals Data_GetBasisGraph_GetGraphBasisGoals `json:"getBasisGraph"`
+type GetGraphBasisGoals_Data_Student struct {
+	GetBasisGraph GetGraphBasisGoals_Data_GetBasisGraph `json:"getBasisGraph"`
 	Typename      string        `json:"__typename"`
 }
 
-type Data_GetBasisGraph_GetGraphBasisGoals struct {
+type GetGraphBasisGoals_Data_GetBasisGraph struct {
 	IsIntensiveGraphAvailable bool        `json:"isIntensiveGraphAvailable"`
-	GraphNodes                []Data_GraphNode_GetGraphBasisGoals `json:"graphNodes"`
+	GraphNodes                []GetGraphBasisGoals_Data_GraphNode `json:"graphNodes"`
 	Typename                  string      `json:"__typename"`
 }
 
-type Data_GraphNode_GetGraphBasisGoals struct {
+type GetGraphBasisGoals_Data_GraphNode struct {
 	GraphNodeID     string           `json:"graphNodeId"`
 	NodeCode        string           `json:"nodeCode"`
-	StudyDirections []Data_StudyDirection_GetGraphBasisGoals `json:"studyDirections"`
+	StudyDirections []GetGraphBasisGoals_Data_StudyDirection `json:"studyDirections"`
 	EntityType      string           `json:"entityType"`
 	EntityID        string           `json:"entityId"`
-	Goal            *Data_Course_GetGraphBasisGoals          `json:"goal"`
-	Data_Course_GetGraphBasisGoals          *Data_Course_GetGraphBasisGoals          `json:"course"`
+	Goal            *GetGraphBasisGoals_Data_Course          `json:"goal"`
+	Course          *GetGraphBasisGoals_Data_Course          `json:"course"`
 	ParentNodeCodes []string         `json:"parentNodeCodes"`
 	Typename        string           `json:"__typename"`
 }
 
-type Data_Course_GetGraphBasisGoals struct {
+type GetGraphBasisGoals_Data_Course struct {
 	CourseType         *string     `json:"courseType,omitempty"`
 	ProjectState       string      `json:"projectState"`
 	ProjectName        string      `json:"projectName"`
@@ -48,7 +48,7 @@ type Data_Course_GetGraphBasisGoals struct {
 	IsMandatory        *bool       `json:"isMandatory,omitempty"`
 }
 
-type Data_StudyDirection_GetGraphBasisGoals struct {
+type GetGraphBasisGoals_Data_StudyDirection struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`
 	Color     string `json:"color"`
@@ -57,11 +57,11 @@ type Data_StudyDirection_GetGraphBasisGoals struct {
 }
 
 
-func (ctx *RequestContext) GetGraphBasisGoals(variables Variables_GetGraphBasisGoals) (Data_GetGraphBasisGoals, error) {
-	request := gql.NewQueryRequest[Variables_GetGraphBasisGoals](
+func (ctx *RequestContext) GetGraphBasisGoals(variables GetGraphBasisGoals_Variables) (GetGraphBasisGoals_Data, error) {
+	request := gql.NewQueryRequest[GetGraphBasisGoals_Variables](
 		"query getGraphBasisGoals($studentId: UUID!) {\n  student {\n    getBasisGraph(studentId: $studentId) {\n      isIntensiveGraphAvailable\n      graphNodes {\n        ...BasisGraphNode\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment BasisGraphNode on GraphNode {\n  graphNodeId\n  nodeCode\n  studyDirections {\n    id\n    name\n    color\n    textColor\n    __typename\n  }\n  entityType\n  entityId\n  goal {\n    goalExecutionType\n    projectState\n    projectName\n    projectDescription\n    projectPoints\n    projectDate\n    duration\n    isMandatory\n    __typename\n  }\n  course {\n    courseType\n    projectState\n    projectName\n    projectDescription\n    projectPoints\n    projectDate\n    duration\n    localCourseId\n    __typename\n  }\n  parentNodeCodes\n  __typename\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetGraphBasisGoals](ctx, request)
+	return GqlRequest[GetGraphBasisGoals_Data](ctx, request)
 }

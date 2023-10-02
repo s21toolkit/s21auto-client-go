@@ -2,31 +2,31 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetSearchHistory struct {
+type GetSearchHistory_Variables struct {
 }
 
 
-type Data_GetSearchHistory struct {
-	Data_School21_GetSearchHistory Data_School21_GetSearchHistory `json:"school21"`
+type GetSearchHistory_Data struct {
+	School21 GetSearchHistory_Data_School21 `json:"school21"`
 }
 
-type Data_School21_GetSearchHistory struct {
-	GetSearchHistoryTooltips []Data_GetSearchHistoryTooltip_GetSearchHistory `json:"getSearchHistoryTooltips"`
+type GetSearchHistory_Data_School21 struct {
+	GetSearchHistoryTooltips []GetSearchHistory_Data_GetSearchHistoryTooltip `json:"getSearchHistoryTooltips"`
 	Typename                 string                    `json:"__typename"`
 }
 
-type Data_GetSearchHistoryTooltip_GetSearchHistory struct {
+type GetSearchHistory_Data_GetSearchHistoryTooltip struct {
 	TooltipText     string `json:"tooltipText"`
 	TooltipCategory string `json:"tooltipCategory"`
 	Typename        string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) GetSearchHistory(variables Variables_GetSearchHistory) (Data_GetSearchHistory, error) {
-	request := gql.NewQueryRequest[Variables_GetSearchHistory](
+func (ctx *RequestContext) GetSearchHistory(variables GetSearchHistory_Variables) (GetSearchHistory_Data, error) {
+	request := gql.NewQueryRequest[GetSearchHistory_Variables](
 		"query getSearchHistory {\n  school21 {\n    getSearchHistoryTooltips {\n      tooltipText\n      tooltipCategory\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetSearchHistory](ctx, request)
+	return GqlRequest[GetSearchHistory_Data](ctx, request)
 }

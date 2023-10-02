@@ -2,26 +2,26 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_BonusesGetUserIdByLogin struct {
+type BonusesGetUserIdByLogin_Variables struct {
 	Login string `json:"login"`
 }
 
 
-type Data_BonusesGetUserIdByLogin struct {
-	Data_Student_BonusesGetUserIdByLogin Data_Student_BonusesGetUserIdByLogin `json:"student"`
+type BonusesGetUserIdByLogin_Data struct {
+	Student BonusesGetUserIdByLogin_Data_Student `json:"student"`
 }
 
-type Data_Student_BonusesGetUserIdByLogin struct {
+type BonusesGetUserIdByLogin_Data_Student struct {
 	GetUserIDByLogin string `json:"getUserIdByLogin"`
 	Typename         string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) BonusesGetUserIdByLogin(variables Variables_BonusesGetUserIdByLogin) (Data_BonusesGetUserIdByLogin, error) {
-	request := gql.NewQueryRequest[Variables_BonusesGetUserIdByLogin](
+func (ctx *RequestContext) BonusesGetUserIdByLogin(variables BonusesGetUserIdByLogin_Variables) (BonusesGetUserIdByLogin_Data, error) {
+	request := gql.NewQueryRequest[BonusesGetUserIdByLogin_Variables](
 		"query bonusesGetUserIdByLogin($login: String!) {\n  student {\n    getUserIdByLogin(login: $login)\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_BonusesGetUserIdByLogin](ctx, request)
+	return GqlRequest[BonusesGetUserIdByLogin_Data](ctx, request)
 }

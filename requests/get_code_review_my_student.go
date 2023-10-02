@@ -2,27 +2,27 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetCodeReviewMyStudent struct {
+type GetCodeReviewMyStudent_Variables struct {
 	StudentGoalID string `json:"studentGoalId"`
 }
 
 
-type Data_GetCodeReviewMyStudent struct {
-	Data_Student_GetCodeReviewMyStudent Data_Student_GetCodeReviewMyStudent `json:"student"`
+type GetCodeReviewMyStudent_Data struct {
+	Student GetCodeReviewMyStudent_Data_Student `json:"student"`
 }
 
-type Data_Student_GetCodeReviewMyStudent struct {
-	Data_GetMyStudentCodeReview_GetCodeReviewMyStudent *Data_GetMyStudentCodeReview_GetCodeReviewMyStudent `json:"getMyStudentCodeReview"`
+type GetCodeReviewMyStudent_Data_Student struct {
+	GetMyStudentCodeReview *GetCodeReviewMyStudent_Data_GetMyStudentCodeReview `json:"getMyStudentCodeReview"`
 	Typename               string                  `json:"__typename"`
 }
 
-type Data_GetMyStudentCodeReview_GetCodeReviewMyStudent struct {
+type GetCodeReviewMyStudent_Data_GetMyStudentCodeReview struct {
 	ReviewerCommentsCount int64             `json:"reviewerCommentsCount"`
-	CodeReviewRounds      []Data_CodeReviewRound_GetCodeReviewMyStudent `json:"codeReviewRounds"`
+	CodeReviewRounds      []GetCodeReviewMyStudent_Data_CodeReviewRound `json:"codeReviewRounds"`
 	Typename              string            `json:"__typename"`
 }
 
-type Data_CodeReviewRound_GetCodeReviewMyStudent struct {
+type GetCodeReviewMyStudent_Data_CodeReviewRound struct {
 	EventID             *string `json:"eventId"`
 	CodeReviewRoundType string  `json:"codeReviewRoundType"`
 	CodeReviewStatus    string  `json:"codeReviewStatus"`
@@ -34,11 +34,11 @@ type Data_CodeReviewRound_GetCodeReviewMyStudent struct {
 }
 
 
-func (ctx *RequestContext) GetCodeReviewMyStudent(variables Variables_GetCodeReviewMyStudent) (Data_GetCodeReviewMyStudent, error) {
-	request := gql.NewQueryRequest[Variables_GetCodeReviewMyStudent](
+func (ctx *RequestContext) GetCodeReviewMyStudent(variables GetCodeReviewMyStudent_Variables) (GetCodeReviewMyStudent_Data, error) {
+	request := gql.NewQueryRequest[GetCodeReviewMyStudent_Variables](
 		"query getCodeReviewMyStudent($studentGoalId: ID!) {\n  student {\n    getMyStudentCodeReview(studentGoalId: $studentGoalId) {\n      reviewerCommentsCount\n      codeReviewRounds {\n        ...CodeReviewRound\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment CodeReviewRound on CodeReviewRound {\n  eventId\n  codeReviewRoundType\n  codeReviewStatus\n  startTime\n  endTime\n  mergeRequestURL\n  createTime\n  __typename\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetCodeReviewMyStudent](ctx, request)
+	return GqlRequest[GetCodeReviewMyStudent_Data](ctx, request)
 }

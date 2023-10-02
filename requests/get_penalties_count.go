@@ -2,26 +2,26 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetPenaltiesCount struct {
+type GetPenaltiesCount_Variables struct {
 	Statuses []string `json:"statuses"`
 }
 
 
-type Data_GetPenaltiesCount struct {
-	Data_School21_GetPenaltiesCount Data_School21_GetPenaltiesCount `json:"school21"`
+type GetPenaltiesCount_Data struct {
+	School21 GetPenaltiesCount_Data_School21 `json:"school21"`
 }
 
-type Data_School21_GetPenaltiesCount struct {
+type GetPenaltiesCount_Data_School21 struct {
 	CountMyPenalties int64  `json:"countMyPenalties"`
 	Typename         string `json:"__typename"`
 }
 
 
-func (ctx *RequestContext) GetPenaltiesCount(variables Variables_GetPenaltiesCount) (Data_GetPenaltiesCount, error) {
-	request := gql.NewQueryRequest[Variables_GetPenaltiesCount](
+func (ctx *RequestContext) GetPenaltiesCount(variables GetPenaltiesCount_Variables) (GetPenaltiesCount_Data, error) {
+	request := gql.NewQueryRequest[GetPenaltiesCount_Variables](
 		"query getPenaltiesCount($statuses: [String]!) {\n  school21 {\n    countMyPenalties(statuses: $statuses)\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetPenaltiesCount](ctx, request)
+	return GqlRequest[GetPenaltiesCount_Data](ctx, request)
 }

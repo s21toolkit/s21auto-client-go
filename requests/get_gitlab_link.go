@@ -2,21 +2,21 @@ package requests
 
 import "github.com/s21toolkit/s21client/gql"
 
-type Variables_GetGitlabLink struct {
+type GetGitlabLink_Variables struct {
 	TaskID string `json:"taskId"`
 }
 
 
-type Data_GetGitlabLink struct {
-	Data_Student_GetGitlabLink Data_Student_GetGitlabLink `json:"student"`
+type GetGitlabLink_Data struct {
+	Student GetGitlabLink_Data_Student `json:"student"`
 }
 
-type Data_Student_GetGitlabLink struct {
-	Data_GetLinkToPrivateStudentGitlabProjectByTaskID_GetGitlabLink Data_GetLinkToPrivateStudentGitlabProjectByTaskID_GetGitlabLink `json:"getLinkToPrivateStudentGitlabProjectByTaskId"`
+type GetGitlabLink_Data_Student struct {
+	GetLinkToPrivateStudentGitlabProjectByTaskID GetGitlabLink_Data_GetLinkToPrivateStudentGitlabProjectByTaskID `json:"getLinkToPrivateStudentGitlabProjectByTaskId"`
 	Typename                                     string                                       `json:"__typename"`
 }
 
-type Data_GetLinkToPrivateStudentGitlabProjectByTaskID_GetGitlabLink struct {
+type GetGitlabLink_Data_GetLinkToPrivateStudentGitlabProjectByTaskID struct {
 	SSHLink     string `json:"sshLink"`
 	HasOpenedMR bool   `json:"hasOpenedMR"`
 	HTTPSLink   string `json:"httpsLink"`
@@ -24,11 +24,11 @@ type Data_GetLinkToPrivateStudentGitlabProjectByTaskID_GetGitlabLink struct {
 }
 
 
-func (ctx *RequestContext) GetGitlabLink(variables Variables_GetGitlabLink) (Data_GetGitlabLink, error) {
-	request := gql.NewQueryRequest[Variables_GetGitlabLink](
+func (ctx *RequestContext) GetGitlabLink(variables GetGitlabLink_Variables) (GetGitlabLink_Data, error) {
+	request := gql.NewQueryRequest[GetGitlabLink_Variables](
 		"query getGitlabLink($taskId: ID!) {\n  student {\n    getLinkToPrivateStudentGitlabProjectByTaskId(taskId: $taskId) {\n      sshLink\n      hasOpenedMR\n      httpsLink\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
-	return GqlRequest[Data_GetGitlabLink](ctx, request)
+	return GqlRequest[GetGitlabLink_Data](ctx, request)
 }
