@@ -18,7 +18,7 @@ client := s21client.New(
   )
 )
 
-user, err := client.R().GetCurrentUser(requests.Variables_GetCurrentUser{})
+user, err := client.R().GetCurrentUser(requests.GetCurrentUser_Variables{})
 if err != nil {
   t.Error(err)
 }
