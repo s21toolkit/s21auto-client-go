@@ -7,10 +7,10 @@ type GetIsHonorRatingNeeded_Variables struct {
 
 
 type GetIsHonorRatingNeeded_Data struct {
-	Student GetIsHonorRatingNeeded_Data_Student `json:"student"`
+	HonorRating GetIsHonorRatingNeeded_Data_HonorRating `json:"honorRating"`
 }
 
-type GetIsHonorRatingNeeded_Data_Student struct {
+type GetIsHonorRatingNeeded_Data_HonorRating struct {
 	IsHonorRatingNeeded bool   `json:"isHonorRatingNeeded"`
 	Typename            string `json:"__typename"`
 }
@@ -18,7 +18,7 @@ type GetIsHonorRatingNeeded_Data_Student struct {
 
 func (ctx *RequestContext) GetIsHonorRatingNeeded(variables GetIsHonorRatingNeeded_Variables) (GetIsHonorRatingNeeded_Data, error) {
 	request := gql.NewQueryRequest[GetIsHonorRatingNeeded_Variables](
-		"query getIsHonorRatingNeeded {\n  student {\n    isHonorRatingNeeded\n    __typename\n  }\n}\n",
+		"query getIsHonorRatingNeeded {\n  honorRating {\n    isHonorRatingNeeded\n    __typename\n  }\n}\n",
 		variables,
 	)
 

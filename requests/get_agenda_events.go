@@ -10,10 +10,10 @@ type GetAgendaEvents_Variables struct {
 
 
 type GetAgendaEvents_Data struct {
-	Student GetAgendaEvents_Data_Student `json:"student"`
+	CalendarEventS21 GetAgendaEvents_Data_CalendarEventS21 `json:"calendarEventS21"`
 }
 
-type GetAgendaEvents_Data_Student struct {
+type GetAgendaEvents_Data_CalendarEventS21 struct {
 	GetMyAgendaEvents []GetAgendaEvents_Data_GetMyAgendaEvent `json:"getMyAgendaEvents"`
 	Typename          string             `json:"__typename"`
 }
@@ -44,7 +44,7 @@ type GetAgendaEvents_Data_AgendaItemContext struct {
 
 func (ctx *RequestContext) GetAgendaEvents(variables GetAgendaEvents_Variables) (GetAgendaEvents_Data, error) {
 	request := gql.NewQueryRequest[GetAgendaEvents_Variables](
-		"query getAgendaEvents($from: DateTime!, $to: DateTime!, $limit: Int!) {\n  student {\n    getMyAgendaEvents(from: $from, to: $to, limit: $limit) {\n      agendaItemContext {\n        entityId\n        entityType\n        __typename\n      }\n      start\n      end\n      label\n      description\n      agendaEventType\n      additionalInfo {\n        key\n        value\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
+		"query getAgendaEvents($from: DateTime!, $to: DateTime!, $limit: Int!) {\n  calendarEventS21 {\n    getMyAgendaEvents(from: $from, to: $to, limit: $limit) {\n      agendaItemContext {\n        entityId\n        entityType\n        __typename\n      }\n      start\n      end\n      label\n      description\n      agendaEventType\n      additionalInfo {\n        key\n        value\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 

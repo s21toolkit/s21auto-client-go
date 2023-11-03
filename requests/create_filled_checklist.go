@@ -87,9 +87,9 @@ type CreateFilledChecklist_Data_ProgressCheckInfo struct {
 }
 
 type CreateFilledChecklist_Data_VerifiableUsers struct {
-	TeamWithMembers CreateFilledChecklist_Data_TeamWithMembers `json:"teamWithMembers"`
-	User            interface{}     `json:"user"`
-	Typename        string          `json:"__typename"`
+	TeamWithMembers *CreateFilledChecklist_Data_TeamWithMembers `json:"teamWithMembers"`
+	User            *CreateFilledChecklist_Data_User            `json:"user"`
+	Typename        string           `json:"__typename"`
 }
 
 type CreateFilledChecklist_Data_TeamWithMembers struct {

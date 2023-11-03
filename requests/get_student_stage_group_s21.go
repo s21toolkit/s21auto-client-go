@@ -8,10 +8,10 @@ type GetStudentStageGroupS21_Variables struct {
 
 
 type GetStudentStageGroupS21_Data struct {
-	Student GetStudentStageGroupS21_Data_Student `json:"student"`
+	School21 GetStudentStageGroupS21_Data_School21 `json:"school21"`
 }
 
-type GetStudentStageGroupS21_Data_Student struct {
+type GetStudentStageGroupS21_Data_School21 struct {
 	GetStageGroupS21PublicProfile GetStudentStageGroupS21_Data_GetStageGroupS21PublicProfile `json:"getStageGroupS21PublicProfile"`
 	Typename                      string                        `json:"__typename"`
 }
@@ -26,7 +26,7 @@ type GetStudentStageGroupS21_Data_GetStageGroupS21PublicProfile struct {
 
 func (ctx *RequestContext) GetStudentStageGroupS21(variables GetStudentStageGroupS21_Variables) (GetStudentStageGroupS21_Data, error) {
 	request := gql.NewQueryRequest[GetStudentStageGroupS21_Variables](
-		"query getStudentStageGroupS21($studentId: UUID!) {\n  student {\n    getStageGroupS21PublicProfile(studentId: $studentId) {\n      waveId\n      waveName\n      eduForm\n      __typename\n    }\n    __typename\n  }\n}\n",
+		"query getStudentStageGroupS21($studentId: UUID!) {\n  school21 {\n    getStageGroupS21PublicProfile(studentId: $studentId) {\n      waveId\n      waveName\n      eduForm\n      __typename\n    }\n    __typename\n  }\n}\n",
 		variables,
 	)
 
