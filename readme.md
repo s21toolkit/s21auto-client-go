@@ -1,7 +1,5 @@
 # s21auto-client-go 🍻🫃
 
-[![.github/workflows/test.yaml](https://github.com/s21toolkit/s21client/actions/workflows/test.yaml/badge.svg)](https://github.com/s21toolkit/s21client/actions/workflows/test.yaml)
-
 Клиент для внутреннего GQL API платформы edu.21-school.ru. 
 Предназначен для использования с [s21auto](https://github.com/s21toolkit/s21auto) для генерации запросов (`requests/`) из HAR логов платформы.
 
